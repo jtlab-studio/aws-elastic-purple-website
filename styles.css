@@ -77,15 +77,11 @@ header {
 }
 
 .avatar {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
+    max-width: 200px;
+    height: auto;
     margin: 0 auto 20px;
-    background: linear-gradient(135deg, var(--accent-color), #8b5cf6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3rem;
+    display: block;
+    object-fit: contain;
 }
 
 h1 {
