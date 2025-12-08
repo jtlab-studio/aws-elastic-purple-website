@@ -13,6 +13,19 @@ function toggleTheme() {
     }
 }
 
+function toggleDescription(button) {
+    const certItem = button.parentElement;
+    const description = certItem.querySelector('.cert-description');
+    
+    if (description.style.display === 'none') {
+        description.style.display = 'block';
+        button.textContent = '✕ Less Info';
+    } else {
+        description.style.display = 'none';
+        button.textContent = 'ℹ️ More Info';
+    }
+}
+
 // Load saved theme on page load
 window.addEventListener('DOMContentLoaded', () => {
     const savedTheme = localStorage.getItem('theme');

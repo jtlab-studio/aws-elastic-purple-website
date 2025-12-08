@@ -112,72 +112,124 @@
                     <h2>🎓 Education</h2>
                     
                     <div class="timeline-item">
-                        <h3>Bachelor of Computer Science</h3>
-                        <div class="company">University of Wonderland</div>
-                        <div class="date">📅 2015 - 2019</div>
+                        <h3>MSc Computing</h3>
+                        <div class="company">City St George's - University of London</div>
+                        <div class="date">📅 Starting April 2026</div>
                         <p class="about-text">
-                            Comprehensive computer science education covering algorithms, data structures, software engineering, 
-                            and web development. Graduated with honors.
+                            Programming and Algorithms, Web Technologies, Object Oriented Programming, 
+                            Databases, Big Data Analytics and Visualisation, Artificial Intelligence
+                            Computer Systems and Networks, Cyber Security, Human Computer Interaction, 
+                            Software Engineering, Cloud Computing, Digital Transformation using Cloud Technologies
+
                         </p>
                     </div>
                     <div class="timeline-item">
-                        <h3>Web Development Bootcamp</h3>
-                        <div class="company">Online Course</div>
-                        <div class="date">📅 2019 - 2020</div>
-                        <p class="about-text">
-                            Intensive full-stack web development program covering modern JavaScript frameworks, backend 
-                            development, and deployment strategies.
-                        </p>
+                        <h3>BEng(Hons) Civil Engineering</h3>
+                        <div class="company">Kingston University London</div>
                     </div>
                 </div>
             </div>
             <div class="right-column">
                 <div class="card">
                     <h2>📜 Certifications</h2>
-                    
+                <!--
                     <div class="cert-item">
                         <h3>Terraform Associate</h3>
                         <div class="cert-provider">HashiCorp</div>
                         <div class="cert-date">📅 Expected: February 2026</div>
                         <span class="cert-status in-progress">⏳ In Progress</span>
+                        <p class="cert-description">
+                            Infrastructure as Code fundamentals, Terraform workflow, configuration management, 
+                            and best practices for provisioning cloud resources across multiple providers.
+                        </p>
                     </div>
-                    <div class="cert-item">
-                        <h3>AWS Solutions Architect Associate</h3>
-                        <div class="cert-provider">Amazon Web Services</div>
-                        <div class="cert-date">📅 Expected: January 2026</div>
-                        <span class="cert-status in-progress">✓ In Progress</span>
-                    </div>
-                    <div class="cert-item">
-                        <h3>Amazon Cloud Red Team Professional</h3>
-                        <div class="cert-provider">Pwned Labs</div>
-                        <div class="cert-date">📅 Expected: December 2025</div>
-                        <span class="cert-status completed">✓ Completed</span>
-                    </div>
-                    <div class="cert-item">
-                        <h3>AWS Cloud Practictioner</h3>
-                        <div class="cert-provider">Amazon Web Services</div>
-                        <div class="cert-date">📅 Expected: December 2025</div>
-                        <span class="cert-status completed">✓ Completed</span>
-                    </div>
-                    <div class="cert-item">
-                        <h3>React Developer Certification</h3>
-                        <div class="cert-provider">Meta (Facebook)</div>
-                        <div class="cert-date">📅 Obtained: November 2023</div>
-                        <span class="cert-status completed">✓ Completed</span>
-                    </div>
+
                     <div class="cert-item">
                         <h3>Kubernetes Administrator (CKA)</h3>
                         <div class="cert-provider">Cloud Native Computing Foundation</div>
-                        <div class="cert-date">📅 Expected: February 2025</div>
+                        <div class="cert-date">📅 Expected: February 2026</div>
                         <span class="cert-status in-progress">⏳ In Progress</span>
-                    </div>
-                    <div class="cert-item">
-                        <h3>MongoDB Developer Certification</h3>
-                        <div class="cert-provider">MongoDB University</div>
-                        <div class="cert-date">📅 Expected: January 2025</div>
-                        <span class="cert-status in-progress">⏳ In Progress</span>
+                        <p class="cert-description">
+                            Container orchestration, cluster architecture, workload management, networking, storage, 
+                            troubleshooting, and maintaining production-grade Kubernetes environments.
+                        </p>
                     </div>
 
+
+
+                -->
+
+                    <div class="cert-item">
+                        <h3>Certified CyberDefender Level 1</h3>
+                        <div class="cert-provider"><a href="https://cyberdefenders.org/certifications/certified-cyberdefender-level1/" target="_blank" rel="noopener noreferrer">CyberDefenders (CDDL1)</a></div>
+                        <div class="cert-date">📅 Expected: March 2026</div>
+                        <span class="cert-status in-progress">⏳ In Progress</span>
+                        <button class="cert-toggle" onclick="toggleDescription(this)">ℹ️ More Info</button>
+                        <p class="cert-description" style="display: none;">
+                        SOC-analyst training that uses hands-on labs and real-world incident simulations 
+                        for core blue-team skills such as SOC operations, SIEM-based detection, log analysis, 
+                        digital forensics, incident response, and cloud/AI-driven security.
+                        </p>
+                    </div>
+
+                    <div class="cert-item">
+                        <h3>AWS Certified Solutions Architect - Associate</h3>
+                        <div class="cert-provider"><a href="https://aws.amazon.com/certification/certified-solutions-architect-associate/" target="_blank" rel="noopener noreferrer">Amazon Web Services (SAA-C03)</a></div>
+                        <div class="cert-date">📅 Expected: January 2026</div>
+                        <span class="cert-status in-progress">⏳ In Progress</span>
+                        <button class="cert-toggle" onclick="toggleDescription(this)">ℹ️ More Info</button>
+                        <p class="cert-description" style="display: none;">
+                            Designing distributed systems on AWS, architectural best practices, security, cost optimization, 
+                            and implementing resilient, high-performing applications using AWS services.
+                        </p>
+                    </div>
+
+
+                    <div class="cert-item">
+                        <h3>Amazon Cloud Red Team Professional</h3>
+                        <div class="cert-provider"><a href="https://bootcamps.pwnedlabs.io/placrtp-bootcamp" target="_blank" rel="noopener noreferrer">Pwned Labs (ACRTP)</a></div>
+                        <span class="cert-status completed">✓ Completed</span>
+                        <button class="cert-toggle" onclick="toggleDescription(this)">ℹ️ More Info</button>
+                        <p class="cert-description" style="display: none;">
+                            Red- and blue-team cloud security: 
+                            over four weeks of hands-on experience attacking, defending and auditing AWS environments 
+                            — including simulating breaches, abusing misconfigurations and credentials, lateral movement, I
+                            AM exploitations, EC2/Elastic Beanstalk attacks, and also detecting/responding to threats using 
+                            tools like Splunk, AWS GuardDuty, AWS CloudTrail and AWS Athena.
+                        </p>
+                    </div>
+
+                    <div class="cert-item">
+                        <h3>AWS Certified Cloud Practitioner</h3>
+                        <div class="cert-provider"><a href="https://aws.amazon.com/certification/certified-cloud-practitioner/" target="_blank" rel="noopener noreferrer">Amazon Web Services (CLF-C02)</a></div>
+                        <span class="cert-status completed">✓ Completed</span>
+                        <button class="cert-toggle" onclick="toggleDescription(this)">ℹ️ More Info</button>
+                        <p class="cert-description" style="display: none;">
+                            Foundational AWS cloud concepts, core services, security, architecture, pricing models, 
+                            and basic understanding of cloud deployment and operations.
+                        </p>
+                    </div>
+
+                    <div class="cert-item">
+                        <h3>Junior Penetration Tester</h3>
+                        <div class="cert-provider"><a href="https://ine.com/security/certifications/ejpt-certification" target="_blank" rel="noopener noreferrer">INE (eJPT)</a></div>
+                        <span class="cert-status completed">✓ Completed</span>
+                        <button class="cert-toggle" onclick="toggleDescription(this)">ℹ️ More Info</button>
+                        <p class="cert-description" style="display: none;">
+                            Penetration testing skills covering network, web, and application security,
+                        including reconnaissance, vulnerability assessment, and exploitation techniques.
+                        </p>
+                    </div>
+                    <div class="cert-item">
+                        <h3>Certified Information Security Management Principles</h3>
+                        <div class="cert-provider"><a href="https://www.bcs.org/qualifications-and-certifications/certifications-for-professionals/information-security-and-data-protection-certifications/bcs-foundation-certificate-in-information-security-management-principles/" target="_blank" rel="noopener noreferrer">BCS (CISMP)</a></div>
+                        <span class="cert-status completed">✓ Completed</span>
+                        <button class="cert-toggle" onclick="toggleDescription(this)">ℹ️ More Info</button>
+                        <p class="cert-description" style="display: none;">
+                            Modern React development, component architecture, hooks, state management, 
+                            performance optimization, and building interactive user interfaces.
+                        </p>
+                    </div>
                 </div>
                 <div class="card">
                     <h2>🛠️ Skills</h2>
@@ -224,28 +276,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card">
-                    <h2>🎓 Education</h2>
-                    
-                    <div class="timeline-item">
-                        <h3>Bachelor of Computer Science</h3>
-                        <div class="company">University of Wonderland</div>
-                        <div class="date">📅 2015 - 2019</div>
-                        <p class="about-text">
-                            Comprehensive computer science education covering algorithms, data structures, software engineering, 
-                            and web development. Graduated with honors.
-                        </p>
-                    </div>
-                    <div class="timeline-item">
-                        <h3>Web Development Bootcamp</h3>
-                        <div class="company">Online Course</div>
-                        <div class="date">📅 2019 - 2020</div>
-                        <p class="about-text">
-                            Intensive full-stack web development program covering modern JavaScript frameworks, backend 
-                            development, and deployment strategies.
-                        </p>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>

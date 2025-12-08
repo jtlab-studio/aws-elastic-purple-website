@@ -115,7 +115,7 @@ h1 {
 
 .two-column-layout {
     display: grid;
-    grid-template-columns: 1fr 400px;
+    grid-template-columns: 1fr 500px;
     gap: 30px;
 }
 
@@ -259,12 +259,26 @@ h2 {
     margin-bottom: 5px;
 }
 
+.cert-provider a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.cert-provider a:hover {
+    text-decoration: underline;
+}
+
+.cert-provider a:visited {
+    color: var(--accent-color);
+}
+
 .cert-status {
     display: inline-block;
     padding: 4px 12px;
     border-radius: 20px;
     font-size: 0.8rem;
     margin-top: 8px;
+    margin-bottom: 12px;
 }
 
 .cert-status.completed {
@@ -280,6 +294,33 @@ h2 {
 .cert-date {
     color: var(--text-secondary);
     font-size: 0.9rem;
+}
+
+.cert-description {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-top: 10px;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.cert-toggle {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: all 0.2s ease;
+}
+
+.cert-toggle:hover {
+    background: var(--bg-primary);
+    color: var(--accent-color);
+    border-color: var(--accent-color);
 }
 
 @media (max-width: 1024px) {
