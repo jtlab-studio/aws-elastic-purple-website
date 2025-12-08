@@ -26,6 +26,21 @@ function toggleDescription(button) {
     }
 }
 
+function toggleExperience(button) {
+    const timelineItem = button.parentElement;
+    const experienceText = timelineItem.querySelector('.experience-text');
+    
+    if (experienceText.classList.contains('collapsed')) {
+        experienceText.classList.remove('collapsed');
+        experienceText.classList.add('expanded');
+        button.textContent = '- Show less';
+    } else {
+        experienceText.classList.add('collapsed');
+        experienceText.classList.remove('expanded');
+        button.textContent = '+ Read more';
+    }
+}
+
 // Load saved theme on page load
 window.addEventListener('DOMContentLoaded', () => {
     const savedTheme = localStorage.getItem('theme');
