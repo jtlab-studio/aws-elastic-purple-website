@@ -137,9 +137,6 @@ async function updateVisitorCount() {
         // Call your Lambda Function URL
         const response = await fetch('https://sv7nz6uz6uc4z65ayjqa2v7vgi0tpmcv.lambda-url.eu-central-1.on.aws/', {
             method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            },
             mode: 'cors'
         });
 
@@ -149,25 +146,30 @@ async function updateVisitorCount() {
         }
 
         const data = await response.json();
-        console.log('Visitor count data:', data);
+        console.log('Visitor count response:', data);
 
-        // Expecting {"visits": <number>} from Lambda
-        const count = data.visits || data.count || 0;
+        // Handle different possible response formats
+        let count = 0;
+        if (typeof data === 'number') {
+            count = data;
+        } else if (data.visits) {
+            count = data.visits;
+        } else if (data.count) {
+            count = data.count;
+        } else if (data.body) {
+            // Lambda might wrap response in body
+            const bodyData = typeof data.body === 'string' ? JSON.parse(data.body) : data.body;
+            count = bodyData.visits || bodyData.count || bodyData;
+        }
+
+        console.log('Parsed visitor count:', count);
 
         // Animate the counter
         animateCounter(counterElement, 0, count, 1000);
 
     } catch (error) {
         console.error('Error fetching visitor count:', error);
-        // Fallback to localStorage counter for development
-        let count = localStorage.getItem('visitorCount');
-        if (!count) {
-            count = Math.floor(Math.random() * 1000) + 500;
-        } else {
-            count = parseInt(count) + 1;
-        }
-        localStorage.setItem('visitorCount', count);
-        counterElement.textContent = count.toLocaleString();
+        counterElement.textContent = '---';
     }
 }
 
