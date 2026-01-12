@@ -206,7 +206,7 @@ body {
 }
 
 .section-spacer {
-    height: 300px;
+    height: 150px;
 }
 
 @keyframes fadeIn {
@@ -601,8 +601,9 @@ body {
 
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 150px));
+    gap: 25px;
+    justify-content: center;
     max-width: 100%;
 }
 
@@ -611,7 +612,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 20px 10px;
+    width: 150px;
+    height: 150px;
     background: var(--bg-card);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -619,6 +621,7 @@ body {
     border: 1px solid var(--border-color);
     box-shadow: var(--shadow);
     transition: all 0.3s ease;
+    padding: 15px;
 }
 
 .skill-icon:hover {
@@ -628,15 +631,18 @@ body {
 }
 
 .skill-icon-img {
-    font-size: 2.5rem;
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
     margin-bottom: 10px;
 }
 
 .skill-name {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: var(--text-primary);
     font-weight: 500;
     text-align: center;
+    line-height: 1.2;
 }
 
 
@@ -744,8 +750,19 @@ body {
     }
 
     .skills-grid {
-        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(120px, 120px));
         gap: 15px;
+    }
+
+    .skill-icon {
+        width: 120px;
+        height: 120px;
+        padding: 10px;
+    }
+
+    .skill-icon-img {
+        width: 60px;
+        height: 60px;
     }
 
     .theme-toggle {
