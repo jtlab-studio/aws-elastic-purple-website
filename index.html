@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElasticPurple - Cloud • Security • AI/ML</title>
+    <link rel="icon" type="image/png" href="images/favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        ☀️
+    </button>
+
+    <!-- Top Navigation -->
+    <nav class="top-nav">
+        <a href="#home">CRC</a>
+        <a href="#projects">Project Articles</a>
+        <a href="#about">Blog</a>
+    </nav>
+
+    <!-- Sidebar Navigation -->
+    <button class="hamburger" onclick="toggleSidebar()" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <img src="images/ElasticPurple_v3_ae_fullblown.png" alt="ElasticPurple Logo" class="sidebar-logo">
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#home" class="nav-item active">Home</a>
+            <a href="#expertise" class="nav-item">Expertise</a>
+            <a href="#projects" class="nav-item">Projects</a>
+            <a href="#about" class="nav-item">About</a>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home Section -->
+        <section id="home" class="section">
+            <div class="hero">
+                <h1 class="hero-title">Engineering resilient, intelligent systems</h1>
+                <p class="hero-subtitle">Cloud • Security • AI/ML</p>
+
+                <div class="pillars-grid">
+                    <div class="pillar-card">
+                        <div class="pillar-icon">☁️</div>
+                        <h3>Cloud Platforms & Distributed Systems</h3>
+                        <p>Architecting scalable, resilient infrastructure across cloud environments</p>
+                    </div>
+                    <div class="pillar-card">
+                        <div class="pillar-icon">🔒</div>
+                        <h3>Cybersecurity & Resilience</h3>
+                        <p>Red and blue team expertise to anticipate and respond to threats</p>
+                    </div>
+                    <div class="pillar-card">
+                        <div class="pillar-icon">🤖</div>
+                        <h3>AI/ML & Intelligent Systems</h3>
+                        <p>Building intelligent, data-driven solutions at scale</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Expertise/Certifications Section -->
+        <section id="expertise" class="section">
+            <h2 class="section-title">Expertise & Certifications</h2>
+
+            <!-- Cloud Pillar -->
+            <div class="cert-pillar">
+                <div class="pillar-header">
+                    <span class="pillar-icon-large">☁️</span>
+                    <h3>Cloud Platforms & Distributed Systems</h3>
+                </div>
+                <div class="cert-grid">
+                    <div class="cert-card">
+                        <h4>AWS Developer Associate</h4>
+                        <div class="cert-provider"><a
+                                href="https://aws.amazon.com/certification/certified-developer-associate/"
+                                target="_blank" rel="noopener noreferrer">Amazon Web Services (DVA-C02)</a></div>
+                        <div class="cert-date">📅 Expected: February 2026</div>
+                        <span class="cert-status in-progress">⏳ In Progress</span>
+                        <button class="cert-toggle" onclick="toggleDescription(this)">ℹ️ More Info</button>
+                        <p class="cert-description" style="display: none;">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                            laboris nisi ut aliquip ex ea commodo consequat.
+                        </p>
+                    </div>
+
+                    <div class="cert-card">
+                        <h4>AWS Solutions Architect Associate</h4>
+                        <div class="cert-provider"><a
+                                href="https://aws.amazon.com/certification/certified-solutions-architect-associate/"
+                                target="_blank" rel="noopener noreferrer">Amazon Web Services (SAA-C03)</a></div>
+                        <div class="cert-date">📅 Expected: February 2026</div>
+                        <span class="cert-status in-progress">⏳ In Progress</span>
+                        <button class="cert-toggle" onclick="toggleDescription(this)">ℹ️ More Info</button>
+                        <p class="cert-description" style="display: none;">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                            laboris nisi ut aliquip ex ea commodo consequat.
+                        </p>
+                    </div>
+
+                    <div class="cert-card">
+                        <h4>Terraform Associate</h4>
+                        <div class="cert-provider"><a href="https://www.hashicorp.com/certification/terraform-associate"
+                                target="_blank" rel="noopener noreferrer">HashiCorp (003)</a></div>
+                        <div class="cert-date">📅 Expected: March 2026</div>
+                        <span class="cert-status in-progress">⏳ In Progress</span>
+                        <button class="cert-toggle" onclick="toggleDescription(this)">ℹ️ More Info</button>
+                        <p class="cert-description" style="display: none;">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                            laboris nisi ut aliquip ex ea commodo consequat.
+                        </p>
+                    </div>
+
+                    <div class="cert-card">
+                        <h4>AWS Certified Cloud Practitioner</h4>
+                        <div class="cert-provider"><a
+                                href="https://aws.amazon.com/certification/certified-cloud-practitioner/"
+                                target="_blank" rel="noopener noreferrer">Amazon Web Services (CLF-C02)</a></div>
+                        <span class="cert-status completed">✓ Completed</span>
+                        <button class="cert-toggle" onclick="toggleDescription(this)">ℹ️ More Info</button>
+                        <p class="cert-description" style="display: none;">
+                            Foundational AWS cloud concepts, core services, security, architecture, pricing models,
+                            and basic understanding of cloud deployment and operations.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Security Pillar -->
+            <div class="cert-pillar">
+                <div class="pillar-header">
+                    <span class="pillar-icon-large">🔒</span>
+                    <h3>Cybersecurity & Resilience</h3>
+                </div>
+                <div class="cert-grid">
+                    <div class="cert-card">
+                        <h4>AWS Certified Red Team Professional</h4>
+                        <div class="cert-provider"><a href="https://bootcamps.pwnedlabs.io/placrtp-bootcamp"
+                                target="_blank" rel="noopener noreferrer">Pwned Labs (ACRTP)</a></div>
+                        <div class="cert-date">📅 Expected: February 2026</div>
+                        <span class="cert-status in-progress">⏳ In Progress</span>
+                        <button class="cert-toggle" onclick="toggleDescription(this)">ℹ️ More Info</button>
+                        <p class="cert-description" style="display: none;">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                            laboris nisi ut aliquip ex ea commodo consequat.
+                        </p>
+                    </div>
+
+                    <div class="cert-card">
+                        <h4>Junior Penetration Tester</h4>
+                        <div class="cert-provider"><a href="https://ine.com/security/certifications/ejpt-certification"
+                                target="_blank" rel="noopener noreferrer">INE (eJPT)</a></div>
+                        <span class="cert-status completed">✓ Completed</span>
+                        <button class="cert-toggle" onclick="toggleDescription(this)">ℹ️ More Info</button>
+                        <p class="cert-description" style="display: none;">
+                            Penetration testing skills covering network, web, and application security,
+                            including reconnaissance, vulnerability assessment, and exploitation techniques.
+                        </p>
+                    </div>
+
+                    <div class="cert-card">
+                        <h4>Certified Information Security Management Principles</h4>
+                        <div class="cert-provider"><a
+                                href="https://www.bcs.org/qualifications-and-certifications/certifications-for-professionals/information-security-and-data-protection-certifications/bcs-foundation-certificate-in-information-security-management-principles/"
+                                target="_blank" rel="noopener noreferrer">BCS (CISMP)</a></div>
+                        <span class="cert-status completed">✓ Completed</span>
+                        <button class="cert-toggle" onclick="toggleDescription(this)">ℹ️ More Info</button>
+                        <p class="cert-description" style="display: none;">
+                            Comprehensive foundation in information security management covering core concepts
+                            (confidentiality, integrity, availability, risk, threat/vulnerability, controls),
+                            information‑lifecycle and risk management, governance and compliance, applicable
+                            legislation/standards and security frameworks, and implementation of layered security
+                            controls and incident management.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI/ML Pillar -->
+            <div class="cert-pillar">
+                <div class="pillar-header">
+                    <span class="pillar-icon-large">🤖</span>
+                    <h3>AI/ML & Intelligent Systems</h3>
+                </div>
+                <div class="cert-grid">
+                    <div class="cert-card">
+                        <h4>AWS ML Engineer Associate</h4>
+                        <div class="cert-provider"><a
+                                href="https://aws.amazon.com/certification/certified-machine-learning-engineer-associate/"
+                                target="_blank" rel="noopener noreferrer">Amazon Web Services (MLA-C01)</a></div>
+                        <div class="cert-date">📅 Expected: March 2026</div>
+                        <span class="cert-status in-progress">⏳ In Progress</span>
+                        <button class="cert-toggle" onclick="toggleDescription(this)">ℹ️ More Info</button>
+                        <p class="cert-description" style="display: none;">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                            laboris nisi ut aliquip ex ea commodo consequat.
+                        </p>
+                    </div>
+
+                    <div class="cert-card">
+                        <h4>AI Product Manager</h4>
+                        <div class="cert-provider"><a
+                                href="https://www.udacity.com/course/ai-product-manager-nanodegree--nd088"
+                                target="_blank" rel="noopener noreferrer">Udacity Nanodegree</a></div>
+                        <span class="cert-status completed">✓ Completed</span>
+                        <button class="cert-toggle" onclick="toggleDescription(this)">ℹ️ More Info</button>
+                        <p class="cert-description" style="display: none;">
+                            Gained expertise in managing AI-enabled products, defining requirements, building roadmaps,
+                            designing datasets, and evaluating model performance. Focused on aligning AI/ML solutions
+                            with business objectives and ethical considerations.
+                        </p>
+                    </div>
+
+                    <div class="cert-card">
+                        <h4>Predictive Analytics for Business</h4>
+                        <div class="cert-provider"><a
+                                href="https://www.udacity.com/course/predictive-analytics-for-business-nanodegree--nd008t"
+                                target="_blank" rel="noopener noreferrer">Udacity Nanodegree</a></div>
+                        <span class="cert-status completed">✓ Completed</span>
+                        <button class="cert-toggle" onclick="toggleDescription(this)">ℹ️ More Info</button>
+                        <p class="cert-description" style="display: none;">
+                            Applied predictive modeling and data analysis to solve business problems, including
+                            regression, classification, clustering, time-series forecasting, and A/B testing. Developed
+                            skills in data wrangling, dataset preparation, and visualization for actionable insights.
+                        </p>
+                    </div>
+
+                    <div class="cert-card">
+                        <h4>Python Developer</h4>
+                        <div class="cert-provider"><a href="https://www.datacamp.com/tracks/python-programmer"
+                                target="_blank" rel="noopener noreferrer">DataCamp</a></div>
+                        <span class="cert-status completed">✓ Completed</span>
+                        <button class="cert-toggle" onclick="toggleDescription(this)">ℹ️ More Info</button>
+                        <p class="cert-description" style="display: none;">
+                            Practical, hands-on training in writing clean, efficient, and maintainable Python code
+                            – including object-oriented programming, data structures and algorithms, web scraping,
+                            API integration, and packaging code for reuse. Applied testing and debugging practices with
+                            pytest, performance profiling, and version control using Git, while building projects
+                            that combine automation, data extraction, and backend functionality.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+            <h2 class="section-title">Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Cloud Resume Challenge</h3>
+                    <p class="project-description">
+                        A serverless web application demonstrating cloud-native architecture, infrastructure as code,
+                        and CI/CD practices. Built with AWS services, featuring automated deployments, monitoring, and a
+                        visitor counter backed by DynamoDB.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">AWS</span>
+                        <span class="tag">Terraform</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">GitHub Actions</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">📐 Architecture</a>
+                        <a href="#" class="project-link">📝 Write-up</a>
+                        <a href="#" class="project-link">💻 Repository</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3>Prompt-Driven Assistant</h3>
+                    <p class="project-description">
+                        An intelligent conversational AI system leveraging large language models to provide
+                        context-aware assistance. Implements semantic search, conversation memory, and multi-turn
+                        dialogue capabilities with robust error handling and observability.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">LangChain</span>
+                        <span class="tag">Vector DB</span>
+                        <span class="tag">FastAPI</span>
+                        <span class="tag">Docker</span>
+                        <span class="tag">OpenAI</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">📐 Architecture</a>
+                        <a href="#" class="project-link">📝 Write-up</a>
+                        <a href="#" class="project-link">💻 Repository</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3>Secure RAG Platform</h3>
+                    <p class="project-description">
+                        A production-grade Retrieval-Augmented Generation platform with enterprise security controls.
+                        Features encrypted data pipelines, role-based access control, audit logging, and secure document
+                        processing for sensitive information retrieval.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">RAG</span>
+                        <span class="tag">Kubernetes</span>
+                        <span class="tag">PostgreSQL</span>
+                        <span class="tag">AWS KMS</span>
+                        <span class="tag">OAuth2</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">📐 Architecture</a>
+                        <a href="#" class="project-link">📝 Write-up</a>
+                        <a href="#" class="project-link">💻 Repository</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <h2 class="section-title">About</h2>
+            <div class="about-container">
+                <div class="about-avatar">
+                    <img src="https://via.placeholder.com/200" alt="Profile" class="avatar-image">
+                </div>
+                <div class="about-content">
+                    <p class="about-text">
+                        Elastic Purple exists at the intersection of cybersecurity and cloud technology, particularly
+                        AWS,
+                        combining experience in both blue and red teaming to anticipate and respond to threats.
+                        Over the past decade, work across data science and cybersecurity in on-premises and SaaS
+                        environments
+                        has highlighted the growing role of large language models hosted on cloud infrastructure, used
+                        by both
+                        legitimate and malicious actors. Recognising the need for scalable,
+                        flexible cloud solutions alongside structured security practices led to the creation of Elastic
+                        Purple.
+                    </p>
+                    <div class="about-actions">
+                        <a href="/files/resume.pdf" class="btn-primary" download>📄 Download Resume</a>
+                        <a href="https://linkedin.com/in/yourprofile" class="btn-secondary" target="_blank"
+                            rel="noopener noreferrer">🔗 Connect on LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 ElasticPurple. All rights reserved.</p>
+            <div class="visitor-counter">
+                <span class="counter-label">Visitors:</span>
+                <span class="counter-value" id="visitorCount">Loading...</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
