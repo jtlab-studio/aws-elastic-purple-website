@@ -130,30 +130,27 @@ function setupSmoothScroll() {
     });
 }
 
-// Visitor Counter
 async function updateVisitorCount() {
     const counterElement = document.getElementById('visitorCount');
 
     try {
-        // For now, use a simple counter stored in localStorage
-        // In production, this would call your API/Lambda function
-        let count = localStorage.getItem('visitorCount');
+        // Call your Lambda Function URL
+        const response = await fetch('https://sv7nz6uz6uc4z65ayjqa2v7vgi0tpmcv.lambda-url.eu-central-1.on.aws/', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
 
-        if (!count) {
-            count = Math.floor(Math.random() * 1000) + 500; // Start with a random number
-        } else {
-            count = parseInt(count) + 1;
-        }
+        if (!response.ok) throw new Error('Network response was not ok');
 
-        localStorage.setItem('visitorCount', count);
+        const data = await response.json();
 
-        // Animate the counter
+        // Expecting {"visits": <number>} from Lambda
+        const count = data.visits;
+
+        // Animate the counter (optional)
         animateCounter(counterElement, 0, count, 1000);
-
-        // TODO: Replace with actual API call
-        // const response = await fetch('YOUR_API_ENDPOINT');
-        // const data = await response.json();
-        // animateCounter(counterElement, 0, data.count, 1000);
 
     } catch (error) {
         console.error('Error fetching visitor count:', error);
