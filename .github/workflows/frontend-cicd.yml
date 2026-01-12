@@ -10,11 +10,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout the repo
+      # 1️⃣ Checkout repo
       - name: Checkout
-        uses: actions/checkout@v1
+        uses: actions/checkout@v3
 
-      # 2️⃣ Sync files to S3
+      # 2️⃣ Configure AWS credentials
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -22,14 +22,15 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: 'eu-central-1'
 
-      - name: Deploy to AWS S3
-        run: aws s3 sync ./ s3://elastic-purple-website-s3-bucket --delete
+      # 3️⃣ Sync root files to S3
+      - name: Deploy to S3
+        run: aws s3 sync ./ s3://elastic-purple-website-s3-bucket --acl public-read --delete --exclude ".git/*" --exclude ".github/*"
 
-      # 3️⃣ Invalidate CloudFront cache
+      # 4️⃣ Invalidate CloudFront cache
       - name: Invalidate CloudFront
         uses: chetan/invalidate-cloudfront-action@v2
         with:
-          distribution: ${{ secrets.CLOUDFRONT_DIST_ID }}
+          distribution-id: ${{ secrets.CLOUDFRONT_DIST_ID }}
           paths: '/*'
           aws-region: 'eu-central-1'
         env:
