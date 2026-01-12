@@ -24,15 +24,15 @@ function toggleSidebar() {
 
 // Certificate Description Toggle
 function toggleDescription(button) {
-    const certCard = button.parentElement;
-    const description = certCard.querySelector('.cert-description');
+    const certItem = button.parentElement;
+    const description = certItem.querySelector('.cert-description');
 
     if (description.style.display === 'none' || description.style.display === '') {
         description.style.display = 'block';
-        button.textContent = '✕ Less Info';
+        button.textContent = '- Less';
     } else {
         description.style.display = 'none';
-        button.textContent = 'ℹ️ More Info';
+        button.textContent = '+ More';
     }
 }
 
@@ -59,9 +59,40 @@ function updateActiveNav() {
     });
 }
 
+// Fade out pillar cards when scrolling to expertise section
+function handlePillarFade() {
+    const pillarsGrid = document.querySelector('.pillars-grid');
+    const expertiseSection = document.getElementById('expertise');
+
+    if (!pillarsGrid || !expertiseSection) return;
+
+    const scrollPosition = window.pageYOffset;
+    const expertiseSectionTop = expertiseSection.offsetTop;
+    const windowHeight = window.innerHeight;
+
+    // Calculate when expertise section is almost at top (with 100px buffer)
+    const fadeStartPoint = expertiseSectionTop - windowHeight + 200;
+    const fadeEndPoint = expertiseSectionTop - 100;
+
+    if (scrollPosition >= fadeStartPoint && scrollPosition <= fadeEndPoint) {
+        // Calculate opacity based on scroll position
+        const fadeProgress = (scrollPosition - fadeStartPoint) / (fadeEndPoint - fadeStartPoint);
+        const opacity = 1 - fadeProgress;
+        pillarsGrid.style.opacity = opacity;
+        pillarsGrid.style.transform = `translateY(-${fadeProgress * 20}px)`;
+    } else if (scrollPosition > fadeEndPoint) {
+        pillarsGrid.style.opacity = '0';
+        pillarsGrid.style.transform = 'translateY(-20px)';
+    } else {
+        pillarsGrid.style.opacity = '1';
+        pillarsGrid.style.transform = 'translateY(0)';
+    }
+}
+
+
 // Smooth Scroll for Navigation Links
 function setupSmoothScroll() {
-    const navLinks = document.querySelectorAll('.nav-item, .top-nav a');
+    const navLinks = document.querySelectorAll('.nav-item');
 
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
@@ -69,17 +100,27 @@ function setupSmoothScroll() {
 
             // Only handle internal links (starting with #)
             if (href && href.startsWith('#')) {
-                e.preventDefault();
                 const targetId = href.substring(1);
                 const targetSection = document.getElementById(targetId);
 
+                // If target section exists, scroll to it
                 if (targetSection) {
+                    e.preventDefault();
                     targetSection.scrollIntoView({
                         behavior: 'smooth',
                         block: 'start'
                     });
 
                     // Close sidebar on mobile after clicking
+                    if (window.innerWidth <= 768) {
+                        toggleSidebar();
+                    }
+                } else {
+                    // For placeholder links (project-articles, blog, contact), just prevent default
+                    e.preventDefault();
+                    console.log(`Section "${targetId}" is a placeholder - not yet implemented`);
+
+                    // Close sidebar on mobile
                     if (window.innerWidth <= 768) {
                         toggleSidebar();
                     }
@@ -191,7 +232,10 @@ document.addEventListener('DOMContentLoaded', () => {
     setupParallax();
 
     // Update active nav on scroll
-    window.addEventListener('scroll', updateActiveNav);
+    window.addEventListener('scroll', () => {
+        updateActiveNav();
+        handlePillarFade();
+    });
 
     // Initial active nav update
     updateActiveNav();
@@ -226,7 +270,7 @@ const observer = new IntersectionObserver((entries) => {
 
 // Observe all cards on page load
 document.addEventListener('DOMContentLoaded', () => {
-    const cards = document.querySelectorAll('.cert-card, .project-card, .pillar-card');
+    const cards = document.querySelectorAll('.cert-item, .project-card, .pillar-card');
     cards.forEach(card => {
         card.style.opacity = '0';
         card.style.transform = 'translateY(20px)';

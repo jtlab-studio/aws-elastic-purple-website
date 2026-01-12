@@ -15,13 +15,6 @@
         ☀️
     </button>
 
-    <!-- Top Navigation -->
-    <nav class="top-nav">
-        <a href="#home">CRC</a>
-        <a href="#projects">Project Articles</a>
-        <a href="#about">Blog</a>
-    </nav>
-
     <!-- Sidebar Navigation -->
     <button class="hamburger" onclick="toggleSidebar()" aria-label="Toggle menu">
         <span></span>
@@ -38,6 +31,10 @@
             <a href="#expertise" class="nav-item">Expertise</a>
             <a href="#projects" class="nav-item">Projects</a>
             <a href="#about" class="nav-item">About</a>
+            <div class="nav-separator"></div>
+            <a href="#project-articles" class="nav-item nav-secondary">Project Articles</a>
+            <a href="#blog" class="nav-item nav-secondary">Blog</a>
+            <a href="#contact" class="nav-item nav-secondary">Contact</a>
         </nav>
     </aside>
 
@@ -69,190 +66,221 @@
             </div>
         </section>
 
+        <!-- Spacing Buffer -->
+        <div class="section-spacer"></div>
+
         <!-- Expertise/Certifications Section -->
         <section id="expertise" class="section">
             <h2 class="section-title">Expertise & Certifications</h2>
 
-            <!-- Cloud Pillar -->
-            <div class="cert-pillar">
-                <div class="pillar-header">
-                    <span class="pillar-icon-large">☁️</span>
-                    <h3>Cloud Platforms & Distributed Systems</h3>
-                </div>
-                <div class="cert-grid">
-                    <div class="cert-card">
-                        <h4>AWS Developer Associate</h4>
-                        <div class="cert-provider"><a
-                                href="https://aws.amazon.com/certification/certified-developer-associate/"
-                                target="_blank" rel="noopener noreferrer">Amazon Web Services (DVA-C02)</a></div>
-                        <div class="cert-date">📅 Expected: February 2026</div>
-                        <span class="cert-status in-progress">⏳ In Progress</span>
-                        <button class="cert-toggle" onclick="toggleDescription(this)">ℹ️ More Info</button>
-                        <p class="cert-description" style="display: none;">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat.
-                        </p>
+            <div class="cert-pillars-container">
+                <!-- Cloud Pillar -->
+                <div class="cert-pillar">
+                    <div class="pillar-header">
+                        <span class="pillar-icon-large">☁️</span>
+                        <h3>Cloud & IaC</h3>
                     </div>
+                    <div class="cert-column">
+                        <div class="cert-item">
+                            <h4>AWS Developer Associate</h4>
+                            <div class="cert-meta">
+                                <span class="cert-badge in-progress">⏳ In Progress</span>
+                                <span class="cert-date-small">Feb 2026</span>
+                            </div>
+                            <div class="cert-provider-small"><a
+                                    href="https://aws.amazon.com/certification/certified-developer-associate/"
+                                    target="_blank" rel="noopener noreferrer">AWS (DVA-C02)</a></div>
+                            <button class="cert-toggle-small" onclick="toggleDescription(this)">+ More</button>
+                            <p class="cert-description" style="display: none;">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua.
+                            </p>
+                        </div>
 
-                    <div class="cert-card">
-                        <h4>AWS Solutions Architect Associate</h4>
-                        <div class="cert-provider"><a
-                                href="https://aws.amazon.com/certification/certified-solutions-architect-associate/"
-                                target="_blank" rel="noopener noreferrer">Amazon Web Services (SAA-C03)</a></div>
-                        <div class="cert-date">📅 Expected: February 2026</div>
-                        <span class="cert-status in-progress">⏳ In Progress</span>
-                        <button class="cert-toggle" onclick="toggleDescription(this)">ℹ️ More Info</button>
-                        <p class="cert-description" style="display: none;">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat.
-                        </p>
-                    </div>
+                        <div class="cert-item">
+                            <h4>AWS Solutions Architect Associate</h4>
+                            <div class="cert-meta">
+                                <span class="cert-badge in-progress">⏳ In Progress</span>
+                                <span class="cert-date-small">Feb 2026</span>
+                            </div>
+                            <div class="cert-provider-small"><a
+                                    href="https://aws.amazon.com/certification/certified-solutions-architect-associate/"
+                                    target="_blank" rel="noopener noreferrer">AWS (SAA-C03)</a></div>
+                            <button class="cert-toggle-small" onclick="toggleDescription(this)">+ More</button>
+                            <p class="cert-description" style="display: none;">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua.
+                            </p>
+                        </div>
 
-                    <div class="cert-card">
-                        <h4>Terraform Associate</h4>
-                        <div class="cert-provider"><a href="https://www.hashicorp.com/certification/terraform-associate"
-                                target="_blank" rel="noopener noreferrer">HashiCorp (003)</a></div>
-                        <div class="cert-date">📅 Expected: March 2026</div>
-                        <span class="cert-status in-progress">⏳ In Progress</span>
-                        <button class="cert-toggle" onclick="toggleDescription(this)">ℹ️ More Info</button>
-                        <p class="cert-description" style="display: none;">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat.
-                        </p>
-                    </div>
+                        <div class="cert-item">
+                            <h4>Terraform Associate</h4>
+                            <div class="cert-meta">
+                                <span class="cert-badge completed">✓ Completed</span>
+                            </div>
+                            <div class="cert-provider-small"><a
+                                    href="https://www.hashicorp.com/certification/terraform-associate" target="_blank"
+                                    rel="noopener noreferrer">HashiCorp (003)</a></div>
+                            <button class="cert-toggle-small" onclick="toggleDescription(this)">+ More</button>
+                            <p class="cert-description" style="display: none;">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua.
+                            </p>
+                        </div>
 
-                    <div class="cert-card">
-                        <h4>AWS Certified Cloud Practitioner</h4>
-                        <div class="cert-provider"><a
-                                href="https://aws.amazon.com/certification/certified-cloud-practitioner/"
-                                target="_blank" rel="noopener noreferrer">Amazon Web Services (CLF-C02)</a></div>
-                        <span class="cert-status completed">✓ Completed</span>
-                        <button class="cert-toggle" onclick="toggleDescription(this)">ℹ️ More Info</button>
-                        <p class="cert-description" style="display: none;">
-                            Foundational AWS cloud concepts, core services, security, architecture, pricing models,
-                            and basic understanding of cloud deployment and operations.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Security Pillar -->
-            <div class="cert-pillar">
-                <div class="pillar-header">
-                    <span class="pillar-icon-large">🔒</span>
-                    <h3>Cybersecurity & Resilience</h3>
-                </div>
-                <div class="cert-grid">
-                    <div class="cert-card">
-                        <h4>AWS Certified Red Team Professional</h4>
-                        <div class="cert-provider"><a href="https://bootcamps.pwnedlabs.io/placrtp-bootcamp"
-                                target="_blank" rel="noopener noreferrer">Pwned Labs (ACRTP)</a></div>
-                        <div class="cert-date">📅 Expected: February 2026</div>
-                        <span class="cert-status in-progress">⏳ In Progress</span>
-                        <button class="cert-toggle" onclick="toggleDescription(this)">ℹ️ More Info</button>
-                        <p class="cert-description" style="display: none;">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat.
-                        </p>
-                    </div>
-
-                    <div class="cert-card">
-                        <h4>Junior Penetration Tester</h4>
-                        <div class="cert-provider"><a href="https://ine.com/security/certifications/ejpt-certification"
-                                target="_blank" rel="noopener noreferrer">INE (eJPT)</a></div>
-                        <span class="cert-status completed">✓ Completed</span>
-                        <button class="cert-toggle" onclick="toggleDescription(this)">ℹ️ More Info</button>
-                        <p class="cert-description" style="display: none;">
-                            Penetration testing skills covering network, web, and application security,
-                            including reconnaissance, vulnerability assessment, and exploitation techniques.
-                        </p>
-                    </div>
-
-                    <div class="cert-card">
-                        <h4>Certified Information Security Management Principles</h4>
-                        <div class="cert-provider"><a
-                                href="https://www.bcs.org/qualifications-and-certifications/certifications-for-professionals/information-security-and-data-protection-certifications/bcs-foundation-certificate-in-information-security-management-principles/"
-                                target="_blank" rel="noopener noreferrer">BCS (CISMP)</a></div>
-                        <span class="cert-status completed">✓ Completed</span>
-                        <button class="cert-toggle" onclick="toggleDescription(this)">ℹ️ More Info</button>
-                        <p class="cert-description" style="display: none;">
-                            Comprehensive foundation in information security management covering core concepts
-                            (confidentiality, integrity, availability, risk, threat/vulnerability, controls),
-                            information‑lifecycle and risk management, governance and compliance, applicable
-                            legislation/standards and security frameworks, and implementation of layered security
-                            controls and incident management.
-                        </p>
+                        <div class="cert-item">
+                            <h4>AWS Cloud Practitioner Course</h4>
+                            <div class="cert-meta">
+                                <span class="cert-badge completed">✓ Completed</span>
+                            </div>
+                            <div class="cert-provider-small"><a
+                                    href="https://www.udemy.com/course/aws-certified-cloud-practitioner-new/?couponCode=CP250105G1"
+                                    target="_blank" rel="noopener noreferrer">Udemy - Stephan Maarek</a></div>
+                            <button class="cert-toggle-small" onclick="toggleDescription(this)">+ More</button>
+                            <p class="cert-description" style="display: none;">
+                                Foundational AWS cloud concepts, core services, security, architecture, pricing models,
+                                and basic understanding of cloud deployment and operations.
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- AI/ML Pillar -->
-            <div class="cert-pillar">
-                <div class="pillar-header">
-                    <span class="pillar-icon-large">🤖</span>
-                    <h3>AI/ML & Intelligent Systems</h3>
+                <!-- Security Pillar -->
+                <div class="cert-pillar">
+                    <div class="pillar-header">
+                        <span class="pillar-icon-large">🔒</span>
+                        <h3>Security</h3>
+                    </div>
+                    <div class="cert-column">
+                        <div class="cert-item">
+                            <h4>AWS Certified Red Team Professional</h4>
+                            <div class="cert-meta">
+                                <span class="cert-badge in-progress">⏳ In Progress</span>
+                                <span class="cert-date-small">Feb 2026</span>
+                            </div>
+                            <div class="cert-provider-small"><a href="https://bootcamps.pwnedlabs.io/placrtp-bootcamp"
+                                    target="_blank" rel="noopener noreferrer">Pwned Labs (ACRTP)</a></div>
+                            <button class="cert-toggle-small" onclick="toggleDescription(this)">+ More</button>
+                            <p class="cert-description" style="display: none;">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua.
+                            </p>
+                        </div>
+
+                        <div class="cert-item">
+                            <h4>Junior Penetration Tester</h4>
+                            <div class="cert-meta">
+                                <span class="cert-badge completed">✓ Completed</span>
+                            </div>
+                            <div class="cert-provider-small"><a
+                                    href="https://ine.com/security/certifications/ejpt-certification" target="_blank"
+                                    rel="noopener noreferrer">INE (eJPT)</a></div>
+                            <button class="cert-toggle-small" onclick="toggleDescription(this)">+ More</button>
+                            <p class="cert-description" style="display: none;">
+                                Penetration testing skills covering network, web, and application security, including
+                                reconnaissance, vulnerability assessment, and exploitation techniques.
+                            </p>
+                        </div>
+
+                        <div class="cert-item">
+                            <h4>Certified Information Security Management Principles</h4>
+                            <div class="cert-meta">
+                                <span class="cert-badge completed">✓ Completed</span>
+                            </div>
+                            <div class="cert-provider-small"><a
+                                    href="https://www.bcs.org/qualifications-and-certifications/certifications-for-professionals/information-security-and-data-protection-certifications/bcs-foundation-certificate-in-information-security-management-principles/"
+                                    target="_blank" rel="noopener noreferrer">BCS (CISMP)</a></div>
+                            <button class="cert-toggle-small" onclick="toggleDescription(this)">+ More</button>
+                            <p class="cert-description" style="display: none;">
+                                Comprehensive foundation in information security management covering core concepts,
+                                information-lifecycle and risk management, governance and compliance, and security
+                                frameworks.
+                            </p>
+                        </div>
+
+                        <div class="cert-item">
+                            <h4>Usable Security</h4>
+                            <div class="cert-meta">
+                                <span class="cert-badge completed">✓ Completed</span>
+                            </div>
+                            <div class="cert-provider-small"><a href="https://www.coursera.org/learn/usable-security"
+                                    target="_blank" rel="noopener noreferrer">BCS (CISMP)</a></div>
+                            <button class="cert-toggle-small" onclick="toggleDescription(this)">+ More</button>
+                            <p class="cert-description" style="display: none;">
+                                Focuses on designing secure systems with a human-centered approach, applying usability
+                                #and interaction design principles to authentication, privacy, and security mechanisms
+                                so they are both effective and usable.
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <div class="cert-grid">
-                    <div class="cert-card">
-                        <h4>AWS ML Engineer Associate</h4>
-                        <div class="cert-provider"><a
-                                href="https://aws.amazon.com/certification/certified-machine-learning-engineer-associate/"
-                                target="_blank" rel="noopener noreferrer">Amazon Web Services (MLA-C01)</a></div>
-                        <div class="cert-date">📅 Expected: March 2026</div>
-                        <span class="cert-status in-progress">⏳ In Progress</span>
-                        <button class="cert-toggle" onclick="toggleDescription(this)">ℹ️ More Info</button>
-                        <p class="cert-description" style="display: none;">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat.
-                        </p>
-                    </div>
 
-                    <div class="cert-card">
-                        <h4>AI Product Manager</h4>
-                        <div class="cert-provider"><a
-                                href="https://www.udacity.com/course/ai-product-manager-nanodegree--nd088"
-                                target="_blank" rel="noopener noreferrer">Udacity Nanodegree</a></div>
-                        <span class="cert-status completed">✓ Completed</span>
-                        <button class="cert-toggle" onclick="toggleDescription(this)">ℹ️ More Info</button>
-                        <p class="cert-description" style="display: none;">
-                            Gained expertise in managing AI-enabled products, defining requirements, building roadmaps,
-                            designing datasets, and evaluating model performance. Focused on aligning AI/ML solutions
-                            with business objectives and ethical considerations.
-                        </p>
+                <!-- AI/ML Pillar -->
+                <div class="cert-pillar">
+                    <div class="pillar-header">
+                        <span class="pillar-icon-large">🤖</span>
+                        <h3>AI/ML</h3>
                     </div>
+                    <div class="cert-column">
+                        <div class="cert-item">
+                            <h4>AWS ML Engineer Associate</h4>
+                            <div class="cert-meta">
+                                <span class="cert-badge in-progress">⏳ In Progress</span>
+                                <span class="cert-date-small">Mar 2026</span>
+                            </div>
+                            <div class="cert-provider-small"><a
+                                    href="https://aws.amazon.com/certification/certified-machine-learning-engineer-associate/"
+                                    target="_blank" rel="noopener noreferrer">AWS (MLA-C01)</a></div>
+                            <button class="cert-toggle-small" onclick="toggleDescription(this)">+ More</button>
+                            <p class="cert-description" style="display: none;">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua.
+                            </p>
+                        </div>
 
-                    <div class="cert-card">
-                        <h4>Predictive Analytics for Business</h4>
-                        <div class="cert-provider"><a
-                                href="https://www.udacity.com/course/predictive-analytics-for-business-nanodegree--nd008t"
-                                target="_blank" rel="noopener noreferrer">Udacity Nanodegree</a></div>
-                        <span class="cert-status completed">✓ Completed</span>
-                        <button class="cert-toggle" onclick="toggleDescription(this)">ℹ️ More Info</button>
-                        <p class="cert-description" style="display: none;">
-                            Applied predictive modeling and data analysis to solve business problems, including
-                            regression, classification, clustering, time-series forecasting, and A/B testing. Developed
-                            skills in data wrangling, dataset preparation, and visualization for actionable insights.
-                        </p>
-                    </div>
+                        <div class="cert-item">
+                            <h4>AI Product Manager</h4>
+                            <div class="cert-meta">
+                                <span class="cert-badge completed">✓ Completed</span>
+                            </div>
+                            <div class="cert-provider-small"><a
+                                    href="https://www.udacity.com/course/ai-product-manager-nanodegree--nd088"
+                                    target="_blank" rel="noopener noreferrer">Udacity</a></div>
+                            <button class="cert-toggle-small" onclick="toggleDescription(this)">+ More</button>
+                            <p class="cert-description" style="display: none;">
+                                Managing AI-enabled products, defining requirements, building roadmaps, designing
+                                datasets, and evaluating model performance with focus on business objectives and ethics.
+                            </p>
+                        </div>
 
-                    <div class="cert-card">
-                        <h4>Python Developer</h4>
-                        <div class="cert-provider"><a href="https://www.datacamp.com/tracks/python-programmer"
-                                target="_blank" rel="noopener noreferrer">DataCamp</a></div>
-                        <span class="cert-status completed">✓ Completed</span>
-                        <button class="cert-toggle" onclick="toggleDescription(this)">ℹ️ More Info</button>
-                        <p class="cert-description" style="display: none;">
-                            Practical, hands-on training in writing clean, efficient, and maintainable Python code
-                            – including object-oriented programming, data structures and algorithms, web scraping,
-                            API integration, and packaging code for reuse. Applied testing and debugging practices with
-                            pytest, performance profiling, and version control using Git, while building projects
-                            that combine automation, data extraction, and backend functionality.
-                        </p>
+                        <div class="cert-item">
+                            <h4>Predictive Analytics for Business</h4>
+                            <div class="cert-meta">
+                                <span class="cert-badge completed">✓ Completed</span>
+                            </div>
+                            <div class="cert-provider-small"><a
+                                    href="https://www.udacity.com/course/predictive-analytics-for-business-nanodegree--nd008t"
+                                    target="_blank" rel="noopener noreferrer">Udacity</a></div>
+                            <button class="cert-toggle-small" onclick="toggleDescription(this)">+ More</button>
+                            <p class="cert-description" style="display: none;">
+                                Predictive modeling and data analysis including regression, classification, clustering,
+                                time-series forecasting, A/B testing, and visualization for actionable insights.
+                            </p>
+                        </div>
+
+                        <div class="cert-item">
+                            <h4>Python Developer</h4>
+                            <div class="cert-meta">
+                                <span class="cert-badge completed">✓ Completed</span>
+                            </div>
+                            <div class="cert-provider-small"><a href="https://www.datacamp.com/tracks/python-programmer"
+                                    target="_blank" rel="noopener noreferrer">DataCamp</a></div>
+                            <button class="cert-toggle-small" onclick="toggleDescription(this)">+ More</button>
+                            <p class="cert-description" style="display: none;">
+                                Writing clean, efficient Python code with OOP, data structures, web scraping, API
+                                integration, testing with pytest, and version control using Git.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -283,7 +311,7 @@
                     </div>
                 </div>
 
-                <div class="project-card">
+                <div class="project-card"><!-- 
                     <h3>Prompt-Driven Assistant</h3>
                     <p class="project-description">
                         An intelligent conversational AI system leveraging large language models to provide
@@ -301,10 +329,10 @@
                         <a href="#" class="project-link">📐 Architecture</a>
                         <a href="#" class="project-link">📝 Write-up</a>
                         <a href="#" class="project-link">💻 Repository</a>
-                    </div>
+                    </div> -->
                 </div>
 
-                <div class="project-card">
+                <div class="project-card"><!--
                     <h3>Secure RAG Platform</h3>
                     <p class="project-description">
                         A production-grade Retrieval-Augmented Generation platform with enterprise security controls.
@@ -322,7 +350,7 @@
                         <a href="#" class="project-link">📐 Architecture</a>
                         <a href="#" class="project-link">📝 Write-up</a>
                         <a href="#" class="project-link">💻 Repository</a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </section>
@@ -332,7 +360,7 @@
             <h2 class="section-title">About</h2>
             <div class="about-container">
                 <div class="about-avatar">
-                    <img src="https://via.placeholder.com/200" alt="Profile" class="avatar-image">
+                    <img src="images/digitalju.png" alt="Profile" class="avatar-image">
                 </div>
                 <div class="about-content">
                     <p class="about-text">
@@ -351,6 +379,61 @@
                         <a href="/files/resume.pdf" class="btn-primary" download>📄 Download Resume</a>
                         <a href="https://linkedin.com/in/yourprofile" class="btn-secondary" target="_blank"
                             rel="noopener noreferrer">🔗 Connect on LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skills Grid -->
+            <div class="skills-section">
+                <h3 class="skills-title">Skills & Technologies</h3>
+                <div class="skills-grid">
+                    <div class="skill-icon">
+                        <div class="skill-icon-img">☁️</div>
+                        <div class="skill-name">AWS</div>
+                    </div>
+                    <div class="skill-icon">
+                        <div class="skill-icon-img">🐍</div>
+                        <div class="skill-name">Python</div>
+                    </div>
+                    <div class="skill-icon">
+                        <div class="skill-icon-img">📜</div>
+                        <div class="skill-name">JavaScript</div>
+                    </div>
+                    <div class="skill-icon">
+                        <div class="skill-icon-img">🎨</div>
+                        <div class="skill-name">HTML/CSS</div>
+                    </div>
+                    <div class="skill-icon">
+                        <div class="skill-icon-img">🔧</div>
+                        <div class="skill-name">Terraform</div>
+                    </div>
+                    <div class="skill-icon">
+                        <div class="skill-icon-img">🐳</div>
+                        <div class="skill-name">Docker</div>
+                    </div>
+                    <div class="skill-icon">
+                        <div class="skill-icon-img">☸️</div>
+                        <div class="skill-name">Kubernetes</div>
+                    </div>
+                    <div class="skill-icon">
+                        <div class="skill-icon-img">🔒</div>
+                        <div class="skill-name">Security</div>
+                    </div>
+                    <div class="skill-icon">
+                        <div class="skill-icon-img">🤖</div>
+                        <div class="skill-name">AI/ML</div>
+                    </div>
+                    <div class="skill-icon">
+                        <div class="skill-icon-img">📊</div>
+                        <div class="skill-name">Data Science</div>
+                    </div>
+                    <div class="skill-icon">
+                        <div class="skill-icon-img">🔗</div>
+                        <div class="skill-name">APIs</div>
+                    </div>
+                    <div class="skill-icon">
+                        <div class="skill-icon-img">⚡</div>
+                        <div class="skill-name">CI/CD</div>
                     </div>
                 </div>
             </div>
