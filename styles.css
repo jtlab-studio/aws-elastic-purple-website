@@ -206,7 +206,7 @@ body {
 }
 
 .section-spacer {
-    height: 150px;
+    height: 100px;
 }
 
 @keyframes fadeIn {
@@ -231,6 +231,33 @@ body {
 .hero {
     text-align: center;
     padding: 60px 0;
+    position: relative;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1400px;
+    height: 1400px;
+    background-image: url('images/nebula.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.2;
+    z-index: 0;
+    pointer-events: none;
+}
+
+[data-theme="dark"] .hero::before {
+    opacity: 0.35;
+}
+
+.hero>* {
+    position: relative;
+    z-index: 1;
 }
 
 .hero-title {
