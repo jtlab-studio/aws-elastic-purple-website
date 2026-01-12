@@ -1,38 +1,46 @@
-name: Upload website to S3
+name: Frontend CI/CD
 
 on:
   push:
     branches:
-      - main
+      - main  # Change this to your default branch if different (e.g., master)
+  workflow_dispatch:  # Allows manual triggering from GitHub UI
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
+    
     steps:
-      # 1️⃣ Checkout repo
-      - name: Checkout
-        uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      # 2️⃣ Configure AWS credentials
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: 'eu-central-1'
+          aws-region: eu-central-1
 
-      # 3️⃣ Sync root files to S3
-      - name: Deploy to S3
-        run: aws s3 sync ./ s3://elastic-purple-website-s3-bucket --acl public-read --delete --exclude ".git/*" --exclude ".github/*"
+      - name: Sync files to S3
+        run: |
+          aws s3 sync . s3://elastic-purple-website-s3-bucket \
+            --exclude ".git/*" \
+            --exclude ".github/*" \
+            --exclude "*.yml" \
+            --exclude "*.md" \
+            --delete
 
-      # 4️⃣ Invalidate CloudFront cache
-      - name: Invalidate CloudFront
-        uses: chetan/invalidate-cloudfront-action@v2
-        with:
-          distribution-id: ${{ secrets.CLOUDFRONT_DIST_ID }}
-          paths: '/*'
-          aws-region: 'eu-central-1'
+      - name: Invalidate CloudFront cache
+        if: env.CLOUDFRONT_DISTRIBUTION_ID != ''
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
+            --paths "/*"
         env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
+
+      - name: Deployment summary
+        run: |
+          echo "✅ Deployment completed successfully!"
+          echo "📦 Bucket: s3://elastic-purple-website-s3-bucket"
+          echo "🌐 Region: eu-central-1"
