@@ -277,4 +277,137 @@ document.addEventListener('DOMContentLoaded', () => {
         card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(card);
     });
+
+    // Observe pillar headers for glow effect
+    const pillarHeaders = document.querySelectorAll('.pillar-header');
+    pillarHeaders.forEach(header => {
+        observer.observe(header);
+    });
 });
+
+// Add glow effect to pillar headers and project cards when they come into view
+const glowObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.target.classList.contains('pillar-header') || entry.target.classList.contains('project-card')) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('glow-active');
+            } else {
+                entry.target.classList.remove('glow-active');
+            }
+        }
+    });
+}, {
+    threshold: 0.3,
+    rootMargin: '0px 0px -100px 0px'
+});
+
+// Initialize glow observer
+document.addEventListener('DOMContentLoaded', () => {
+    const pillarHeaders = document.querySelectorAll('.pillar-header');
+    pillarHeaders.forEach(header => {
+        glowObserver.observe(header);
+    });
+
+    const projectCards = document.querySelectorAll('.project-card');
+    projectCards.forEach(card => {
+        glowObserver.observe(card);
+    });
+});
+
+// Carousel Functionality - True Infinite Scroll
+let currentSlide = 1; // Start at first real slide (index 1, because 0 is clone)
+const totalSlides = 3; // Number of real projects
+let isTransitioning = false;
+
+// Initialize carousel position
+document.addEventListener('DOMContentLoaded', () => {
+    const track = document.querySelector('.carousel-track');
+    // Position at first real slide (skip the clone at the beginning)
+    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+});
+
+function moveCarousel(direction) {
+    if (isTransitioning) return;
+    isTransitioning = true;
+
+    const track = document.querySelector('.carousel-track');
+    const items = document.querySelectorAll('.carousel-item');
+    const indicators = document.querySelectorAll('.indicator');
+
+    // Remove active class
+    items.forEach(item => item.classList.remove('active'));
+
+    // Move to next/previous slide
+    currentSlide += direction;
+
+    // Animate the transition
+    track.style.transition = 'transform 0.5s ease-in-out';
+    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+    // Add active class to current visible slide
+    items[currentSlide].classList.add('active');
+
+    // Update indicators (map to real project indices)
+    const realIndex = getRealIndex(currentSlide);
+    indicators.forEach((ind, idx) => {
+        ind.classList.toggle('active', idx === realIndex);
+    });
+
+    // Handle the seamless loop after transition
+    setTimeout(() => {
+        track.style.transition = 'none';
+
+        // If we're at the clone after last real slide, jump to first real slide
+        if (currentSlide === totalSlides + 1) {
+            currentSlide = 1;
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            items.forEach(item => item.classList.remove('active'));
+            items[currentSlide].classList.add('active');
+        }
+
+        // If we're at the clone before first real slide, jump to last real slide
+        if (currentSlide === 0) {
+            currentSlide = totalSlides;
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            items.forEach(item => item.classList.remove('active'));
+            items[currentSlide].classList.add('active');
+        }
+
+        isTransitioning = false;
+    }, 500);
+}
+
+function goToSlide(index) {
+    if (isTransitioning) return;
+    isTransitioning = true;
+
+    const track = document.querySelector('.carousel-track');
+    const items = document.querySelectorAll('.carousel-item');
+    const indicators = document.querySelectorAll('.indicator');
+
+    // Remove active class
+    items.forEach(item => item.classList.remove('active'));
+    indicators.forEach(ind => ind.classList.remove('active'));
+
+    // Set to real slide (index + 1 because of leading clone)
+    currentSlide = index + 1;
+
+    // Animate
+    track.style.transition = 'transform 0.5s ease-in-out';
+    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+    // Add active class
+    items[currentSlide].classList.add('active');
+    indicators[index].classList.add('active');
+
+    setTimeout(() => {
+        isTransitioning = false;
+    }, 500);
+}
+
+function getRealIndex(slideIndex) {
+    // Map carousel position to real project index (0, 1, 2)
+    if (slideIndex === 0) return 2; // Clone of last project
+    if (slideIndex === totalSlides + 1) return 0; // Clone of first project
+    return slideIndex - 1; // Real projects
+}
