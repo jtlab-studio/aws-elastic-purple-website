@@ -552,6 +552,23 @@ body {
     text-decoration: underline;
 }
 
+/* Section Divider */
+.section-divider {
+    height: 2px;
+    max-width: 1200px;
+    margin: 80px auto;
+    background: linear-gradient(to right,
+            transparent 0%,
+            var(--accent-color) 20%,
+            var(--accent-color) 80%,
+            transparent 100%);
+    opacity: 0.3;
+}
+
+[data-theme="dark"] .section-divider {
+    opacity: 0.5;
+}
+
 /* About Section */
 .about-container {
     display: grid;
