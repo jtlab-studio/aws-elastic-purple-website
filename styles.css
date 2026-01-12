@@ -207,6 +207,19 @@ body {
 
 .section-spacer {
     height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.expertise-transition-title {
+    font-size: 2rem;
+    color: var(--text-primary);
+    text-align: center;
+    font-weight: 600;
+    max-width: 800px;
+    line-height: 1.4;
 }
 
 @keyframes fadeIn {

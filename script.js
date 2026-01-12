@@ -70,9 +70,9 @@ function handlePillarFade() {
     const expertiseSectionTop = expertiseSection.offsetTop;
     const windowHeight = window.innerHeight;
 
-    // Calculate when expertise section is almost at top (with 100px buffer)
-    const fadeStartPoint = expertiseSectionTop - windowHeight + 200;
-    const fadeEndPoint = expertiseSectionTop - 100;
+    // Calculate when expertise section is almost at top - very short distance for fast fade (3 scroll nudges ~= 300-400px)
+    const fadeStartPoint = expertiseSectionTop - windowHeight + 100;
+    const fadeEndPoint = expertiseSectionTop - windowHeight + 400;
 
     if (scrollPosition >= fadeStartPoint && scrollPosition <= fadeEndPoint) {
         // Calculate opacity based on scroll position
