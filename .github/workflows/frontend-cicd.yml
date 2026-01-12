@@ -1,21 +1,35 @@
 name: Upload website to S3
 
-on: 
+on:
   push:
     branches:
-    - main
+      - main
 
 jobs:
-  deploy: 
-  runs-on: ubuntu-latest
-  steps:
-  - uses: actions/checkout@v3
-  - uses: jakejarvis/s3-sync-action@master
-  with:
-    args: --acl public-read --follow-symlinks --delete
-  env:
-    AWS_S3_BUCKET: ${{secrets.AWS_S3_BUCKET}}
-    AWS_ACCESS_KEY_ID: ${{secrets.AWS_AWS_ACCESS_KEY_ID}}
-    AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
-    AWS_REGION: 'eu-central-1'
-    SOURCE_DIR: './'
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout repo
+      - uses: actions/checkout@v3
+
+      # Sync to S3
+      - uses: jakejarvis/s3-sync-action@master
+        with:
+          args: --acl public-read --follow-symlinks --delete
+        env:
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: 'eu-central-1'
+          SOURCE_DIR: './'
+
+      # Invalidate CloudFront cache
+      - name: Invalidate CloudFront
+        uses: chetan/invalidate-cloudfront-action@v2
+        with:
+          distribution: ${{ secrets.CLOUDFRONT_DIST_ID }}
+          paths: '/*'
+          aws-region: 'eu-central-1'
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
