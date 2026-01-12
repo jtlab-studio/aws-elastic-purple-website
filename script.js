@@ -285,10 +285,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Add glow effect to pillar headers and project cards when they come into view
+// Add glow effect to pillar headers, project cards, and section titles when they come into view
 const glowObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-        if (entry.target.classList.contains('pillar-header') || entry.target.classList.contains('project-card')) {
+        if (entry.target.classList.contains('pillar-header') ||
+            entry.target.classList.contains('project-card') ||
+            entry.target.classList.contains('section-title')) {
             if (entry.isIntersecting) {
                 entry.target.classList.add('glow-active');
             } else {
@@ -311,6 +313,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const projectCards = document.querySelectorAll('.project-card');
     projectCards.forEach(card => {
         glowObserver.observe(card);
+    });
+
+    const sectionTitles = document.querySelectorAll('#projects .section-title, #about .section-title');
+    sectionTitles.forEach(title => {
+        glowObserver.observe(title);
     });
 });
 
