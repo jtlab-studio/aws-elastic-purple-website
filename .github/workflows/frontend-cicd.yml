@@ -3,7 +3,7 @@ name: Frontend CI/CD
 on:
   push:
     branches:
-      - main  # Change this to your default branch if different (e.g., master)
+      - main
   workflow_dispatch:  # Allows manual triggering from GitHub UI
 
 jobs:
@@ -19,11 +19,11 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1  # Change to your bucket's region
+          aws-region: eu-central-1
 
       - name: Sync files to S3
         run: |
-          aws s3 sync . s3://your-bucket-name \
+          aws s3 sync . s3://elastic-purple-website-s3-bucket \
             --exclude ".git/*" \
             --exclude ".github/*" \
             --exclude "*.yml" \
@@ -39,5 +39,5 @@ jobs:
       - name: Deployment summary
         run: |
           echo "✅ Deployment completed successfully!"
-          echo "📦 Bucket: your-bucket-name"
-          echo "🌐 Region: us-east-1"
+          echo "📦 Bucket: s3://elastic-purple-website-s3-bucket"
+          echo "🌐 Region: eu-central-1"
