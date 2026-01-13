@@ -24,7 +24,7 @@
 
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <img src="images/ep_sparkles_slim.png" alt="ElasticPurple Logo" class="sidebar-logo">
+            <img src="images/cloudlogo.png" alt="ElasticPurple Logo" class="sidebar-logo">
         </div>
         <nav class="sidebar-nav">
             <a href="#home" class="nav-item active">Home</a>
@@ -47,25 +47,11 @@
                 <h2 class="hero-title">Engineering resilient, intelligent systems</h2>
                 <p class="hero-subtitle">Cloud • Security • AI/ML</p>
 
-                <div class="pillars-grid">
-                    <div class="pillar-card">
-                        <div class="pillar-icon">☁️</div>
-                        <h3>Cloud Architecture</h3>
-                        <p>Architecting scalable, resilient infrastructure across cloud environments, specializing in
-                            Amazon Web Services.</p>
-                    </div>
-                    <div class="pillar-card">
-                        <div class="pillar-icon">🔒</div>
-                        <h3>Cybersecurity & Resilience</h3>
-                        <p>Red and blue team expertise to apply offensive and defensive security techniques to embed
-                            security-by-design into cloud systems.</p>
-                    </div>
-                    <div class="pillar-card">
-                        <div class="pillar-icon">🤖</div>
-                        <h3>AI/ML & Intelligent Systems</h3>
-                        <p>Building intelligent, data-driven solutions at scale utilizing the power of the cloud to
-                            deliver ROI and added value.</p>
-                    </div>
+                <!-- Hero Images -->
+                <div class="hero-images">
+                    <img src="images/jusec.png" alt="Security" class="hero-image hero-image-left">
+                    <img src="images/jucloud.png" alt="Cloud" class="hero-image hero-image-center">
+                    <img src="images/juai.png" alt="AI/ML" class="hero-image hero-image-right">
                 </div>
             </div>
         </section>
@@ -78,84 +64,6 @@
         <!-- Expertise/Certifications Section -->
         <section id="expertise" class="section">
             <div class="cert-pillars-container">
-                <!-- Cloud Pillar -->
-                <div class="cert-pillar">
-                    <div class="pillar-header">
-                        <span class="pillar-icon-large">☁️</span>
-                        <h3>Cloud & IaC</h3>
-                    </div>
-                    <div class="cert-column">
-                        <div class="cert-item">
-                            <h4>AWS Developer Associate</h4>
-                            <div class="cert-meta">
-                                <span class="cert-badge in-progress">⏳ In Progress</span>
-                                <span class="cert-date-small">Feb 2026</span>
-                            </div>
-                            <div class="cert-provider-small"><a
-                                    href="https://aws.amazon.com/certification/certified-developer-associate/"
-                                    target="_blank" rel="noopener noreferrer">AWS (DVA-C02)</a></div>
-                            <button class="cert-toggle-small" onclick="toggleDescription(this)">+ More</button>
-                            <p class="cert-description" style="display: none;">
-                                Developing, deploying, and maintaining cloud-native applications on AWS. Covering core
-                                AWS services, application security, identity and access management, monitoring, and
-                                troubleshooting within distributed systems. Emphasizing CI/CD integration, automation,
-                                and operational best practices for production workloads.
-                            </p>
-                        </div>
-
-                        <div class="cert-item">
-                            <h4>AWS Solutions Architect Associate</h4>
-                            <div class="cert-meta">
-                                <span class="cert-badge in-progress">⏳ In Progress</span>
-                                <span class="cert-date-small">Feb 2026</span>
-                            </div>
-                            <div class="cert-provider-small"><a
-                                    href="https://aws.amazon.com/certification/certified-solutions-architect-associate/"
-                                    target="_blank" rel="noopener noreferrer">AWS (SAA-C03)</a></div>
-                            <button class="cert-toggle-small" onclick="toggleDescription(this)">+ More</button>
-                            <p class="cert-description" style="display: none;">
-                                Designing secure, resilient, and cost-efficient cloud architectures. Covers distributed
-                                system design, identity and access management, networking, storage, and
-                                high-availability patterns. Focuses on architectural best practices, fault tolerance,
-                                and aligning technical solutions with business and security requirements.
-                            </p>
-                        </div>
-
-                        <div class="cert-item">
-                            <h4>Terraform Associate</h4>
-                            <div class="cert-meta">
-                                <span class="cert-badge completed">✓ Completed</span>
-                            </div>
-                            <div class="cert-provider-small"><a
-                                    href="https://www.hashicorp.com/certification/terraform-associate" target="_blank"
-                                    rel="noopener noreferrer">HashiCorp (003)</a></div>
-                            <button class="cert-toggle-small" onclick="toggleDescription(this)">+ More</button>
-                            <p class="cert-description" style="display: none;">
-                                Automating the provisioning, management, and versioning of cloud infrastructure using
-                                Terraform. Covering infrastructure as code principles, state management, modules, and
-                                resource orchestration across multiple providers. Focusing on building scalable,
-                                reproducible, and maintainable infrastructure while following best practices for
-                                collaboration and lifecycle management.
-                            </p>
-                        </div>
-
-                        <div class="cert-item">
-                            <h4>AWS Cloud Practitioner Course</h4>
-                            <div class="cert-meta">
-                                <span class="cert-badge completed">✓ Completed</span>
-                            </div>
-                            <div class="cert-provider-small"><a
-                                    href="https://www.udemy.com/course/aws-certified-cloud-practitioner-new/?couponCode=CP250105G1"
-                                    target="_blank" rel="noopener noreferrer">Udemy - Stephan Maarek</a></div>
-                            <button class="cert-toggle-small" onclick="toggleDescription(this)">+ More</button>
-                            <p class="cert-description" style="display: none;">
-                                Foundational AWS cloud concepts, core services, security, architecture, pricing models,
-                                and basic understanding of cloud deployment and operations.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
                 <!-- Security Pillar -->
                 <div class="cert-pillar">
                     <div class="pillar-header">
@@ -229,6 +137,84 @@
                                 Focuses on designing secure systems with a human-centered approach, applying usability
                                 #and interaction design principles to authentication, privacy, and security mechanisms
                                 so they are both effective and usable.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cloud Pillar -->
+                <div class="cert-pillar">
+                    <div class="pillar-header">
+                        <span class="pillar-icon-large">☁️</span>
+                        <h3>Cloud & IaC</h3>
+                    </div>
+                    <div class="cert-column">
+                        <div class="cert-item">
+                            <h4>AWS Developer Associate</h4>
+                            <div class="cert-meta">
+                                <span class="cert-badge in-progress">⏳ In Progress</span>
+                                <span class="cert-date-small">Feb 2026</span>
+                            </div>
+                            <div class="cert-provider-small"><a
+                                    href="https://aws.amazon.com/certification/certified-developer-associate/"
+                                    target="_blank" rel="noopener noreferrer">AWS (DVA-C02)</a></div>
+                            <button class="cert-toggle-small" onclick="toggleDescription(this)">+ More</button>
+                            <p class="cert-description" style="display: none;">
+                                Developing, deploying, and maintaining cloud-native applications on AWS. Covering core
+                                AWS services, application security, identity and access management, monitoring, and
+                                troubleshooting within distributed systems. Emphasizing CI/CD integration, automation,
+                                and operational best practices for production workloads.
+                            </p>
+                        </div>
+
+                        <div class="cert-item">
+                            <h4>AWS Solutions Architect Associate</h4>
+                            <div class="cert-meta">
+                                <span class="cert-badge in-progress">⏳ In Progress</span>
+                                <span class="cert-date-small">Feb 2026</span>
+                            </div>
+                            <div class="cert-provider-small"><a
+                                    href="https://aws.amazon.com/certification/certified-solutions-architect-associate/"
+                                    target="_blank" rel="noopener noreferrer">AWS (SAA-C03)</a></div>
+                            <button class="cert-toggle-small" onclick="toggleDescription(this)">+ More</button>
+                            <p class="cert-description" style="display: none;">
+                                Designing secure, resilient, and cost-efficient cloud architectures. Covers distributed
+                                system design, identity and access management, networking, storage, and
+                                high-availability patterns. Focuses on architectural best practices, fault tolerance,
+                                and aligning technical solutions with business and security requirements.
+                            </p>
+                        </div>
+
+                        <div class="cert-item">
+                            <h4>Terraform Associate</h4>
+                            <div class="cert-meta">
+                                <span class="cert-badge completed">✓ Completed</span>
+                            </div>
+                            <div class="cert-provider-small"><a
+                                    href="https://www.hashicorp.com/certification/terraform-associate" target="_blank"
+                                    rel="noopener noreferrer">HashiCorp (003)</a></div>
+                            <button class="cert-toggle-small" onclick="toggleDescription(this)">+ More</button>
+                            <p class="cert-description" style="display: none;">
+                                Automating the provisioning, management, and versioning of cloud infrastructure using
+                                Terraform. Covering infrastructure as code principles, state management, modules, and
+                                resource orchestration across multiple providers. Focusing on building scalable,
+                                reproducible, and maintainable infrastructure while following best practices for
+                                collaboration and lifecycle management.
+                            </p>
+                        </div>
+
+                        <div class="cert-item">
+                            <h4>AWS Cloud Practitioner Course</h4>
+                            <div class="cert-meta">
+                                <span class="cert-badge completed">✓ Completed</span>
+                            </div>
+                            <div class="cert-provider-small"><a
+                                    href="https://www.udemy.com/course/aws-certified-cloud-practitioner-new/?couponCode=CP250105G1"
+                                    target="_blank" rel="noopener noreferrer">Udemy - Stephan Maarek</a></div>
+                            <button class="cert-toggle-small" onclick="toggleDescription(this)">+ More</button>
+                            <p class="cert-description" style="display: none;">
+                                Foundational AWS cloud concepts, core services, security, architecture, pricing models,
+                                and basic understanding of cloud deployment and operations.
                             </p>
                         </div>
                     </div>
@@ -459,7 +445,7 @@
             <h2 class="section-title">About</h2>
             <div id="about" class="about-container">
                 <div class="about-avatar">
-                    <img src="images/digitalju.png" alt="Profile" class="avatar-image">
+                    <img src="images/cloudju.png" alt="Profile" class="avatar-image">
                 </div>
                 <div class="about-content">
                     <p class="about-text">
