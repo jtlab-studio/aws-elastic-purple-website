@@ -273,6 +273,23 @@ body {
     z-index: 1;
 }
 
+.hero-profile-image {
+    width: 300px;
+    height: auto;
+    margin: 0 auto 30px;
+    display: block;
+    filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.15));
+    transition: transform 0.3s ease;
+}
+
+.hero-profile-image:hover {
+    transform: scale(1.05);
+}
+
+[data-theme="dark"] .hero-profile-image {
+    filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.3));
+}
+
 .hero-title {
     font-size: 3rem;
     margin-bottom: 20px;
@@ -947,6 +964,10 @@ body {
     .footer {
         margin-left: 0;
         padding: 20px;
+    }
+
+    .hero-profile-image {
+        width: 200px;
     }
 
     .hero-title {
