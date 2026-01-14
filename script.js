@@ -134,44 +134,32 @@ async function updateVisitorCount() {
     const counterElement = document.getElementById('visitorCount');
 
     try {
-        // Call your Lambda Function URL
-        const response = await fetch('https://sv7nz6uz6uc4z65ayjqa2v7vgi0tpmcv.lambda-url.eu-central-1.on.aws/', {
-            method: 'GET',
-            mode: 'cors'
-        });
+        const response = await fetch(
+            'https://sv7nz6uz6uc4z65ayjqa2v7vgi0tpmcv.lambda-url.eu-central-1.on.aws/',
+            { method: 'GET' }
+        );
 
         if (!response.ok) {
-            console.error('Response not OK:', response.status, response.statusText);
-            throw new Error(`HTTP error! status: ${response.status}`);
+            throw new Error(`HTTP ${response.status}`);
         }
 
         const data = await response.json();
-        console.log('Visitor count response:', data);
 
-        // Handle different possible response formats
-        let count = 0;
-        if (typeof data === 'number') {
-            count = data;
-        } else if (data.visits) {
-            count = data.visits;
-        } else if (data.count) {
-            count = data.count;
-        } else if (data.body) {
-            // Lambda might wrap response in body
-            const bodyData = typeof data.body === 'string' ? JSON.parse(data.body) : data.body;
-            count = bodyData.visits || bodyData.count || bodyData;
+        // Lambda Function URL returns the body directly
+        const count = data.visits ?? data.count;
+
+        if (typeof count !== 'number') {
+            throw new Error('Invalid response format');
         }
 
-        console.log('Parsed visitor count:', count);
-
-        // Animate the counter
         animateCounter(counterElement, 0, count, 1000);
 
     } catch (error) {
-        console.error('Error fetching visitor count:', error);
+        console.error('Visitor counter error:', error);
         counterElement.textContent = '---';
     }
 }
+
 
 // Animate Counter
 function animateCounter(element, start, end, duration) {
