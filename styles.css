@@ -1244,7 +1244,7 @@ body {
     font-size: 1.1rem;
 }
 
-/* Responsive Design for Mobile*/
+/* Responsive Design */
 @media (max-width: 768px) {
     .hamburger {
         display: flex;
