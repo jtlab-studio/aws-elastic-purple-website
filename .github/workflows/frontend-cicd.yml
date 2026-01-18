@@ -29,6 +29,8 @@ jobs:
             --exclude "*.yml" \
             --exclude "*.md" \
             --delete
+            --metadata-directive REPLACE \
+            --content-type text/html
 
       - name: Invalidate CloudFront cache
         run: |
