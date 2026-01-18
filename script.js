@@ -211,17 +211,18 @@ function loadTheme() {
 }
 
 // Parallax effect on scroll (subtle)
-function setupParallax() {
-    window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const parallaxElements = document.querySelectorAll('.hero');
-
-        parallaxElements.forEach(el => {
-            const speed = 0.5;
-            el.style.transform = `translateY(${scrolled * speed}px)`;
-        });
-    });
-}
+// Parallax effect disabled - hero should not move on scroll
+// function setupParallax() {
+//     window.addEventListener('scroll', () => {
+//         const scrolled = window.pageYOffset;
+//         const parallaxElements = document.querySelectorAll('.hero');
+//
+//         parallaxElements.forEach(el => {
+//             const speed = 0.5;
+//             el.style.transform = `translateY(${scrolled * speed}px)`;
+//         });
+//     });
+// }
 
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
@@ -229,7 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupSmoothScroll();
     setupOutsideClick();
     updateVisitorCount();
-    setupParallax();
+    // setupParallax(); // Disabled - hero should not move on scroll
 
     // Update active nav on scroll
     window.addEventListener('scroll', () => {
