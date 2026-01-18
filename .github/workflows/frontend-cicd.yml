@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:  # Allows manual triggering from GitHub UI
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -21,14 +21,65 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-central-1
 
-      - name: Sync files to S3
+      - name: Sync files to S3 (with proper content types)
         run: |
+          # Sync all files first
           aws s3 sync . s3://elastic-purple-website-s3-bucket \
             --exclude ".git/*" \
             --exclude ".github/*" \
             --exclude "*.yml" \
             --exclude "*.md" \
             --delete
+          
+          # Force correct Content-Type for CSS files
+          aws s3 cp s3://elastic-purple-website-s3-bucket/ s3://elastic-purple-website-s3-bucket/ \
+            --exclude "*" \
+            --include "*.css" \
+            --recursive \
+            --metadata-directive REPLACE \
+            --content-type "text/css" \
+            --cache-control "max-age=300" \
+            --no-progress
+          
+          # Force correct Content-Type for JS files
+          aws s3 cp s3://elastic-purple-website-s3-bucket/ s3://elastic-purple-website-s3-bucket/ \
+            --exclude "*" \
+            --include "*.js" \
+            --recursive \
+            --metadata-directive REPLACE \
+            --content-type "application/javascript" \
+            --cache-control "max-age=300" \
+            --no-progress
+          
+          # Force correct Content-Type for HTML files
+          aws s3 cp s3://elastic-purple-website-s3-bucket/ s3://elastic-purple-website-s3-bucket/ \
+            --exclude "*" \
+            --include "*.html" \
+            --recursive \
+            --metadata-directive REPLACE \
+            --content-type "text/html; charset=utf-8" \
+            --cache-control "max-age=300" \
+            --no-progress
+          
+          # Force correct Content-Type for images
+          aws s3 cp s3://elastic-purple-website-s3-bucket/ s3://elastic-purple-website-s3-bucket/ \
+            --exclude "*" \
+            --include "*.png" \
+            --recursive \
+            --metadata-directive REPLACE \
+            --content-type "image/png" \
+            --cache-control "max-age=86400" \
+            --no-progress
+          
+          aws s3 cp s3://elastic-purple-website-s3-bucket/ s3://elastic-purple-website-s3-bucket/ \
+            --exclude "*" \
+            --include "*.jpg" \
+            --include "*.jpeg" \
+            --recursive \
+            --metadata-directive REPLACE \
+            --content-type "image/jpeg" \
+            --cache-control "max-age=86400" \
+            --no-progress
 
       - name: Invalidate CloudFront cache
         run: |
@@ -36,8 +87,20 @@ jobs:
             --distribution-id ${{ secrets.CLOUDFRONT_DIST_ID }} \
             --paths "/*"
 
+      - name: Verify Content-Types
+        run: |
+          echo "📊 Verifying Content-Types:"
+          echo "CSS files:"
+          aws s3api head-object --bucket elastic-purple-website-s3-bucket --key styles.css --query ContentType
+          echo "JS files:"
+          aws s3api head-object --bucket elastic-purple-website-s3-bucket --key script.js --query ContentType --output text 2>/dev/null || echo "Not found"
+          echo "HTML files:"
+          aws s3api head-object --bucket elastic-purple-website-s3-bucket --key index.html --query ContentType --output text
+
       - name: Deployment summary
         run: |
           echo "✅ Deployment completed successfully!"
           echo "📦 Bucket: s3://elastic-purple-website-s3-bucket"
           echo "🌐 Region: eu-central-1"
+          echo "⏳ Wait 2-5 minutes for CloudFront invalidation"
+          echo "🔄 Then hard refresh: Ctrl+Shift+R"
