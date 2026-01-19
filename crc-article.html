@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Resume Challenge - ElasticPurple</title>
+    <link rel="icon" type="image/png" href="images/favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .article-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .article-header {
+            margin-bottom: 40px;
+        }
+
+        .article-title {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .article-meta {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+        }
+
+        .article-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .article-section {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            margin-bottom: 30px;
+        }
+
+        .article-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+        }
+
+        .article-section h3 {
+            font-size: 1.4rem;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .article-section p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .article-section ul,
+        .article-section ol {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+
+        .article-section li {
+            margin-bottom: 8px;
+        }
+
+        .article-section code {
+            background: rgba(167, 139, 250, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .article-section pre {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+
+        .article-section pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .article-link-btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-right: 15px;
+            margin-top: 10px;
+        }
+
+        .article-link-btn:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(167, 139, 250, 0.4);
+        }
+
+        .back-to-writeups {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-to-writeups:hover {
+            color: var(--accent-hover);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        ☀️
+    </button>
+
+    <!-- Language Toggle -->
+    <button class="language-toggle" onclick="toggleLanguage()" aria-label="Toggle language">
+        <span class="lang-en">EN</span> | <span class="lang-de">DE</span>
+    </button>
+
+    <!-- Sidebar Navigation -->
+    <button class="hamburger" onclick="toggleSidebar()" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="index.html#home">
+                <img src="images/cloudlogo.png" alt="ElasticPurple Logo" class="sidebar-logo">
+            </a>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-item" data-i18n="navHome">Home</a>
+            <a href="index.html#expertise" class="nav-item" data-i18n="navExpertise">Expertise</a>
+            <a href="index.html#projects" class="nav-item" data-i18n="navProjects">Projects</a>
+            <a href="index.html#about" class="nav-item" data-i18n="navAbout">About</a>
+            <div class="nav-separator"></div>
+            <a href="write-ups.html" class="nav-item nav-secondary active" data-i18n="navWriteUps">Write-Ups</a>
+            <div class="nav-submenu">
+                <a href="crc-article.html" class="nav-subitem active" data-i18n="navWriteUpCRC">Cloud Resume
+                    Challenge</a>
+                <a href="#" class="nav-subitem" data-i18n="navWriteUpSecurity">AWS Security Automation</a>
+                <a href="#" class="nav-subitem" data-i18n="navWriteUpTerraform">Terraform State Management</a>
+            </div>
+            <a href="https://linkedin.com/in/elasticpurple" class="nav-item nav-secondary" target="_blank"
+                rel="noopener noreferrer" data-i18n="navContact">Contact</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <div class="article-content">
+            <a href="write-ups.html" class="back-to-writeups">← <span data-i18n="backToWriteUps">Back to
+                    Write-Ups</span></a>
+
+            <div class="article-header">
+                <h1 class="article-title" data-i18n="crcArticleTitle">Cloud Resume Challenge: Building a Serverless
+                    Portfolio</h1>
+                <div class="article-meta">
+                    <span data-i18n="crcArticleDate">Published: January 2026</span> •
+                    <span data-i18n="crcArticleReadTime">15 min read</span>
+                </div>
+                <div class="article-tags">
+                    <span class="tag">AWS</span>
+                    <span class="tag">S3</span>
+                    <span class="tag">CloudFront</span>
+                    <span class="tag">Lambda</span>
+                    <span class="tag">DynamoDB</span>
+                    <span class="tag">Terraform</span>
+                    <span class="tag">GitHub Actions</span>
+                    <span class="tag">Route53</span>
+                    <span class="tag">ACM</span>
+                </div>
+            </div>
+
+            <!-- Introduction Section -->
+            <div class="article-section">
+                <h2 data-i18n="crcIntroTitle">Introduction</h2>
+                <p data-i18n="crcIntroPara1">
+                    This article documents my journey building a serverless portfolio website on AWS as part of the
+                    Cloud Resume Challenge.
+                    The project demonstrates cloud-native architecture, infrastructure as code practices, and automated
+                    CI/CD workflows.
+                </p>
+                <p data-i18n="crcIntroPara2">
+                    Throughout this writeup, I'll cover the architectural decisions, implementation challenges, and
+                    lessons learned
+                    while building a production-grade serverless application.
+                </p>
+            </div>
+
+            <!-- Architecture Section -->
+            <div class="article-section" id="architecture">
+                <h2 data-i18n="crcArchTitle">🏗️ Architecture Overview</h2>
+                <p data-i18n="crcArchPara1">
+                    The architecture follows AWS best practices for serverless web applications with the following
+                    components:
+                </p>
+
+                <h3 data-i18n="crcArchFrontendTitle">Frontend Hosting</h3>
+                <ul>
+                    <li data-i18n="crcArchFrontend1"><strong>Amazon S3</strong>: Static website hosting for HTML, CSS,
+                        JavaScript, and images</li>
+                    <li data-i18n="crcArchFrontend2"><strong>Amazon CloudFront</strong>: CDN for global content delivery
+                        with HTTPS support</li>
+                    <li data-i18n="crcArchFrontend3"><strong>AWS Certificate Manager (ACM)</strong>: SSL/TLS
+                        certificates for secure connections</li>
+                    <li data-i18n="crcArchFrontend4"><strong>Amazon Route53</strong>: DNS management for custom domain
+                    </li>
+                </ul>
+
+                <h3 data-i18n="crcArchBackendTitle">Backend Services</h3>
+                <ul>
+                    <li data-i18n="crcArchBackend1"><strong>AWS Lambda</strong>: Serverless functions for visitor
+                        counter logic</li>
+                    <li data-i18n="crcArchBackend2"><strong>Amazon DynamoDB</strong>: NoSQL database for storing visitor
+                        count</li>
+                    <li data-i18n="crcArchBackend3"><strong>Lambda Function URLs</strong>: Direct HTTPS endpoints for
+                        Lambda functions</li>
+                </ul>
+
+                <h3 data-i18n="crcArchIacTitle">Infrastructure as Code</h3>
+                <ul>
+                    <li data-i18n="crcArchIac1"><strong>Terraform</strong>: Managing all AWS infrastructure with
+                        declarative configuration</li>
+                    <li data-i18n="crcArchIac2"><strong>Modular Design</strong>: Separated into visitor-counter and
+                        website-frontend modules</li>
+                </ul>
+
+                <h3 data-i18n="crcArchCicdTitle">CI/CD Pipeline</h3>
+                <ul>
+                    <li data-i18n="crcArchCicd1"><strong>GitHub Actions</strong>: Automated deployment on push to main
+                        branch</li>
+                    <li data-i18n="crcArchCicd2"><strong>CloudFront Invalidation</strong>: Automatic cache clearing for
+                        updated content</li>
+                </ul>
+
+                <p style="margin-top: 20px;">
+                    <strong data-i18n="crcArchDiagram">Architecture Diagram:</strong><br>
+                    <span data-i18n="crcArchPlaceholder">[Architecture diagram will be added here]</span>
+                </p>
+            </div>
+
+            <!-- Implementation Section -->
+            <div class="article-section">
+                <h2 data-i18n="crcImplTitle">⚙️ Implementation Details</h2>
+
+                <h3 data-i18n="crcImplVisitorTitle">Visitor Counter Implementation</h3>
+                <p data-i18n="crcImplVisitorPara">
+                    The visitor counter is implemented using a Lambda function that increments a counter in DynamoDB on
+                    each page load.
+                    Here's the key architecture decision: using Lambda Function URLs instead of API Gateway for
+                    simplicity.
+                </p>
+
+                <h3 data-i18n="crcImplTerraformTitle">Terraform Module Structure</h3>
+                <p data-i18n="crcImplTerraformPara">
+                    The infrastructure is organized into two main modules:
+                </p>
+                <ul>
+                    <li data-i18n="crcImplTerraform1"><strong>visitor-counter</strong>: Lambda function, DynamoDB table,
+                        IAM roles</li>
+                    <li data-i18n="crcImplTerraform2"><strong>website-frontend</strong>: S3, CloudFront, Route53, ACM
+                        certificates</li>
+                </ul>
+
+                <h3 data-i18n="crcImplChallengesTitle">Challenges & Solutions</h3>
+                <p data-i18n="crcImplChallenges1">
+                    <strong>Challenge 1: MIME Type Issues</strong><br>
+                    Initial deployment failed to load CSS files properly due to incorrect Content-Type headers in S3.
+                </p>
+                <p data-i18n="crcImplSolution1">
+                    <strong>Solution:</strong> Configured GitHub Actions to explicitly set Content-Type during S3 sync
+                    operations.
+                </p>
+
+                <p data-i18n="crcImplChallenges2">
+                    <strong>Challenge 2: Terraform State Drift</strong><br>
+                    Importing manually-created resources into Terraform caused configuration drift issues.
+                </p>
+                <p data-i18n="crcImplSolution2">
+                    <strong>Solution:</strong> Carefully matched Terraform configuration to existing resource
+                    attributes, paying attention to IAM role paths and naming conventions.
+                </p>
+            </div>
+
+            <!-- Repository Section -->
+            <div class="article-section" id="repository">
+                <h2 data-i18n="crcRepoTitle">💻 Source Code & Repository</h2>
+                <p data-i18n="crcRepoPara1">
+                    The complete source code for this project is available on GitHub, including:
+                </p>
+                <ul>
+                    <li data-i18n="crcRepo1">Terraform modules for infrastructure</li>
+                    <li data-i18n="crcRepo2">Lambda function code (Python)</li>
+                    <li data-i18n="crcRepo3">Frontend code (HTML, CSS, JavaScript)</li>
+                    <li data-i18n="crcRepo4">GitHub Actions workflows</li>
+                    <li data-i18n="crcRepo5">Documentation and setup instructions</li>
+                </ul>
+
+                <a href="https://github.com/yourusername/cloud-resume-challenge" class="article-link-btn"
+                    target="_blank" rel="noopener noreferrer">
+                    <span data-i18n="viewGitHub">📦 View on GitHub</span>
+                </a>
+                <a href="#architecture" class="article-link-btn">
+                    <span data-i18n="viewArchitecture">🏗️ View Architecture</span>
+                </a>
+            </div>
+
+            <!-- Lessons Learned Section -->
+            <div class="article-section">
+                <h2 data-i18n="crcLessonsTitle">💡 Lessons Learned</h2>
+                <ul>
+                    <li data-i18n="crcLesson1"><strong>Infrastructure as Code is Essential</strong>: Terraform made
+                        infrastructure reproducible and version-controlled</li>
+                    <li data-i18n="crcLesson2"><strong>Separation of Concerns</strong>: Keeping infrastructure
+                        (Terraform) separate from content deployment (GitHub Actions) provided flexibility</li>
+                    <li data-i18n="crcLesson3"><strong>Attention to Detail Matters</strong>: Small configuration issues
+                        (MIME types, IAM paths) can cause significant problems</li>
+                    <li data-i18n="crcLesson4"><strong>Modular Design Pays Off</strong>: Organizing Terraform into
+                        logical modules made management easier</li>
+                    <li data-i18n="crcLesson5"><strong>Automation Saves Time</strong>: CI/CD pipeline eliminated manual
+                        deployment steps</li>
+                </ul>
+            </div>
+
+            <!-- Conclusion Section -->
+            <div class="article-section">
+                <h2 data-i18n="crcConclusionTitle">🎯 Conclusion</h2>
+                <p data-i18n="crcConclusionPara1">
+                    Building this serverless portfolio was an excellent hands-on experience with AWS services and modern
+                    DevOps practices.
+                    The project demonstrated the power of cloud-native architectures and infrastructure as code.
+                </p>
+                <p data-i18n="crcConclusionPara2">
+                    This foundation serves as a solid starting point for more complex serverless applications, and the
+                    patterns
+                    learned here are applicable to production-grade cloud architectures.
+                </p>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <span data-i18n="footerVisitors">Visitors</span>: <span id="visitorCount">---</span>
+            </div>
+            <div class="footer-center">
+                <span data-i18n="footerMadeWith">Made with</span> ☁️ <span data-i18n="footerBy">by</span> ElasticPurple
+            </div>
+            <div class="footer-right">
+                © 2025 ElasticPurple. <span data-i18n="footerRights">All rights reserved.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

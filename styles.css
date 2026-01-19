@@ -78,6 +78,48 @@ body {
     transform: scale(1.1);
 }
 
+.language-toggle {
+    position: fixed;
+    top: 20px;
+    right: 80px;
+    background: var(--bg-card);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    border-radius: 25px;
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 600;
+    box-shadow: var(--shadow-lg);
+    z-index: 1001;
+    transition: transform 0.2s ease;
+    color: var(--text-secondary);
+    gap: 8px;
+}
+
+.language-toggle:hover {
+    transform: scale(1.05);
+}
+
+.language-toggle .lang-en,
+.language-toggle .lang-de {
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+[lang="en"] .language-toggle .lang-en {
+    color: var(--accent-color);
+    transform: scale(1.1);
+}
+
+[lang="de"] .language-toggle .lang-de {
+    color: var(--accent-color);
+    transform: scale(1.1);
+}
+
 /* Hamburger Menu */
 .hamburger {
     position: fixed;
@@ -143,12 +185,18 @@ body {
     border-bottom: 1px solid var(--border-color);
 }
 
+.sidebar-header a {
+    display: block;
+    text-decoration: none;
+}
+
 .sidebar-logo {
     max-width: 100%;
     height: auto;
     display: block;
     animation: logoGlow 4s ease-in-out infinite;
     transition: filter 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
 }
 
 .sidebar-logo:hover {
@@ -226,6 +274,39 @@ body {
 
 .nav-item.nav-secondary:hover {
     opacity: 1;
+}
+
+/* Submenu Styles */
+.nav-submenu {
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+    margin-top: 8px;
+    margin-bottom: 15px;
+    border-left: 2px solid var(--border-color);
+    margin-left: 30px;
+}
+
+.nav-subitem {
+    padding: 8px 15px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    border-left: 3px solid transparent;
+}
+
+.nav-subitem:hover {
+    background: var(--sidebar-hover);
+    color: var(--text-primary);
+    border-left-color: var(--accent-color);
+}
+
+.nav-subitem.active {
+    background: var(--sidebar-hover);
+    color: #60a5fa;
+    border-left-color: #60a5fa;
 }
 
 
@@ -455,9 +536,6 @@ body {
         0 0 50px rgba(59, 130, 246, 0.6),
         0 0 60px rgba(59, 130, 246, 0.4),
         0 2px 10px rgba(0, 0, 0, 0.5);
-}
-
-0 2px 10px rgba(0, 0, 0, 0.5);
 }
 
 .hero-banner-actions {
@@ -1456,6 +1534,13 @@ body {
         right: 10px;
         width: 45px;
         height: 45px;
+    }
+
+    .language-toggle {
+        top: 10px;
+        right: 65px;
+        padding: 8px 12px;
+        font-size: 0.8rem;
     }
 
     .footer-content {
