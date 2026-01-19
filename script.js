@@ -294,37 +294,67 @@ function startCyclingText() {
     window.currentCyclingTexts = translations[lang].cyclingTexts;
 
     let currentIndex = 0;
-    let isTyping = false;
+    const isMobile = window.innerWidth <= 768;
 
-    function typeText(text, callback) {
-        if (isTyping) return;
-        isTyping = true;
+    if (isMobile) {
+        // Mobile: Fade in/out behavior
+        function showNextText() {
+            // Remove old animation
+            textElement.style.animation = 'none';
 
-        let charIndex = 0;
-        textElement.textContent = '';
+            // Update text content
+            textElement.textContent = window.currentCyclingTexts[currentIndex];
 
-        const typeInterval = setInterval(() => {
-            if (charIndex < text.length) {
-                textElement.textContent += text[charIndex];
-                charIndex++;
-            } else {
-                clearInterval(typeInterval);
-                isTyping = false;
-                if (callback) callback();
-            }
-        }, 50); // 50ms per character - adjust for faster/slower typing
+            // Force reflow to restart animation
+            void textElement.offsetWidth;
+
+            // Apply animation
+            textElement.style.animation = 'textFadeInOut 5s ease-in-out';
+
+            // Move to next sentence
+            currentIndex = (currentIndex + 1) % window.currentCyclingTexts.length;
+        }
+
+        // Show first sentence
+        showNextText();
+
+        // Cycle every 5 seconds
+        setInterval(showNextText, 5000);
+
+    } else {
+        // Desktop: Typing behavior
+        let isTyping = false;
+
+        function typeText(text, callback) {
+            if (isTyping) return;
+            isTyping = true;
+
+            let charIndex = 0;
+            textElement.textContent = '';
+
+            const typeInterval = setInterval(() => {
+                if (charIndex < text.length) {
+                    textElement.textContent += text[charIndex];
+                    charIndex++;
+                } else {
+                    clearInterval(typeInterval);
+                    isTyping = false;
+                    if (callback) callback();
+                }
+            }, 50); // 50ms per character
+        }
+
+        function cycleSentence() {
+            currentIndex = (currentIndex + 1) % window.currentCyclingTexts.length;
+            typeText(window.currentCyclingTexts[currentIndex]);
+        }
+
+        // Type the first sentence on load
+        typeText(window.currentCyclingTexts[0]);
+
+        // Start cycling every 5 seconds
+        setInterval(cycleSentence, 5000);
     }
-
-    function cycleSentence() {
-        currentIndex = (currentIndex + 1) % window.currentCyclingTexts.length;
-        typeText(window.currentCyclingTexts[currentIndex]);
-    }
-
-    // Type the first sentence on load
-    typeText(window.currentCyclingTexts[0]);
-
-    // Start cycling every 5 seconds (adjust based on longest sentence + display time)
-    setInterval(cycleSentence, 5000);
 }
 
 // Sidebar Toggle for Mobile

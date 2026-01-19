@@ -1617,14 +1617,15 @@ body {
     }
 
     .hero-banner-card {
-        padding: 25px 30px 30px;
+        padding: 22px 30px 27px;
+        /* Reduced height by 10% (top: 25→22, bottom: 30→27) */
         max-width: 100%;
         box-sizing: border-box;
     }
 
     .hero-banner-image {
-        max-width: 300px;
-        /* Increased by 20% from 250px */
+        max-width: 330px;
+        /* Increased by 10% from 300px (total 32% from original 250px) */
         margin: 0 auto;
         display: block;
         transform: translateX(-5%);
@@ -1652,9 +1653,11 @@ body {
 
     .hero-banner-welcome {
         font-size: 1.2rem;
-        min-height: 100px;
+        min-height: 90px;
+        /* Reduced by 10% from 100px */
         max-width: 95%;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
+        /* Reduced by 50% from 20px */
         display: flex;
         justify-content: center;
         align-items: center;
@@ -1662,22 +1665,26 @@ body {
         position: relative;
         z-index: 10;
         /* Ensure text appears above image if they overlap */
+        opacity: 0;
+        /* Start invisible for fade in effect */
     }
 
-    /* Fade in/out animation for typed text on mobile */
-    .hero-banner-welcome {
-        animation: textFade 3s ease-in-out infinite;
-    }
+    /* Fade in and out animation for typed text on mobile */
+    @keyframes textFadeInOut {
+        0% {
+            opacity: 0;
+        }
 
-    @keyframes textFade {
-
-        0%,
-        100% {
+        10% {
             opacity: 1;
         }
 
-        50% {
-            opacity: 0.6;
+        90% {
+            opacity: 1;
+        }
+
+        100% {
+            opacity: 0;
         }
     }
 
@@ -1795,12 +1802,13 @@ body {
 
 @media (max-width: 480px) {
     .hero-banner-card {
-        padding: 20px 20px 30px;
+        padding: 18px 20px 27px;
+        /* Reduced height by 10% (top: 20→18, bottom: 30→27) */
     }
 
     .hero-banner-image {
-        max-width: 240px;
-        /* Increased by 20% from 200px */
+        max-width: 264px;
+        /* Increased by 10% from 240px (total 32% from original 200px) */
         margin: 0 auto;
         display: block;
         transform: translateX(-5%);
@@ -1827,9 +1835,11 @@ body {
 
     .hero-banner-welcome {
         font-size: 1.1rem;
-        min-height: 90px;
+        min-height: 81px;
+        /* Reduced by 10% from 90px */
         max-width: 100%;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
+        /* Reduced by 50% from 20px */
         display: flex;
         justify-content: center;
         align-items: center;
