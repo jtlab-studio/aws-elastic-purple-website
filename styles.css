@@ -41,6 +41,8 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    /* Prevent horizontal scrolling */
 }
 
 body {
@@ -50,6 +52,10 @@ body {
     line-height: 1.6;
     transition: background 0.3s ease, color 0.3s ease;
     min-height: 100vh;
+    overflow-x: hidden;
+    /* Prevent horizontal scrolling */
+    max-width: 100vw;
+    /* Ensure body doesn't exceed viewport width */
 }
 
 /* Theme Toggle */
@@ -1406,6 +1412,13 @@ body {
 /* Responsive Design */
 /* Tablet Responsive Design (769px - 1024px) */
 @media (max-width: 1024px) and (min-width: 769px) {
+
+    html,
+    body {
+        overflow-x: hidden;
+        max-width: 100%;
+    }
+
     .hamburger {
         display: flex;
         top: 20px;
@@ -1440,6 +1453,8 @@ body {
         margin-left: 0;
         padding: 70px 40px 40px;
         /* Reduced top padding by 30% (from 100px) */
+        max-width: 100vw;
+        overflow-x: hidden;
     }
 
     .hero-btn-secondary {
@@ -1558,6 +1573,18 @@ body {
 
 /* Mobile Responsive Design (up to 768px) */
 @media (max-width: 768px) {
+
+    html,
+    body {
+        overflow-x: hidden;
+        max-width: 100%;
+        position: relative;
+    }
+
+    * {
+        max-width: 100%;
+    }
+
     .hamburger {
         display: flex;
         top: 15px;
@@ -1579,15 +1606,20 @@ body {
         margin-left: 0;
         padding: 70px 20px 40px;
         /* Reduced top padding by 30% (from 100px) */
+        max-width: 100vw;
+        overflow-x: hidden;
     }
 
     .footer {
         margin-left: 0;
         padding: 20px;
+        max-width: 100vw;
     }
 
     .hero-banner-card {
         padding: 25px 30px 30px;
+        max-width: 100%;
+        box-sizing: border-box;
     }
 
     .hero-banner-image {
