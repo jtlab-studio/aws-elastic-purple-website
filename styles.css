@@ -1748,7 +1748,7 @@ body {
 
     .theme-toggle {
         top: 15px;
-        right: 15px;
+        right: 10px;
         /* Moved significantly LEFT by increasing right value */
         width: 45px;
         height: 45px;
