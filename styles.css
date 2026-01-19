@@ -1623,7 +1623,8 @@ body {
     }
 
     .hero-banner-image {
-        max-width: 250px;
+        max-width: 300px;
+        /* Increased by 20% from 250px */
         margin: 0 auto;
         display: block;
         transform: translateX(-5%);
@@ -1654,6 +1655,30 @@ body {
         min-height: 100px;
         max-width: 95%;
         margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        position: relative;
+        z-index: 10;
+        /* Ensure text appears above image if they overlap */
+    }
+
+    /* Fade in/out animation for typed text on mobile */
+    .hero-banner-welcome {
+        animation: textFade 3s ease-in-out infinite;
+    }
+
+    @keyframes textFade {
+
+        0%,
+        100% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: 0.6;
+        }
     }
 
     .hero-banner-actions {
@@ -1748,7 +1773,7 @@ body {
 
     .theme-toggle {
         top: 15px;
-        right: 10px;
+        right: 15px;
         /* Moved significantly LEFT by increasing right value */
         width: 45px;
         height: 45px;
@@ -1774,7 +1799,8 @@ body {
     }
 
     .hero-banner-image {
-        max-width: 200px;
+        max-width: 240px;
+        /* Increased by 20% from 200px */
         margin: 0 auto;
         display: block;
         transform: translateX(-5%);
@@ -1804,6 +1830,13 @@ body {
         min-height: 90px;
         max-width: 100%;
         margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        position: relative;
+        z-index: 10;
+        /* Ensure text appears above image if they overlap */
     }
 
     .hero-btn-primary,
