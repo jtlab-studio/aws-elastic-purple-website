@@ -21,8 +21,8 @@ function startCyclingText() {
 
     const sentences = [
         "Welcome to my Cloud Portfolio!",
-        "I'm Andrew, a Cloud Engineer and former Customer Success Manager in AI/ML & Cybersecurity",
-        "Let's connect and build together!"
+        "I'm Andrew - Cloud Engineer with a Customer Success background.",
+        "Let's connect & build something amazing!"
     ];
 
     let currentIndex = 0;
