@@ -14,6 +14,51 @@ function toggleTheme() {
     }
 }
 
+// Cycling Welcome Text with Typing Effect
+function startCyclingText() {
+    const textElement = document.getElementById('cyclingText');
+    if (!textElement) return;
+
+    const sentences = [
+        "Welcome to my Cloud Portfolio!",
+        "I'm Andrew, a Cloud Engineer and former Customer Success Manager in AI/ML & Cybersecurity",
+        "Let's connect and build together!"
+    ];
+
+    let currentIndex = 0;
+    let isTyping = false;
+
+    function typeText(text, callback) {
+        if (isTyping) return;
+        isTyping = true;
+
+        let charIndex = 0;
+        textElement.textContent = '';
+
+        const typeInterval = setInterval(() => {
+            if (charIndex < text.length) {
+                textElement.textContent += text[charIndex];
+                charIndex++;
+            } else {
+                clearInterval(typeInterval);
+                isTyping = false;
+                if (callback) callback();
+            }
+        }, 50); // 50ms per character - adjust for faster/slower typing
+    }
+
+    function cycleSentence() {
+        currentIndex = (currentIndex + 1) % sentences.length;
+        typeText(sentences[currentIndex]);
+    }
+
+    // Type the first sentence on load
+    typeText(sentences[0]);
+
+    // Start cycling every 5 seconds (adjust based on longest sentence + display time)
+    setInterval(cycleSentence, 5000);
+}
+
 // Sidebar Toggle for Mobile
 function toggleSidebar() {
     const sidebar = document.getElementById('sidebar');
@@ -230,6 +275,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupSmoothScroll();
     setupOutsideClick();
     updateVisitorCount();
+    startCyclingText();
     // setupParallax(); // Disabled - hero should not move on scroll
 
     // Update active nav on scroll
