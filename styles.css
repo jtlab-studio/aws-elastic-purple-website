@@ -455,6 +455,7 @@ body {
 }
 
 .hero-banner-image-corner {
+    /* Desktop: absolute positioning in bottom-right corner */
     position: absolute;
     bottom: 0;
     right: 20px;
@@ -521,7 +522,8 @@ body {
     margin-left: auto;
     margin-right: auto;
     max-width: 80%;
-    min-height: 90px;
+    min-height: 120px;
+    /* Increased min-height to prevent banner resizing with typed text */
     position: relative;
     z-index: 2;
     text-align: center;
@@ -1400,6 +1402,117 @@ body {
 }
 
 /* Responsive Design */
+/* Tablet Responsive Design (769px - 1024px) */
+@media (max-width: 1024px) and (min-width: 769px) {
+    .main-content {
+        margin-left: 0;
+        padding: 100px 40px 40px;
+    }
+
+    .section {
+        padding: 40px 0;
+    }
+
+    .hero-banner-card {
+        padding: 30px 40px;
+        max-width: 90%;
+    }
+
+    .hero-banner-title {
+        font-size: 3rem;
+    }
+
+    .hero-banner-tagline {
+        font-size: 1.3rem;
+    }
+
+    .hero-banner-welcome {
+        font-size: 1.3rem;
+        min-height: 110px;
+        max-width: 85%;
+    }
+
+    .hero-banner-image {
+        max-width: 280px;
+    }
+
+    .hero-banner-image-corner {
+        bottom: 0;
+        right: 15px;
+    }
+
+    .section-title {
+        font-size: 2.2rem;
+        text-align: center;
+    }
+
+    .cert-pillars-container {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .cert-pillar {
+        max-width: 100%;
+        margin: 0 auto;
+    }
+
+    .pillar-header {
+        justify-content: center;
+    }
+
+    .pillar-hero-image {
+        width: 160px;
+    }
+
+    .cert-item {
+        text-align: left;
+    }
+
+    .projects-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+    }
+
+    .about-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .hero-avatar-image {
+        margin: 0 auto;
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(110px, 110px));
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .skill-icon {
+        width: 110px;
+        height: 110px;
+    }
+
+    .skill-icon-img {
+        width: 55px;
+        height: 55px;
+    }
+
+    .footer {
+        margin-left: 0;
+        padding: 25px;
+    }
+
+    .footer-content {
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+}
+
+/* Mobile Responsive Design (up to 768px) */
 @media (max-width: 768px) {
     .hamburger {
         display: flex;
@@ -1424,16 +1537,26 @@ body {
     }
 
     .hero-banner-card {
-        padding: 25px 30px;
+        padding: 25px 30px 30px;
     }
 
     .hero-banner-image {
         max-width: 250px;
+        margin: 0 auto;
+        display: block;
+        transform: translateX(-5%);
+        /* Shift image 5% to the left */
     }
 
     .hero-banner-image-corner {
-        bottom: 0;
-        right: 15px;
+        /* Repositioned to be directly above buttons on mobile */
+        position: static;
+        margin: 0 auto 0;
+        /* No bottom margin for direct contact with buttons */
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .hero-banner-title {
@@ -1442,6 +1565,18 @@ body {
 
     .hero-banner-tagline {
         font-size: 1.2rem;
+    }
+
+    .hero-banner-welcome {
+        font-size: 1.2rem;
+        min-height: 100px;
+        max-width: 95%;
+        margin-bottom: 20px;
+    }
+
+    .hero-banner-actions {
+        margin-top: 0;
+        /* Remove any top margin for direct contact with image */
     }
 
     .hero-image-container {
@@ -1531,14 +1666,16 @@ body {
 
     .theme-toggle {
         top: 10px;
-        right: 10px;
+        right: 15px;
+        /* Moved 5px left from 20px */
         width: 45px;
         height: 45px;
     }
 
     .language-toggle {
         top: 10px;
-        right: 65px;
+        right: 70px;
+        /* Adjusted to maintain spacing with theme toggle */
         padding: 8px 12px;
         font-size: 0.8rem;
     }
@@ -1551,16 +1688,25 @@ body {
 
 @media (max-width: 480px) {
     .hero-banner-card {
-        padding: 20px 20px;
+        padding: 20px 20px 30px;
     }
 
     .hero-banner-image {
-        max-width: 180px;
+        max-width: 200px;
+        margin: 0 auto;
+        display: block;
+        transform: translateX(-5%);
+        /* Shift image 5% to the left */
     }
 
     .hero-banner-image-corner {
-        bottom: 0;
-        right: 10px;
+        /* Keep repositioned layout with no gap */
+        position: static;
+        margin: 0 auto 0;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .hero-banner-title {
@@ -1571,11 +1717,22 @@ body {
         font-size: 1rem;
     }
 
+    .hero-banner-welcome {
+        font-size: 1.1rem;
+        min-height: 90px;
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+
     .hero-btn-primary,
     .hero-btn-secondary {
         padding: 12px 24px;
         font-size: 0.9rem;
         width: 100%;
+    }
+
+    .hero-banner-actions {
+        margin-top: 0;
     }
 
     .hero-avatar-image {
