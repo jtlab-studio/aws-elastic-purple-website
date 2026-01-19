@@ -24,7 +24,7 @@ function toggleSidebar() {
 
 // Certificate Description Toggle
 function toggleDescription(button) {
-    const certItem = button.parentElement;
+    const certItem = button.closest('.cert-item');
     const description = certItem.querySelector('.cert-description');
 
     if (description.style.display === 'none' || description.style.display === '') {
