@@ -313,7 +313,8 @@ body {
 /* Main Content */
 .main-content {
     margin-left: 280px;
-    padding: 40px;
+    padding: 28px 40px 40px;
+    /* Reduced top padding by 30% (from 40px) */
     min-height: 100vh;
     transition: margin-left 0.3s ease;
 }
@@ -361,7 +362,8 @@ body {
 
 /* Hero Banner Section */
 .hero-banner-section {
-    padding: 32px 0 24px;
+    padding: 22px 0 24px;
+    /* Reduced top padding by 30% (from 32px) */
 }
 
 /* Pink-purple to purple glow animation */
@@ -1436,7 +1438,8 @@ body {
 
     .main-content {
         margin-left: 0;
-        padding: 100px 40px 40px;
+        padding: 70px 40px 40px;
+        /* Reduced top padding by 30% (from 100px) */
     }
 
     .hero-btn-secondary {
@@ -1574,7 +1577,8 @@ body {
 
     .main-content {
         margin-left: 0;
-        padding: 100px 20px 40px;
+        padding: 70px 20px 40px;
+        /* Reduced top padding by 30% (from 100px) */
     }
 
     .footer {
@@ -1712,18 +1716,16 @@ body {
 
     .theme-toggle {
         top: 15px;
-        /* Aligned with hamburger */
-        right: 5px;
-        /* 15px from original 20px = moving LEFT to be fully visible */
+        right: 15px;
+        /* Moved significantly LEFT by increasing right value */
         width: 45px;
         height: 45px;
     }
 
     .language-toggle {
         top: 15px;
-        /* Aligned with hamburger */
-        right: 60px;
-        /* Adjusted to maintain spacing with theme toggle */
+        right: 70px;
+        /* Adjusted spacing */
         padding: 8px 12px;
         font-size: 0.8rem;
     }
