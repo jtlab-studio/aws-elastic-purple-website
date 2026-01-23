@@ -26,7 +26,7 @@ const translations = {
         navContact: "Contact",
 
         // Write-Ups Submenu
-        navWriteUpCRC: "Cloud Resume Challenge",
+        navWriteUpCRC: "Cloud Portfolio",
         navWriteUpSecurity: "AWS Security Automation",
         navWriteUpTerraform: "Terraform State Management",
 
@@ -76,7 +76,7 @@ const translations = {
 
         // Projects Section
         projectsTitle: "Projects",
-        project1Title: "Cloud Resume Challenge",
+        project1Title: "Serverless 3-Tier Web Application using AWS, Github Actions + Terraform",
         project1Desc: "A serverless web application demonstrating cloud-native architecture, infrastructure as code, and CI/CD practices. Built with AWS services, featuring automated deployments, monitoring, and a visitor counter backed by DynamoDB.",
         project2Title: "Coming Soon",
         project2Desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
@@ -90,7 +90,7 @@ const translations = {
         // Write-Ups Page
         writeUpsTagline: "Deep dives into cloud architecture and security implementations",
         writeUpsTitle: "Technical Write-Ups",
-        writeUp1Title: "Cloud Resume Challenge: Building a Serverless Portfolio",
+        writeUp1Title: "Building a Serverless 3-Tier Web Application on AWS & Github Actions before migrating it to Terraform",
         writeUp1Desc: "A comprehensive walkthrough of building a serverless portfolio website on AWS. Covers architecture decisions, infrastructure as code with Terraform, CI/CD automation with GitHub Actions, and implementing a DynamoDB-backed visitor counter with Lambda functions.",
         writeUp2Title: "AWS Security Automation with EventBridge",
         writeUp2Desc: "Implementing automated security responses in AWS using EventBridge, Lambda, and SNS. Explores real-time threat detection patterns, automated remediation workflows, and integration with AWS Security Hub for comprehensive security monitoring.",
@@ -120,7 +120,7 @@ const translations = {
         navContact: "Kontakt",
 
         // Write-Ups Submenu
-        navWriteUpCRC: "Cloud Resume Challenge",
+        navWriteUpCRC: "Cloud Portfolio",
         navWriteUpSecurity: "AWS Security Automation",
         navWriteUpTerraform: "Terraform State Management",
 
@@ -170,7 +170,7 @@ const translations = {
 
         // Projects Section
         projectsTitle: "Projekte",
-        project1Title: "Cloud Resume Challenge",
+        project1Title: "Serverlose 3-Tier-Webanwendung auf AWS & Github Actions + Terraform",
         project1Desc: "Eine serverlose Webanwendung, die Cloud-native Architektur, Infrastructure as Code und CI/CD-Praktiken demonstriert. Entwickelt mit AWS-Services, mit automatisierten Deployments, Monitoring und einem Besucherzähler basierend auf DynamoDB.",
         project2Title: "Demnächst",
         project2Desc: "Lorem Ipsum ist ein einfacher Demo-Text für die Print- und Schriftindustrie. Lorem Ipsum ist in der Industrie bereits der Standard Demo-Text seit 1500, als ein unbekannter Schriftsteller eine Hand voll Wörter nahm und diese durcheinander warf um ein Musterbuch zu erstellen. Es hat nicht nur 5 Jahrhunderte überlebt, sondern auch in Spruch in die elektronische Schriftbearbeitung geschafft (bemerke, nahezu unverändert). Bekannt wurde es 1960, mit dem erscheinen von Letraset, welches Passagen von Lorem Ipsum enhielt, so wie Desktop Software wie Aldus PageMaker - ebenfalls mit Lorem Ipsum.",
@@ -184,7 +184,7 @@ const translations = {
         // Write-Ups Page
         writeUpsTagline: "Detaillierte Einblicke in Cloud-Architektur und Security-Implementierungen",
         writeUpsTitle: "Technische Projektartikel",
-        writeUp1Title: "Cloud Resume Challenge: Building einer Serverless Portfolio",
+        writeUp1Title: "Erstellen einer serverlosen 3-Tier-Webanwendung auf AWS & Github Actions vor der Migration zu Terraform",
         writeUp1Desc: "Ein umfassender Walkthrough für Building einer Serverless Portfolio Website auf AWS. Behandelt Architecture Decisions, Infrastructure as Code mit Terraform, CI/CD Automation mit GitHub Actions und Implementation eines DynamoDB-backed Visitor Counters mit Lambda Functions.",
         writeUp2Title: "AWS Security Automation mit EventBridge",
         writeUp2Desc: "Implementation von Automated Security Responses in AWS mit EventBridge, Lambda und SNS. Untersucht Real-time Threat Detection Patterns, Automated Remediation Workflows und Integration mit AWS Security Hub für Comprehensive Security Monitoring.",
