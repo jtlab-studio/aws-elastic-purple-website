@@ -22,17 +22,13 @@ const translations = {
         navExpertise: "Expertise",
         navProjects: "Projects",
         navAbout: "About",
-        navProjectDocs: "Project Documentation",
-        navBlog: "Blog",
+        navWriteUps: "Write-Ups",
         navContact: "Contact",
 
-        // Project Documentation Submenu
-        navWriteUpCRC: "Cloud Resume Challenge",
+        // Write-Ups Submenu
+        navWriteUpCRC: "Cloud Portfolio",
         navWriteUpSecurity: "AWS Security Automation",
         navWriteUpTerraform: "Terraform State Management",
-
-        // Blog Submenu
-        navBlogSSO: "AWS SSO Setup",
 
         // Hero Section
         heroTitle: "ElasticPurple",
@@ -91,23 +87,15 @@ const translations = {
         linkRepository: "💻 Repository",
         linkReadArticle: "📖 Read Article",
 
-        // Project Documentation Page
-        projectDocsHeroTitle: "Project Documentation",
-        projectDocsTagline: "Deep dives into cloud architecture and security implementations",
-        projectDocsTitle: "Technical Documentation",
+        // Write-Ups Page
+        writeUpsTagline: "Deep dives into cloud architecture and security implementations",
+        writeUpsTitle: "Technical Write-Ups",
         writeUp1Title: "Building a Serverless 3-Tier Web Application on AWS & Github Actions before migrating it to Terraform",
         writeUp1Desc: "A comprehensive walkthrough of building a serverless portfolio website on AWS. Covers architecture decisions, infrastructure as code with Terraform, CI/CD automation with GitHub Actions, and implementing a DynamoDB-backed visitor counter with Lambda functions.",
         writeUp2Title: "AWS Security Automation with EventBridge",
         writeUp2Desc: "Implementing automated security responses in AWS using EventBridge, Lambda, and SNS. Explores real-time threat detection patterns, automated remediation workflows, and integration with AWS Security Hub for comprehensive security monitoring.",
         writeUp3Title: "Terraform State Management Best Practices",
         writeUp3Desc: "Deep dive into Terraform state management strategies for team environments. Covers remote state backends with S3 and DynamoDB, state locking mechanisms, workspace management, and migration strategies for existing infrastructure.",
-
-        // Blog Page
-        blogHeroTitle: "Blog",
-        blogTagline: "Thoughts on cloud engineering, security, and DevOps",
-        blogPostsTitle: "Recent Posts",
-        blogPost1Title: "Setting up AWS SSO for Terraform State Management",
-        blogPost1Desc: "A practical guide to configuring AWS IAM Identity Center (SSO) for secure Terraform operations. Learn how to set up SSO, create permission sets organized by service domains, and configure the AWS CLI for seamless authentication without hardcoded credentials.",
 
         // About Section
         aboutTitle: "About",
@@ -119,12 +107,70 @@ const translations = {
         footerBy: "by",
         footerRights: "All rights reserved.",
 
-        // Navigation helpers
-        backToProjectDocs: "Back to Project Documentation",
-        backToBlog: "Back to Blog",
+        // CRC Article
+        backToWriteUps: "Back to Write-Ups",
+        crcArticleTitle: "Building a Serverless 3-Tier Web Application on AWS & Github Actions before migrating it to Terraform",
+        crcArticleDate: "Published: January 2026",
+        crcArticleReadTime: "15 min read",
 
-        // CRC Article (keeping existing keys for compatibility)
-        backToWriteUps: "Back to Project Documentation"
+        // CRC Article Sections
+        crcIntroTitle: "Introduction",
+        crcIntroPara1: "This article documents my journey building a serverless portfolio website on AWS as part of the Cloud Resume Challenge. The project demonstrates cloud-native architecture, infrastructure as code practices, and automated CI/CD workflows.",
+        crcIntroPara2: "Throughout this writeup, I'll cover the architectural decisions, implementation challenges, and lessons learned while building a production-grade serverless application.",
+
+        crcArchTitle: "🏗️ Architecture Overview",
+        crcArchPara1: "The architecture follows AWS best practices for serverless web applications with the following components:",
+        crcArchFrontendTitle: "Frontend Hosting",
+        crcArchFrontend1: "<strong>Amazon S3</strong>: Static website hosting for HTML, CSS, JavaScript, and images",
+        crcArchFrontend2: "<strong>Amazon CloudFront</strong>: CDN for global content delivery with HTTPS support",
+        crcArchFrontend3: "<strong>AWS Certificate Manager (ACM)</strong>: SSL/TLS certificates for secure connections",
+        crcArchFrontend4: "<strong>Amazon Route53</strong>: DNS management for custom domain",
+        crcArchBackendTitle: "Backend Services",
+        crcArchBackend1: "<strong>AWS Lambda</strong>: Serverless functions for visitor counter logic",
+        crcArchBackend2: "<strong>Amazon DynamoDB</strong>: NoSQL database for storing visitor count",
+        crcArchBackend3: "<strong>Lambda Function URLs</strong>: Direct HTTPS endpoints for Lambda functions",
+        crcArchIacTitle: "Infrastructure as Code",
+        crcArchIac1: "<strong>Terraform</strong>: Managing all AWS infrastructure with declarative configuration",
+        crcArchIac2: "<strong>Modular Design</strong>: Separated into visitor-counter and website-frontend modules",
+        crcArchCicdTitle: "CI/CD Pipeline",
+        crcArchCicd1: "<strong>GitHub Actions</strong>: Automated deployment on push to main branch",
+        crcArchCicd2: "<strong>CloudFront Invalidation</strong>: Automatic cache clearing for updated content",
+        crcArchDiagram: "Architecture Diagram:",
+        crcArchPlaceholder: "[Architecture diagram will be added here]",
+
+        crcImplTitle: "⚙️ Implementation Details",
+        crcImplVisitorTitle: "Visitor Counter Implementation",
+        crcImplVisitorPara: "The visitor counter is implemented using a Lambda function that increments a counter in DynamoDB on each page load. Here's the key architecture decision: using Lambda Function URLs instead of API Gateway for simplicity.",
+        crcImplTerraformTitle: "Terraform Module Structure",
+        crcImplTerraformPara: "The infrastructure is organized into two main modules:",
+        crcImplTerraform1: "<strong>visitor-counter</strong>: Lambda function, DynamoDB table, IAM roles",
+        crcImplTerraform2: "<strong>website-frontend</strong>: S3, CloudFront, Route53, ACM certificates",
+        crcImplChallengesTitle: "Challenges & Solutions",
+        crcImplChallenges1: "<strong>Challenge 1: MIME Type Issues</strong><br>Initial deployment failed to load CSS files properly due to incorrect Content-Type headers in S3.",
+        crcImplSolution1: "<strong>Solution:</strong> Configured GitHub Actions to explicitly set Content-Type during S3 sync operations.",
+        crcImplChallenges2: "<strong>Challenge 2: Terraform State Drift</strong><br>Importing manually-created resources into Terraform caused configuration drift issues.",
+        crcImplSolution2: "<strong>Solution:</strong> Carefully matched Terraform configuration to existing resource attributes, paying attention to IAM role paths and naming conventions.",
+
+        crcRepoTitle: "💻 Source Code & Repository",
+        crcRepoPara1: "The complete source code for this project is available on GitHub, including:",
+        crcRepo1: "Terraform modules for infrastructure",
+        crcRepo2: "Lambda function code (Python)",
+        crcRepo3: "Frontend code (HTML, CSS, JavaScript)",
+        crcRepo4: "GitHub Actions workflows",
+        crcRepo5: "Documentation and setup instructions",
+        viewGitHub: "📦 View on GitHub",
+        viewArchitecture: "🏗️ View Architecture",
+
+        crcLessonsTitle: "💡 Lessons Learned",
+        crcLesson1: "<strong>Infrastructure as Code is Essential</strong>: Terraform made infrastructure reproducible and version-controlled",
+        crcLesson2: "<strong>Separation of Concerns</strong>: Keeping infrastructure (Terraform) separate from content deployment (GitHub Actions) provided flexibility",
+        crcLesson3: "<strong>Attention to Detail Matters</strong>: Small configuration issues (MIME types, IAM paths) can cause significant problems",
+        crcLesson4: "<strong>Modular Design Pays Off</strong>: Organizing Terraform into logical modules made management easier",
+        crcLesson5: "<strong>Automation Saves Time</strong>: CI/CD pipeline eliminated manual deployment steps",
+
+        crcConclusionTitle: "🎯 Conclusion",
+        crcConclusionPara1: "Building this serverless portfolio was an excellent hands-on experience with AWS services and modern DevOps practices. The project demonstrated the power of cloud-native architectures and infrastructure as code.",
+        crcConclusionPara2: "This foundation serves as a solid starting point for more complex serverless applications, and the patterns learned here are applicable to production-grade cloud architectures."
     },
     de: {
         // Navigation
@@ -132,17 +178,13 @@ const translations = {
         navExpertise: "Expertise",
         navProjects: "Projekte",
         navAbout: "Über mich",
-        navProjectDocs: "Projektdokumentation",
-        navBlog: "Blog",
+        navWriteUps: "Projektartikel",
         navContact: "Kontakt",
 
-        // Project Documentation Submenu
-        navWriteUpCRC: "Cloud Resume Challenge",
+        // Write-Ups Submenu
+        navWriteUpCRC: "Cloud Portfolio",
         navWriteUpSecurity: "AWS Security Automation",
         navWriteUpTerraform: "Terraform State Management",
-
-        // Blog Submenu
-        navBlogSSO: "AWS SSO Einrichtung",
 
         // Hero Section
         heroTitle: "ElasticPurple",
@@ -201,23 +243,15 @@ const translations = {
         linkRepository: "💻 Repository",
         linkReadArticle: "📖 Artikel Lesen",
 
-        // Project Documentation Page
-        projectDocsHeroTitle: "Projektdokumentation",
-        projectDocsTagline: "Detaillierte Einblicke in Cloud-Architektur und Security-Implementierungen",
-        projectDocsTitle: "Technische Dokumentation",
+        // Write-Ups Page
+        writeUpsTagline: "Detaillierte Einblicke in Cloud-Architektur und Security-Implementierungen",
+        writeUpsTitle: "Technische Projektartikel",
         writeUp1Title: "Erstellen einer serverlosen 3-Tier-Webanwendung auf AWS & Github Actions vor der Migration zu Terraform",
         writeUp1Desc: "Ein umfassender Walkthrough für Building einer Serverless Portfolio Website auf AWS. Behandelt Architecture Decisions, Infrastructure as Code mit Terraform, CI/CD Automation mit GitHub Actions und Implementation eines DynamoDB-backed Visitor Counters mit Lambda Functions.",
         writeUp2Title: "AWS Security Automation mit EventBridge",
         writeUp2Desc: "Implementation von Automated Security Responses in AWS mit EventBridge, Lambda und SNS. Untersucht Real-time Threat Detection Patterns, Automated Remediation Workflows und Integration mit AWS Security Hub für Comprehensive Security Monitoring.",
         writeUp3Title: "Terraform State Management Best Practices",
         writeUp3Desc: "Deep Dive in Terraform State Management Strategies für Team Environments. Behandelt Remote State Backends mit S3 und DynamoDB, State Locking Mechanisms, Workspace Management und Migration Strategies für Existing Infrastructure.",
-
-        // Blog Page
-        blogHeroTitle: "Blog",
-        blogTagline: "Gedanken zu Cloud Engineering, Security und DevOps",
-        blogPostsTitle: "Aktuelle Beiträge",
-        blogPost1Title: "AWS SSO Einrichtung für Terraform State Management",
-        blogPost1Desc: "Eine praktische Anleitung zur Konfiguration des AWS IAM Identity Centers (SSO) für sichere Terraform-Operationen. Lernen Sie, wie man SSO einrichtet, Permission Sets nach Service-Domains organisiert und die AWS CLI für nahtlose Authentifizierung ohne hartcodierte Credentials konfiguriert.",
 
         // About Section
         aboutTitle: "Über mich",
@@ -229,12 +263,70 @@ const translations = {
         footerBy: "von",
         footerRights: "Alle Rechte vorbehalten.",
 
-        // Navigation helpers
-        backToProjectDocs: "Zurück zur Projektdokumentation",
-        backToBlog: "Zurück zum Blog",
+        // CRC Article
+        backToWriteUps: "Zurück zu Projektartikeln",
+        crcArticleTitle: "Erstellen einer serverlosen 3-Tier-Webanwendung auf AWS & Github Actions vor der Migration zu Terraform",
+        crcArticleDate: "Veröffentlicht: Januar 2026",
+        crcArticleReadTime: "15 Min. Lesezeit",
 
-        // CRC Article (keeping existing keys for compatibility)
-        backToWriteUps: "Zurück zur Projektdokumentation"
+        // CRC Article Sections
+        crcIntroTitle: "Einführung",
+        crcIntroPara1: "Dieser Artikel dokumentiert meine Journey beim Building einer Serverless Portfolio Website auf AWS als Teil der Cloud Resume Challenge. Das Project demonstriert Cloud-native Architecture, Infrastructure as Code Practices und Automated CI/CD Workflows.",
+        crcIntroPara2: "In diesem Writeup behandle ich die Architectural Decisions, Implementation Challenges und Lessons Learned beim Building einer Production-grade Serverless Application.",
+
+        crcArchTitle: "🏗️ Architecture Overview",
+        crcArchPara1: "Die Architecture folgt AWS Best Practices für Serverless Web Applications mit folgenden Components:",
+        crcArchFrontendTitle: "Frontend Hosting",
+        crcArchFrontend1: "<strong>Amazon S3</strong>: Static Website Hosting für HTML, CSS, JavaScript und Images",
+        crcArchFrontend2: "<strong>Amazon CloudFront</strong>: CDN für Global Content Delivery mit HTTPS Support",
+        crcArchFrontend3: "<strong>AWS Certificate Manager (ACM)</strong>: SSL/TLS Certificates für Secure Connections",
+        crcArchFrontend4: "<strong>Amazon Route53</strong>: DNS Management für Custom Domain",
+        crcArchBackendTitle: "Backend Services",
+        crcArchBackend1: "<strong>AWS Lambda</strong>: Serverless Functions für Visitor Counter Logic",
+        crcArchBackend2: "<strong>Amazon DynamoDB</strong>: NoSQL Database für Storing von Visitor Count",
+        crcArchBackend3: "<strong>Lambda Function URLs</strong>: Direct HTTPS Endpoints für Lambda Functions",
+        crcArchIacTitle: "Infrastructure as Code",
+        crcArchIac1: "<strong>Terraform</strong>: Managing von All AWS Infrastructure mit Declarative Configuration",
+        crcArchIac2: "<strong>Modular Design</strong>: Separated in Visitor-Counter und Website-Frontend Modules",
+        crcArchCicdTitle: "CI/CD Pipeline",
+        crcArchCicd1: "<strong>GitHub Actions</strong>: Automated Deployment auf Push zu Main Branch",
+        crcArchCicd2: "<strong>CloudFront Invalidation</strong>: Automatic Cache Clearing für Updated Content",
+        crcArchDiagram: "Architecture Diagram:",
+        crcArchPlaceholder: "[Architecture Diagram wird hier hinzugefügt]",
+
+        crcImplTitle: "⚙️ Implementation Details",
+        crcImplVisitorTitle: "Visitor Counter Implementation",
+        crcImplVisitorPara: "Der Visitor Counter ist implemented mit einer Lambda Function, die einen Counter in DynamoDB bei jedem Page Load incrementiert. Die Key Architecture Decision: Using von Lambda Function URLs statt API Gateway für Simplicity.",
+        crcImplTerraformTitle: "Terraform Module Structure",
+        crcImplTerraformPara: "Die Infrastructure ist organized in zwei Main Modules:",
+        crcImplTerraform1: "<strong>visitor-counter</strong>: Lambda Function, DynamoDB Table, IAM Roles",
+        crcImplTerraform2: "<strong>website-frontend</strong>: S3, CloudFront, Route53, ACM Certificates",
+        crcImplChallengesTitle: "Challenges & Solutions",
+        crcImplChallenges1: "<strong>Challenge 1: MIME Type Issues</strong><br>Initial Deployment failed bei Loading von CSS Files properly aufgrund von Incorrect Content-Type Headers in S3.",
+        crcImplSolution1: "<strong>Solution:</strong> Configured GitHub Actions für Explicitly Setting von Content-Type während S3 Sync Operations.",
+        crcImplChallenges2: "<strong>Challenge 2: Terraform State Drift</strong><br>Importing von Manually-created Resources in Terraform caused Configuration Drift Issues.",
+        crcImplSolution2: "<strong>Solution:</strong> Carefully matched Terraform Configuration zu Existing Resource Attributes, mit Attention zu IAM Role Paths und Naming Conventions.",
+
+        crcRepoTitle: "💻 Source Code & Repository",
+        crcRepoPara1: "Der Complete Source Code für dieses Project ist Available auf GitHub, including:",
+        crcRepo1: "Terraform Modules für Infrastructure",
+        crcRepo2: "Lambda Function Code (Python)",
+        crcRepo3: "Frontend Code (HTML, CSS, JavaScript)",
+        crcRepo4: "GitHub Actions Workflows",
+        crcRepo5: "Documentation und Setup Instructions",
+        viewGitHub: "📦 View on GitHub",
+        viewArchitecture: "🏗️ View Architecture",
+
+        crcLessonsTitle: "💡 Lessons Learned",
+        crcLesson1: "<strong>Infrastructure as Code is Essential</strong>: Terraform made Infrastructure Reproducible und Version-controlled",
+        crcLesson2: "<strong>Separation of Concerns</strong>: Keeping Infrastructure (Terraform) Separate von Content Deployment (GitHub Actions) provided Flexibility",
+        crcLesson3: "<strong>Attention to Detail Matters</strong>: Small Configuration Issues (MIME Types, IAM Paths) können Significant Problems verursachen",
+        crcLesson4: "<strong>Modular Design Pays Off</strong>: Organizing Terraform in Logical Modules made Management Easier",
+        crcLesson5: "<strong>Automation Saves Time</strong>: CI/CD Pipeline eliminated Manual Deployment Steps",
+
+        crcConclusionTitle: "🎯 Conclusion",
+        crcConclusionPara1: "Building dieser Serverless Portfolio war eine Excellent Hands-on Experience mit AWS Services und Modern DevOps Practices. Das Project demonstrated die Power von Cloud-native Architectures und Infrastructure as Code.",
+        crcConclusionPara2: "Diese Foundation serves als Solid Starting Point für More Complex Serverless Applications, und die Patterns Learned hier sind Applicable zu Production-grade Cloud Architectures."
     }
 };
 
@@ -298,20 +390,16 @@ function highlightCurrentPage() {
         const href = item.getAttribute('href');
         if (!href) return;
 
-        // Extract just the filename from href (handle index.html#section and other pages)
+        // Extract just the filename from href (handle index.html#section and write-ups.html)
         const hrefFile = href.split('#')[0].split('/').pop();
 
         // Remove active class first
         item.classList.remove('active');
 
         // Check if this nav item matches current page
-        if (currentPage === 'project-docs.html' && hrefFile === 'project-docs.html') {
+        if (currentPage === 'write-ups.html' && hrefFile === 'write-ups.html') {
             item.classList.add('active');
-        } else if (currentPage === 'crc-article.html' && hrefFile === 'project-docs.html') {
-            item.classList.add('active');
-        } else if (currentPage === 'blog.html' && hrefFile === 'blog.html') {
-            item.classList.add('active');
-        } else if (currentPage === 'blog-sso-setup.html' && hrefFile === 'blog.html') {
+        } else if (currentPage === 'crc-article.html' && hrefFile === 'write-ups.html') {
             item.classList.add('active');
         } else if (currentPage === 'index.html' && hrefFile === 'index.html') {
             // Don't highlight on index.html - let scroll-based highlighting handle it
@@ -591,6 +679,56 @@ function loadTheme() {
     }
 }
 
+// Image Modal functionality for blog articles
+function setupImageModal() {
+    // Create modal HTML if it doesn't exist
+    if (!document.getElementById('imageModal')) {
+        const modalHTML = `
+            <div id="imageModal" class="image-modal">
+                <span class="image-modal-close">&times;</span>
+                <img class="image-modal-content" id="modalImage">
+                <div class="image-modal-caption"></div>
+            </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', modalHTML);
+    }
+
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImage');
+    const modalCaption = document.querySelector('.image-modal-caption');
+    const closeBtn = document.querySelector('.image-modal-close');
+
+    // Add click handlers to all images in article content
+    document.querySelectorAll('.article-section img').forEach(img => {
+        // Add magnifying glass on hover
+        img.style.cursor = 'zoom-in';
+
+        img.addEventListener('click', function () {
+            modal.style.display = 'block';
+            modalImg.src = this.src;
+            modalCaption.textContent = this.alt || '';
+        });
+    });
+
+    // Close modal when clicking X or outside image
+    closeBtn.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.style.display === 'block') {
+            modal.style.display = 'none';
+        }
+    });
+}
+
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     loadTheme();
@@ -600,6 +738,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupOutsideClick();
     updateVisitorCount();
     startCyclingText();
+    setupImageModal();
 
     // Update active nav on scroll
     window.addEventListener('scroll', () => {
