@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setting up AWS SSO for Terraform - ElasticPurple</title>
+    <link rel="icon" type="image/png" href="../../images/favicon.ico">
+    <link rel="stylesheet" href="../../styles.css">
+    <style>
+        .article-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .article-header {
+            margin-bottom: 40px;
+        }
+
+        .article-title {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .article-meta {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+        }
+
+        .article-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        .article-section {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            margin-bottom: 30px;
+        }
+
+        .article-section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+        }
+
+        .article-section h3 {
+            font-size: 1.4rem;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .article-section h4 {
+            font-size: 1.2rem;
+            margin-top: 20px;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .article-section h5 {
+            font-size: 1.1rem;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .article-section p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .article-section ul,
+        .article-section ol {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+
+        .article-section li {
+            margin-bottom: 8px;
+        }
+
+        .article-section code {
+            background: rgba(167, 139, 250, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .article-section pre {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+
+        .article-section pre code {
+            background: none;
+            padding: 0;
+        }
+
+        .article-section strong {
+            color: var(--accent-color);
+        }
+
+        .info-box {
+            background: rgba(167, 139, 250, 0.1);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .info-box p {
+            margin-bottom: 0;
+        }
+
+        .back-to-blog {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-to-blog:hover {
+            color: var(--accent-hover);
+        }
+
+        .article-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            margin: 20px 0;
+            display: block;
+        }
+
+        .image-placeholder {
+            background: rgba(167, 139, 250, 0.1);
+            border: 2px dashed var(--border-color);
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            color: var(--text-secondary);
+            margin: 20px 0;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+        ☀️
+    </button>
+
+    <!-- Language Toggle -->
+    <button class="language-toggle" onclick="toggleLanguage()" aria-label="Toggle language">
+        <span class="lang-en">EN</span> | <span class="lang-de">DE</span>
+    </button>
+
+    <!-- Sidebar Navigation -->
+    <button class="hamburger" onclick="toggleSidebar()" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a href="index.html#home">
+                <img src="images/cloudlogo.png" alt="ElasticPurple Logo" class="sidebar-logo">
+            </a>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="index.html" class="nav-item" data-i18n="navHome">Home</a>
+            <a href="index.html#expertise" class="nav-item" data-i18n="navExpertise">Expertise</a>
+            <a href="index.html#projects" class="nav-item" data-i18n="navProjects">Projects</a>
+            <a href="index.html#about" class="nav-item" data-i18n="navAbout">About</a>
+            <div class="nav-separator"></div>
+            <a href="project-docs.html" class="nav-item nav-secondary" data-i18n="navProjectDocs">Project
+                Documentation</a>
+            <a href="blog.html" class="nav-item nav-secondary active" data-i18n="navBlog">Blog</a>
+            <div class="nav-submenu">
+                <a href="blog-sso-setup.html" class="nav-subitem active" data-i18n="navBlogSSO">AWS SSO Setup</a>
+            </div>
+            <a href="https://linkedin.com/in/elasticpurple" class="nav-item nav-secondary" target="_blank"
+                rel="noopener noreferrer" data-i18n="navContact">Contact</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <div class="article-content">
+            <a href="blog.html" class="back-to-blog">← <span data-i18n="backToBlog">Back to Blog</span></a>
+
+            <div class="article-header">
+                <h1 class="article-title">Setting up AWS SSO for Terraform State Management</h1>
+                <div class="article-meta">
+                    <span>Published: January 26, 2026</span> •
+                    <span>12 min read</span>
+                </div>
+                <div class="article-tags">
+                    <span class="tag">AWS</span>
+                    <span class="tag">IAM Identity Center</span>
+                    <span class="tag">SSO</span>
+                    <span class="tag">Terraform</span>
+                    <span class="tag">Security</span>
+                    <span class="tag">CLI</span>
+                </div>
+            </div>
+
+            <!-- Introduction -->
+            <div class="article-section">
+                <h2>Introduction</h2>
+                <p>
+                    When working with Terraform and AWS, one of the first decisions you'll make is how to manage your
+                    AWS credentials.
+                    While using locally stored environment variables might work for personal projects, it falls short of
+                    enterprise
+                    security standards and policies.
+                </p>
+                <p>
+                    I used Claude to automate the process of creating the S3 Remote Backend for my Terraform State File.
+                    However, I realized that
+                    relying on locally stored env variables wouldn't meet enterprise security standards. After some
+                    research, I discovered that
+                    the most common and secure approach is to utilize <strong>IAM Roles + AWS SSO (IAM Identity
+                        Center)</strong>.
+                </p>
+                <div class="info-box">
+                    <p><strong>Key Benefit:</strong> The good thing is that SSO only needs to be set up once by the
+                        platform team — which in my case happens to be my newly acquired alter ego, "Platform Dave" 😄
+                    </p>
+                </div>
+            </div>
+
+            <!-- Prerequisites -->
+            <div class="article-section">
+                <h2>Understanding the Setup Scenarios</h2>
+                <p>
+                    To set up SSO, you first need to enable the IAM Identity Center. The approach depends on your
+                    scenario:
+                </p>
+
+                <h5>Scenario 1: Your Organization Already Has IAM Identity Center Set Up</h5>
+                <p>
+                    If your AWS organization already has IAM Identity Center enabled (common in companies), you can skip
+                    all the console
+                    setup and just configure the CLI directly. Simply request the following information from your AWS
+                    administrator:
+                </p>
+                <ul>
+                    <li><strong>SSO Start URL:</strong> <code>https://d-xxxxxxxxxx.awsapps.com/start</code></li>
+                    <li><strong>SSO Region:</strong> e.g., <code>us-east-1</code></li>
+                    <li><strong>SSO Username & Password</strong> (provided by your admin)</li>
+                </ul>
+
+                <h5>Scenario 2: You're Starting Fresh (Personal/New Account)</h5>
+                <p>
+                    You <strong>cannot</strong> create IAM Identity Center itself via CLI — it must be enabled in the
+                    console first.
+                    However, once enabled, you can do everything else via CLI.
+                </p>
+
+                <div class="info-box">
+                    <p><strong>Useful Link:</strong> <a
+                            href="https://docs.aws.amazon.com/singlesignon/latest/userguide/identity-center-prerequisites.html"
+                            target="_blank" rel="noopener noreferrer">IAM Identity Center Prerequisites</a></p>
+                </div>
+
+                <img src="images/blog/Pasted image 20260126125329.png" alt="IAM Identity Center enabled in AWS Console"
+                    class="article-image">
+            </div>
+
+            <!-- Required Information -->
+            <div class="article-section">
+                <h2>Gathering Required Information</h2>
+                <p>
+                    Once you have IAM Identity Center enabled, you'll need the following information:
+                </p>
+                <ul>
+                    <li><strong>SSO Start URL:</strong> <code>https://d-xxxxxxxxxx.awsapps.com/start</code></li>
+                    <li><strong>SSO Region:</strong> e.g., <code>us-east-1</code></li>
+                    <li><strong>SSO Username & Password:</strong> By creating a user or via your admin</li>
+                </ul>
+
+                <p>
+                    You will find this information in the IAM Identity Center's Dashboard or by requesting it from your
+                    AWS Administrator.
+                </p>
+
+                <img src="images/blog/Pasted image 20260126132525.png"
+                    alt="IAM Identity Center Dashboard showing SSO URL" class="article-image">
+                <img src="images/blog/Pasted image 20260126133341.png" alt="IAM Identity Center settings"
+                    class="article-image">
+                <img src="images/blog/Pasted image 20260126133600.png" alt="IAM Identity Center user portal"
+                    class="article-image">
+            </div>
+
+            <!-- Creating Users -->
+            <div class="article-section">
+                <h2>Creating and Configuring SSO Users</h2>
+
+                <h3>Step 1: Create the User</h3>
+                <p>
+                    After adding the user in IAM Identity Center, the user will receive an email invitation to set up
+                    their password.
+                    Make sure to also go into the user's profile and send the email verification from the console.
+                </p>
+
+                <img src="images/blog/Pasted image 20260126140001.png" alt="User profile - send email verification"
+                    class="article-image">
+                <img src="images/blog/Pasted image 20260126134224.png" alt="User creation in IAM Identity Center"
+                    class="article-image">
+                <img src="images/blog/Pasted image 20260126134315.png" alt="Email verification button"
+                    class="article-image">
+
+                <h3>Step 2: Set Up Permission Sets</h3>
+                <p>
+                    Another important step before you can use SSO is to set up the Permission Sets for your SSO User. I
+                    decided to split
+                    permissions into AWS service domains, similar to my preferred Terraform modular approach:
+                </p>
+
+                <pre><code>Service Domain Permission Sets:
+├── terraform-core          (S3 state, tagging, read-only)
+├── terraform-storage       (S3, EBS, EFS)
+├── terraform-compute       (EC2, Lambda, ECS)
+├── terraform-iam           (IAM roles/policies - scoped)
+├── terraform-networking    (VPC, subnets, security groups)
+├── terraform-ml            (Rekognition, SageMaker, Comprehend)
+├── terraform-database      (RDS, DynamoDB, ElastiCache)
+├── terraform-serverless    (Lambda, API Gateway, EventBridge)
+└── terraform-monitoring    (CloudWatch, X-Ray, CloudTrail)</code></pre>
+
+                <img src="images/blog/Pasted image 20260126140809.png" alt="Permission Sets configuration"
+                    class="article-image">
+            </div>
+
+            <!-- Assigning Permissions -->
+            <div class="article-section">
+                <h2>Assigning Permissions to AWS Accounts</h2>
+                <p>
+                    Once you have set the permissions, you need to go into <strong>AWS Accounts</strong> and assign the
+                    user/group
+                    to your account to attach the permission set(s):
+                </p>
+
+                <img src="images/blog/Pasted image 20260126143556.png" alt="AWS Accounts assignment screen"
+                    class="article-image">
+            </div>
+
+            <!-- CLI Configuration -->
+            <div class="article-section">
+                <h2>Configuring AWS CLI with SSO</h2>
+
+                <h3>Running aws configure sso</h3>
+                <p>
+                    After this setup, you can configure SSO via the AWS CLI:
+                </p>
+
+                <pre><code>aws configure sso</code></pre>
+
+                <p>
+                    You'll be prompted to provide the SSO information. After providing the details, a browser tab will
+                    open and
+                    prompt you for your credentials. You'll also be asked to set up MFA before access is granted.
+                </p>
+
+                <img src="images/blog/Pasted image 20260126135107.png" alt="CLI SSO configuration prompt"
+                    class="article-image">
+                <img src="images/blog/Pasted image 20260126134931.png" alt="Browser authentication screen"
+                    class="article-image">
+
+                <h3>Success!</h3>
+                <img src="images/blog/Pasted image 20260126135154.png" alt="Successful SSO configuration"
+                    class="article-image">
+            </div>
+
+            <!-- Complete Flow -->
+            <div class="article-section">
+                <h2>The Complete SSO Login Flow</h2>
+                <p>
+                    Here's what happens when you use AWS SSO:
+                </p>
+
+                <pre><code>1. aws sso login --profile terraform-dev
+   ↓
+2. Browser opens → You login
+   ↓
+3. AWS shows: "You have 1 account available"
+   ↓
+4. You select: Your AWS Account (123456789012)
+   ↓
+5. AWS shows: "You have X roles available" 
+   (These are your permission sets combined into roles)
+   ↓
+6. You select: One of the roles
+   ↓
+7. CLI asks: "What region do you want to use?"
+   You answer: eu-central-1
+   ↓
+8. CLI asks: "What output format?"
+   You answer: json
+   ↓
+9. CLI asks: "What should we call this profile?"
+   You answer: terraform-dev
+   ↓
+10. ✅ DONE! Configuration saved to ~/.aws/config</code></pre>
+            </div>
+
+            <!-- Benefits -->
+            <div class="article-section">
+                <h2>Benefits of This Approach</h2>
+                <ul>
+                    <li><strong>No Hardcoded Credentials:</strong> No access keys stored in environment variables or
+                        config files</li>
+                    <li><strong>Temporary Credentials:</strong> SSO tokens expire automatically, reducing security risks
+                    </li>
+                    <li><strong>Centralized Management:</strong> All user access controlled from IAM Identity Center
+                    </li>
+                    <li><strong>MFA Support:</strong> Built-in multi-factor authentication for added security</li>
+                    <li><strong>Role-Based Access:</strong> Easy to manage permissions through permission sets</li>
+                    <li><strong>Audit Trail:</strong> All SSO logins are logged in CloudTrail</li>
+                </ul>
+            </div>
+
+            <!-- Terraform Integration -->
+            <div class="article-section">
+                <h2>Using SSO with Terraform</h2>
+                <p>
+                    Now that SSO is configured, you can use it seamlessly with Terraform. Simply reference your SSO
+                    profile in your
+                    Terraform provider configuration:
+                </p>
+
+                <pre><code>provider "aws" {
+  region  = "eu-central-1"
+  profile = "terraform-dev"
+}</code></pre>
+
+                <p>
+                    Before running Terraform commands, make sure you're logged in:
+                </p>
+
+                <pre><code>aws sso login --profile terraform-dev
+terraform init
+terraform plan
+terraform apply</code></pre>
+            </div>
+
+            <!-- Conclusion -->
+            <div class="article-section">
+                <h2>Conclusion</h2>
+                <p>
+                    Setting up AWS SSO for Terraform might seem like extra work initially, but it provides significant
+                    security benefits
+                    and aligns with enterprise best practices. By using IAM Identity Center with properly scoped
+                    permission sets, you can:
+                </p>
+                <ul>
+                    <li>Eliminate the risk of leaked AWS credentials</li>
+                    <li>Implement least-privilege access controls</li>
+                    <li>Simplify credential management across teams</li>
+                    <li>Maintain a clear audit trail of all AWS operations</li>
+                </ul>
+                <p>
+                    This approach scales well from individual projects to enterprise deployments, making it a solid
+                    foundation for any
+                    Terraform-based infrastructure management strategy.
+                </p>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <span data-i18n="footerVisitors">Visitors</span>: <span id="visitorCount">---</span>
+            </div>
+            <div class="footer-center">
+                <span data-i18n="footerMadeWith">Made with</span> ☁️ <span data-i18n="footerBy">by</span> ElasticPurple
+            </div>
+            <div class="footer-right">
+                © 2026 ElasticPurple. <span data-i18n="footerRights">All rights reserved.</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

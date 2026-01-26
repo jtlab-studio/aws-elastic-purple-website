@@ -22,13 +22,17 @@ const translations = {
         navExpertise: "Expertise",
         navProjects: "Projects",
         navAbout: "About",
-        navWriteUps: "Write-Ups",
+        navProjectDocs: "Project Documentation",
+        navBlog: "Blog",
         navContact: "Contact",
 
-        // Write-Ups Submenu
-        navWriteUpCRC: "Cloud Portfolio",
+        // Project Documentation Submenu
+        navWriteUpCRC: "Cloud Resume Challenge",
         navWriteUpSecurity: "AWS Security Automation",
         navWriteUpTerraform: "Terraform State Management",
+
+        // Blog Submenu
+        navBlogSSO: "AWS SSO Setup",
 
         // Hero Section
         heroTitle: "ElasticPurple",
@@ -87,15 +91,23 @@ const translations = {
         linkRepository: "💻 Repository",
         linkReadArticle: "📖 Read Article",
 
-        // Write-Ups Page
-        writeUpsTagline: "Deep dives into cloud architecture and security implementations",
-        writeUpsTitle: "Technical Write-Ups",
+        // Project Documentation Page
+        projectDocsHeroTitle: "Project Documentation",
+        projectDocsTagline: "Deep dives into cloud architecture and security implementations",
+        projectDocsTitle: "Technical Documentation",
         writeUp1Title: "Building a Serverless 3-Tier Web Application on AWS & Github Actions before migrating it to Terraform",
         writeUp1Desc: "A comprehensive walkthrough of building a serverless portfolio website on AWS. Covers architecture decisions, infrastructure as code with Terraform, CI/CD automation with GitHub Actions, and implementing a DynamoDB-backed visitor counter with Lambda functions.",
         writeUp2Title: "AWS Security Automation with EventBridge",
         writeUp2Desc: "Implementing automated security responses in AWS using EventBridge, Lambda, and SNS. Explores real-time threat detection patterns, automated remediation workflows, and integration with AWS Security Hub for comprehensive security monitoring.",
         writeUp3Title: "Terraform State Management Best Practices",
         writeUp3Desc: "Deep dive into Terraform state management strategies for team environments. Covers remote state backends with S3 and DynamoDB, state locking mechanisms, workspace management, and migration strategies for existing infrastructure.",
+
+        // Blog Page
+        blogHeroTitle: "Blog",
+        blogTagline: "Thoughts on cloud engineering, security, and DevOps",
+        blogPostsTitle: "Recent Posts",
+        blogPost1Title: "Setting up AWS SSO for Terraform State Management",
+        blogPost1Desc: "A practical guide to configuring AWS IAM Identity Center (SSO) for secure Terraform operations. Learn how to set up SSO, create permission sets organized by service domains, and configure the AWS CLI for seamless authentication without hardcoded credentials.",
 
         // About Section
         aboutTitle: "About",
@@ -107,8 +119,12 @@ const translations = {
         footerBy: "by",
         footerRights: "All rights reserved.",
 
-        // CRC Article
-        backToWriteUps: "Back to Write-Ups"
+        // Navigation helpers
+        backToProjectDocs: "Back to Project Documentation",
+        backToBlog: "Back to Blog",
+
+        // CRC Article (keeping existing keys for compatibility)
+        backToWriteUps: "Back to Project Documentation"
     },
     de: {
         // Navigation
@@ -116,13 +132,17 @@ const translations = {
         navExpertise: "Expertise",
         navProjects: "Projekte",
         navAbout: "Über mich",
-        navWriteUps: "Projektartikel",
+        navProjectDocs: "Projektdokumentation",
+        navBlog: "Blog",
         navContact: "Kontakt",
 
-        // Write-Ups Submenu
-        navWriteUpCRC: "Cloud Portfolio",
+        // Project Documentation Submenu
+        navWriteUpCRC: "Cloud Resume Challenge",
         navWriteUpSecurity: "AWS Security Automation",
         navWriteUpTerraform: "Terraform State Management",
+
+        // Blog Submenu
+        navBlogSSO: "AWS SSO Einrichtung",
 
         // Hero Section
         heroTitle: "ElasticPurple",
@@ -181,15 +201,23 @@ const translations = {
         linkRepository: "💻 Repository",
         linkReadArticle: "📖 Artikel Lesen",
 
-        // Write-Ups Page
-        writeUpsTagline: "Detaillierte Einblicke in Cloud-Architektur und Security-Implementierungen",
-        writeUpsTitle: "Technische Projektartikel",
+        // Project Documentation Page
+        projectDocsHeroTitle: "Projektdokumentation",
+        projectDocsTagline: "Detaillierte Einblicke in Cloud-Architektur und Security-Implementierungen",
+        projectDocsTitle: "Technische Dokumentation",
         writeUp1Title: "Erstellen einer serverlosen 3-Tier-Webanwendung auf AWS & Github Actions vor der Migration zu Terraform",
         writeUp1Desc: "Ein umfassender Walkthrough für Building einer Serverless Portfolio Website auf AWS. Behandelt Architecture Decisions, Infrastructure as Code mit Terraform, CI/CD Automation mit GitHub Actions und Implementation eines DynamoDB-backed Visitor Counters mit Lambda Functions.",
         writeUp2Title: "AWS Security Automation mit EventBridge",
         writeUp2Desc: "Implementation von Automated Security Responses in AWS mit EventBridge, Lambda und SNS. Untersucht Real-time Threat Detection Patterns, Automated Remediation Workflows und Integration mit AWS Security Hub für Comprehensive Security Monitoring.",
         writeUp3Title: "Terraform State Management Best Practices",
         writeUp3Desc: "Deep Dive in Terraform State Management Strategies für Team Environments. Behandelt Remote State Backends mit S3 und DynamoDB, State Locking Mechanisms, Workspace Management und Migration Strategies für Existing Infrastructure.",
+
+        // Blog Page
+        blogHeroTitle: "Blog",
+        blogTagline: "Gedanken zu Cloud Engineering, Security und DevOps",
+        blogPostsTitle: "Aktuelle Beiträge",
+        blogPost1Title: "AWS SSO Einrichtung für Terraform State Management",
+        blogPost1Desc: "Eine praktische Anleitung zur Konfiguration des AWS IAM Identity Centers (SSO) für sichere Terraform-Operationen. Lernen Sie, wie man SSO einrichtet, Permission Sets nach Service-Domains organisiert und die AWS CLI für nahtlose Authentifizierung ohne hartcodierte Credentials konfiguriert.",
 
         // About Section
         aboutTitle: "Über mich",
@@ -201,8 +229,12 @@ const translations = {
         footerBy: "von",
         footerRights: "Alle Rechte vorbehalten.",
 
-        // CRC Article
-        backToWriteUps: "Zurück zu Projektartikeln"
+        // Navigation helpers
+        backToProjectDocs: "Zurück zur Projektdokumentation",
+        backToBlog: "Zurück zum Blog",
+
+        // CRC Article (keeping existing keys for compatibility)
+        backToWriteUps: "Zurück zur Projektdokumentation"
     }
 };
 
@@ -266,16 +298,20 @@ function highlightCurrentPage() {
         const href = item.getAttribute('href');
         if (!href) return;
 
-        // Extract just the filename from href (handle index.html#section and write-ups.html)
+        // Extract just the filename from href (handle index.html#section and other pages)
         const hrefFile = href.split('#')[0].split('/').pop();
 
         // Remove active class first
         item.classList.remove('active');
 
         // Check if this nav item matches current page
-        if (currentPage === 'write-ups.html' && hrefFile === 'write-ups.html') {
+        if (currentPage === 'project-docs.html' && hrefFile === 'project-docs.html') {
             item.classList.add('active');
-        } else if (currentPage === 'crc-article.html' && hrefFile === 'write-ups.html') {
+        } else if (currentPage === 'crc-article.html' && hrefFile === 'project-docs.html') {
+            item.classList.add('active');
+        } else if (currentPage === 'blog.html' && hrefFile === 'blog.html') {
+            item.classList.add('active');
+        } else if (currentPage === 'blog-sso-setup.html' && hrefFile === 'blog.html') {
             item.classList.add('active');
         } else if (currentPage === 'index.html' && hrefFile === 'index.html') {
             // Don't highlight on index.html - let scroll-based highlighting handle it
@@ -555,20 +591,6 @@ function loadTheme() {
     }
 }
 
-// Parallax effect on scroll (subtle)
-// Parallax effect disabled - hero should not move on scroll
-// function setupParallax() {
-//     window.addEventListener('scroll', () => {
-//         const scrolled = window.pageYOffset;
-//         const parallaxElements = document.querySelectorAll('.hero');
-//
-//         parallaxElements.forEach(el => {
-//             const speed = 0.5;
-//             el.style.transform = `translateY(${scrolled * speed}px)`;
-//         });
-//     });
-// }
-
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     loadTheme();
@@ -578,7 +600,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setupOutsideClick();
     updateVisitorCount();
     startCyclingText();
-    // setupParallax(); // Disabled - hero should not move on scroll
 
     // Update active nav on scroll
     window.addEventListener('scroll', () => {
