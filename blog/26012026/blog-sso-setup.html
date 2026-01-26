@@ -185,19 +185,20 @@
 
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
-            <a href="index.html#home">
-                <img src="images/cloudlogo.png" alt="ElasticPurple Logo" class="sidebar-logo">
+            <a href="../../index.html#home">
+                <img src="../../images/cloudlogo.png" alt="ElasticPurple Logo" class="sidebar-logo">
             </a>
         </div>
         <nav class="sidebar-nav">
-            <a href="index.html" class="nav-item" data-i18n="navHome">Home</a>
-            <a href="index.html#expertise" class="nav-item" data-i18n="navExpertise">Expertise</a>
-            <a href="index.html#projects" class="nav-item" data-i18n="navProjects">Projects</a>
-            <a href="index.html#about" class="nav-item" data-i18n="navAbout">About</a>
+            <a href="../../index.html" class="nav-item" data-i18n="navHome">Home</a>
+            <a href="../../index.html#expertise" class="nav-item" data-i18n="navExpertise">Expertise</a>
+            <a href="../../index.html#projects" class="nav-item" data-i18n="navProjects">Projects</a>
+            <a href="../../index.html#about" class="nav-item" data-i18n="navAbout">About</a>
             <div class="nav-separator"></div>
-            <a href="project-docs.html" class="nav-item nav-secondary" data-i18n="navProjectDocs">Project
+            <a href="../../project-documentation/project-docs.html" class="nav-item nav-secondary"
+                data-i18n="navProjectDocs">Project
                 Documentation</a>
-            <a href="blog.html" class="nav-item nav-secondary active" data-i18n="navBlog">Blog</a>
+            <a href="../blog.html" class="nav-item nav-secondary active" data-i18n="navBlog">Blog</a>
             <div class="nav-submenu">
                 <a href="blog-sso-setup.html" class="nav-subitem active" data-i18n="navBlogSSO">AWS SSO Setup</a>
             </div>
@@ -208,7 +209,7 @@
 
     <main class="main-content">
         <div class="article-content">
-            <a href="blog.html" class="back-to-blog">← <span data-i18n="backToBlog">Back to Blog</span></a>
+            <a href="../blog.html" class="back-to-blog">← <span data-i18n="backToBlog">Back to Blog</span></a>
 
             <div class="article-header">
                 <h1 class="article-title">Setting up AWS SSO for Terraform State Management</h1>
@@ -285,7 +286,7 @@
                             target="_blank" rel="noopener noreferrer">IAM Identity Center Prerequisites</a></p>
                 </div>
 
-                <img src="images/blog/Pasted image 20260126125329.png" alt="IAM Identity Center enabled in AWS Console"
+                <img src="images/Pasted image 20260126125329.png" alt="IAM Identity Center enabled in AWS Console"
                     class="article-image">
             </div>
 
@@ -306,11 +307,11 @@
                     AWS Administrator.
                 </p>
 
-                <img src="images/blog/Pasted image 20260126132525.png"
-                    alt="IAM Identity Center Dashboard showing SSO URL" class="article-image">
-                <img src="images/blog/Pasted image 20260126133341.png" alt="IAM Identity Center settings"
+                <img src="images/Pasted image 20260126132525.png" alt="IAM Identity Center Dashboard showing SSO URL"
                     class="article-image">
-                <img src="images/blog/Pasted image 20260126133600.png" alt="IAM Identity Center user portal"
+                <img src="images/Pasted image 20260126133341.png" alt="IAM Identity Center settings"
+                    class="article-image">
+                <img src="images/Pasted image 20260126133600.png" alt="IAM Identity Center user portal"
                     class="article-image">
             </div>
 
@@ -325,12 +326,11 @@
                     Make sure to also go into the user's profile and send the email verification from the console.
                 </p>
 
-                <img src="images/blog/Pasted image 20260126140001.png" alt="User profile - send email verification"
+                <img src="images/Pasted image 20260126140001.png" alt="User profile - send email verification"
                     class="article-image">
-                <img src="images/blog/Pasted image 20260126134224.png" alt="User creation in IAM Identity Center"
+                <img src="images/Pasted image 20260126134224.png" alt="User creation in IAM Identity Center"
                     class="article-image">
-                <img src="images/blog/Pasted image 20260126134315.png" alt="Email verification button"
-                    class="article-image">
+                <img src="images/Pasted image 20260126134315.png" alt="Email verification button" class="article-image">
 
                 <h3>Step 2: Set Up Permission Sets</h3>
                 <p>
@@ -350,7 +350,7 @@
 ├── terraform-serverless    (Lambda, API Gateway, EventBridge)
 └── terraform-monitoring    (CloudWatch, X-Ray, CloudTrail)</code></pre>
 
-                <img src="images/blog/Pasted image 20260126140809.png" alt="Permission Sets configuration"
+                <img src="images/Pasted image 20260126140809.png" alt="Permission Sets configuration"
                     class="article-image">
             </div>
 
@@ -363,7 +363,7 @@
                     to your account to attach the permission set(s):
                 </p>
 
-                <img src="images/blog/Pasted image 20260126143556.png" alt="AWS Accounts assignment screen"
+                <img src="images/Pasted image 20260126143556.png" alt="AWS Accounts assignment screen"
                     class="article-image">
             </div>
 
@@ -384,13 +384,13 @@
                     prompt you for your credentials. You'll also be asked to set up MFA before access is granted.
                 </p>
 
-                <img src="images/blog/Pasted image 20260126135107.png" alt="CLI SSO configuration prompt"
+                <img src="images/Pasted image 20260126135107.png" alt="CLI SSO configuration prompt"
                     class="article-image">
-                <img src="images/blog/Pasted image 20260126134931.png" alt="Browser authentication screen"
+                <img src="images/Pasted image 20260126134931.png" alt="Browser authentication screen"
                     class="article-image">
 
                 <h3>Success!</h3>
-                <img src="images/blog/Pasted image 20260126135154.png" alt="Successful SSO configuration"
+                <img src="images/Pasted image 20260126135154.png" alt="Successful SSO configuration"
                     class="article-image">
             </div>
 
