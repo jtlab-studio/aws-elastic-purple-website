@@ -24,11 +24,14 @@ const translations = {
         navAbout: "About",
         navWriteUps: "Write-Ups",
         navContact: "Contact",
+        navProjectDocs: "Project Documentation",
+        navBlog: "Blog",
 
         // Write-Ups Submenu
         navWriteUpCRC: "Cloud Portfolio",
         navWriteUpSecurity: "AWS Security Automation",
         navWriteUpTerraform: "Terraform State Management",
+        navBlogSSO: "AWS SSO Setup",
 
         // Hero Section
         heroTitle: "ElasticPurple",
@@ -107,6 +110,20 @@ const translations = {
         footerBy: "by",
         footerRights: "All rights reserved.",
 
+        // Blog Page
+        blogHeroTitle: "Blog",
+        blogTagline: "Thoughts on cloud engineering, security, and DevOps",
+        blogPostsTitle: "Recent Posts",
+        blogPost1Title: "Setting up AWS SSO for Terraform State Management",
+        blogPost1Desc: "A practical guide to configuring AWS IAM Identity Center (SSO) for secure Terraform operations. Learn how to set up SSO, create permission sets organized by service domains, and configure the AWS CLI for seamless authentication without hardcoded credentials.",
+        backToBlog: "Back to Blog",
+
+        // Project Documentation Page
+        projectDocsHeroTitle: "Project Documentation",
+        projectDocsTagline: "Deep dives into cloud architecture and security implementations",
+        projectDocsTitle: "Technical Documentation",
+        backToProjectDocs: "Back to Project Documentation",
+
         // CRC Article
         backToWriteUps: "Back to Write-Ups",
         crcArticleTitle: "Building a Serverless 3-Tier Web Application on AWS & Github Actions before migrating it to Terraform",
@@ -180,11 +197,14 @@ const translations = {
         navAbout: "Über mich",
         navWriteUps: "Projektartikel",
         navContact: "Kontakt",
+        navProjectDocs: "Projektdokumentation",
+        navBlog: "Blog",
 
         // Write-Ups Submenu
         navWriteUpCRC: "Cloud Portfolio",
         navWriteUpSecurity: "AWS Security Automation",
         navWriteUpTerraform: "Terraform State Management",
+        navBlogSSO: "AWS SSO Setup",
 
         // Hero Section
         heroTitle: "ElasticPurple",
@@ -262,6 +282,20 @@ const translations = {
         footerMadeWith: "Erstellt mit",
         footerBy: "von",
         footerRights: "Alle Rechte vorbehalten.",
+
+        // Blog Page
+        blogHeroTitle: "Blog",
+        blogTagline: "Gedanken zu Cloud Engineering, Security und DevOps",
+        blogPostsTitle: "Neueste Beiträge",
+        blogPost1Title: "AWS SSO Setup für Terraform State Management",
+        blogPost1Desc: "Ein praktischer Guide für Configuration von AWS IAM Identity Center (SSO) für Secure Terraform Operations. Learn how to Set up SSO, Create Permission Sets Organized by Service Domains, und Configure der AWS CLI für Seamless Authentication ohne Hardcoded Credentials.",
+        backToBlog: "Zurück zum Blog",
+
+        // Project Documentation Page
+        projectDocsHeroTitle: "Projektdokumentation",
+        projectDocsTagline: "Detaillierte Einblicke in Cloud-Architektur und Security-Implementierungen",
+        projectDocsTitle: "Technische Dokumentation",
+        backToProjectDocs: "Zurück zur Projektdokumentation",
 
         // CRC Article
         backToWriteUps: "Zurück zu Projektartikeln",

@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog - ElasticPurple</title>
+    <!-- FIX: Remove ../ from paths -->
     <link rel="icon" type="image/png" href="../images/favicon.ico">
     <link rel="stylesheet" href="../styles.css">
 </head>
@@ -34,20 +35,19 @@
             </a>
         </div>
         <nav class="sidebar-nav">
-            <a href="../index.html" class="nav-item" data-i18n="navHome">Home</a>
-            <a href="../index.html#expertise" class="nav-item" data-i18n="navExpertise">Expertise</a>
-            <a href="../index.html#projects" class="nav-item" data-i18n="navProjects">Projects</a>
-            <a href="../index.html#about" class="nav-item" data-i18n="navAbout">About</a>
+            <a href="../index.html" class="nav-item" data-i18n="navHome">🏠 Home</a>
+            <a href="../index.html#expertise" class="nav-item" data-i18n="navExpertise">🎓 Expertise</a>
+            <a href="../index.html#projects" class="nav-item" data-i18n="navProjects">🚀 Projects</a>
+            <a href="../index.html#about" class="nav-item" data-i18n="navAbout">👤 About</a>
             <div class="nav-separator"></div>
             <a href="../project-documentation/project-docs.html" class="nav-item nav-secondary"
-                data-i18n="navProjectDocs">Project
-                Documentation</a>
-            <a href="blog.html" class="nav-item nav-secondary active" data-i18n="navBlog">Blog</a>
+                data-i18n="navProjectDocs">📚 Project Documentation</a>
+            <a href="blog.html" class="nav-item nav-secondary active" data-i18n="navBlog">📝 Blog</a>
             <div class="nav-submenu">
                 <a href="26012026/blog-sso-setup.html" class="nav-subitem" data-i18n="navBlogSSO">AWS SSO Setup</a>
             </div>
             <a href="https://linkedin.com/in/elasticpurple" class="nav-item nav-secondary" target="_blank"
-                rel="noopener noreferrer" data-i18n="navContact">Contact</a>
+                rel="noopener noreferrer" data-i18n="navContact">🔗 Contact</a>
         </nav>
     </aside>
 
@@ -75,8 +75,7 @@
                     <p class="project-description" data-i18n="blogPost1Desc">
                         A practical guide to configuring AWS IAM Identity Center (SSO) for secure Terraform operations.
                         Learn how to set up SSO, create permission sets organized by service domains, and configure the
-                        AWS CLI
-                        for seamless authentication without hardcoded credentials.
+                        AWS CLI for seamless authentication without hardcoded credentials.
                     </p>
                     <div class="project-tags">
                         <span class="tag">AWS</span>
@@ -88,8 +87,7 @@
                     </div>
                     <div class="project-links">
                         <a href="26012026/blog-sso-setup.html" class="project-link"><span data-i18n="linkReadArticle">📖
-                                Read
-                                Article</span></a>
+                                Read Article</span></a>
                     </div>
                 </div>
             </div>
@@ -101,7 +99,7 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-left">
-                <span data-i18n="footerVisitors">Visitors</span>: <span id="visitorCount">---</span>
+                <span data-i18n="footerVisitors">Visitors</span>: <span id="visitorCount">Loading...</span>
             </div>
             <div class="footer-center">
                 <span data-i18n="footerMadeWith">Made with</span> ☁️ <span data-i18n="footerBy">by</span> ElasticPurple
@@ -112,7 +110,8 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- FIX: Path to script.js -->
+    <script src="../script.js"></script>
 </body>
 
 </html>
