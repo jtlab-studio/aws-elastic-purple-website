@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Portfolio Infrastructure — ElasticPurple</title>
+    <meta name="description" content="Technical documentation for building a serverless portfolio on AWS with Terraform and GitHub Actions.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" type="image/png" href="../images/favicon.ico">
+</head>
+<body>
+    <!-- Controls -->
+    <div class="controls">
+        <button class="control-btn" id="themeToggle" onclick="toggleTheme()">☾ Dark</button>
+        <button class="control-btn" id="langToggle" onclick="toggleLanguage()">DE</button>
+    </div>
+
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+        <a href="../index.html" class="sidebar-brand">
+            <span class="sidebar-brand-icon">EP</span>
+            <span class="sidebar-brand-text">ElasticPurple</span>
+        </a>
+        <button class="mobile-menu-btn" onclick="toggleSidebar()" aria-label="Menu">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 5h14M3 10h14M3 15h14"/>
+            </svg>
+        </button>
+    </header>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="../index.html" class="sidebar-brand">
+                    <span class="sidebar-brand-icon">EP</span>
+                    <span class="sidebar-brand-text">ElasticPurple</span>
+                </a>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../index.html#credentials" class="nav-link">Credentials</a>
+                <a href="../index.html#projects" class="nav-link">Projects</a>
+                
+                <div class="nav-divider"></div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Documentation</div>
+                </div>
+                <a href="cloud-portfolio.html" class="nav-link nav-sublink active">Cloud Portfolio</a>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Blog</div>
+                </div>
+                <a href="../blog/aws-sso-terraform.html" class="nav-link nav-sublink">AWS SSO Setup</a>
+                
+                <div class="nav-divider"></div>
+                
+                <a href="https://linkedin.com/in/elasticpurple" class="nav-link" target="_blank" rel="noopener">Contact ↗</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main">
+            <a href="../index.html#projects" class="back-link">← Back to Projects</a>
+
+            <article class="article">
+                <header class="article-header">
+                    <div class="article-meta">
+                        <span>January 2026</span>
+                        <span>•</span>
+                        <span>15 min read</span>
+                    </div>
+                    <h1 class="article-title">Cloud Portfolio Infrastructure</h1>
+                    <p class="page-subtitle">Building a serverless 3-tier web application on AWS, then migrating to Terraform.</p>
+                    <div class="article-tags">
+                        <span class="tag">AWS</span>
+                        <span class="tag">Terraform</span>
+                        <span class="tag">Lambda</span>
+                        <span class="tag">DynamoDB</span>
+                        <span class="tag">CloudFront</span>
+                        <span class="tag">GitHub Actions</span>
+                    </div>
+                </header>
+
+                <div class="article-content">
+                    <h2>Overview</h2>
+                    <p>
+                        This project demonstrates a production-grade serverless architecture on AWS. The site you're reading this on is the result—a static portfolio with a DynamoDB-backed visitor counter, fully managed through Infrastructure as Code.
+                    </p>
+                    <p>
+                        I built this in two phases: first manually via AWS Console/CLI to understand each service, then migrated everything to Terraform for reproducibility and version control.
+                    </p>
+
+                    <h2>Architecture</h2>
+                    <p>The stack consists of three tiers:</p>
+
+                    <h3>Frontend (Presentation Tier)</h3>
+                    <ul>
+                        <li><strong>S3</strong> — Static website hosting for HTML, CSS, JavaScript</li>
+                        <li><strong>CloudFront</strong> — CDN for global delivery with HTTPS</li>
+                        <li><strong>ACM</strong> — SSL/TLS certificate management</li>
+                        <li><strong>Route53</strong> — DNS for custom domain</li>
+                    </ul>
+
+                    <h3>Backend (Logic Tier)</h3>
+                    <ul>
+                        <li><strong>Lambda</strong> — Serverless function for visitor counter</li>
+                        <li><strong>Lambda Function URL</strong> — Direct HTTPS endpoint (no API Gateway needed)</li>
+                    </ul>
+
+                    <h3>Data Tier</h3>
+                    <ul>
+                        <li><strong>DynamoDB</strong> — NoSQL table storing visitor count</li>
+                    </ul>
+
+                    <h3>Infrastructure & Deployment</h3>
+                    <ul>
+                        <li><strong>Terraform</strong> — All resources defined as code</li>
+                        <li><strong>S3 Backend</strong> — Remote state with native locking</li>
+                        <li><strong>GitHub Actions</strong> — CI/CD for content deployment</li>
+                        <li><strong>WAF</strong> — Web application firewall with managed rule groups</li>
+                    </ul>
+
+                    <h2>Terraform Structure</h2>
+                    <p>The infrastructure is organized into two modules for separation of concerns:</p>
+
+<pre><code>terraform/
+├── main.tf                    # Module composition
+├── variables.tf               # Input variables
+├── outputs.tf                 # Output values
+├── terraform.tf               # Provider & backend config
+├── modules/
+│   ├── visitor-counter/       # Lambda, DynamoDB, IAM
+│   │   ├── main.tf
+│   │   ├── variables.tf
+│   │   └── outputs.tf
+│   └── website-frontend/      # S3, CloudFront, Route53, ACM, WAF
+│       ├── main.tf
+│       ├── variables.tf
+│       └── outputs.tf
+└── lambda_function.zip        # Python handler</code></pre>
+
+                    <h3>Key Configuration Decisions</h3>
+                    
+                    <p><strong>Multi-region providers:</strong> CloudFront requires ACM certificates in <code>us-east-1</code>, while the rest of my infrastructure runs in <code>eu-central-1</code>.</p>
+
+<pre><code>provider "aws" {
+  region = "eu-central-1"
+}
+
+provider "aws" {
+  alias  = "us_east_1"
+  region = "us-east-1"
+}</code></pre>
+
+                    <p><strong>S3 native state locking:</strong> Using the new S3-native locking instead of the deprecated DynamoDB approach.</p>
+
+<pre><code>backend "s3" {
+  bucket       = "crc-terraform-state-11012026"
+  key          = "crc/terraform.tfstate"
+  region       = "eu-central-1"
+  encrypt      = true
+  use_lockfile = true  # S3 native locking
+}</code></pre>
+
+                    <p><strong>Lambda Function URL:</strong> Chose this over API Gateway for simplicity—it's a single endpoint that doesn't need the complexity of API Gateway's features.</p>
+
+                    <h2>Challenges & Solutions</h2>
+
+                    <h3>Challenge 1: MIME Type Issues</h3>
+                    <p>
+                        Initial deployment loaded HTML but CSS/JS files failed. S3 wasn't setting correct <code>Content-Type</code> headers.
+                    </p>
+                    <p><strong>Solution:</strong> Explicit content-type mapping in GitHub Actions:</p>
+
+<pre><code>- name: Deploy to S3
+  run: |
+    aws s3 sync . s3://$BUCKET --delete \
+      --exclude "*.html" --exclude "*.css" --exclude "*.js"
+    aws s3 sync . s3://$BUCKET --delete \
+      --include "*.html" --content-type "text/html"
+    aws s3 sync . s3://$BUCKET --delete \
+      --include "*.css" --content-type "text/css"
+    aws s3 sync . s3://$BUCKET --delete \
+      --include "*.js" --content-type "application/javascript"</code></pre>
+
+                    <h3>Challenge 2: Terraform Import Drift</h3>
+                    <p>
+                        When importing existing manually-created resources, Terraform wanted to recreate them due to configuration mismatches.
+                    </p>
+                    <p><strong>Solution:</strong> Carefully matched Terraform config to existing resources, paying attention to:</p>
+                    <ul>
+                        <li>IAM role paths (<code>/service-role/</code> vs root path)</li>
+                        <li>Exact CloudFront cache policy IDs</li>
+                        <li>Resource naming conventions</li>
+                    </ul>
+
+                    <h3>Challenge 3: CloudFront Cache Invalidation</h3>
+                    <p>
+                        Content updates weren't visible immediately due to CDN caching.
+                    </p>
+                    <p><strong>Solution:</strong> Added invalidation step to CI/CD pipeline:</p>
+
+<pre><code>- name: Invalidate CloudFront
+  run: |
+    aws cloudfront create-invalidation \
+      --distribution-id ${{ secrets.CLOUDFRONT_DIST_ID }} \
+      --paths "/*"</code></pre>
+
+                    <h2>Security Implementation</h2>
+                    <ul>
+                        <li><strong>WAF</strong> — Three managed rule groups: IP Reputation, Common Rules, Known Bad Inputs</li>
+                        <li><strong>IAM Least Privilege</strong> — Lambda role only has DynamoDB access to specific table</li>
+                        <li><strong>S3 Block Public Access</strong> — All public access blocked; CloudFront uses OAC</li>
+                        <li><strong>HTTPS Only</strong> — CloudFront redirects HTTP to HTTPS</li>
+                        <li><strong>Secrets Management</strong> — AWS credentials stored in GitHub Secrets, never in code</li>
+                    </ul>
+
+                    <h2>Lessons Learned</h2>
+                    <ol>
+                        <li><strong>Manual first, then automate.</strong> Building manually taught me what each service actually does before abstracting it away with Terraform.</li>
+                        <li><strong>IAM paths matter.</strong> The <code>/service-role/</code> path isn't just cosmetic—it affects how resources reference each other.</li>
+                        <li><strong>Modular Terraform pays off.</strong> Even for a small project, separating frontend and backend modules made debugging much easier.</li>
+                        <li><strong>S3 native locking is the future.</strong> No more DynamoDB table for state locking.</li>
+                        <li><strong>Lambda Function URLs are underrated.</strong> For simple use cases, they eliminate API Gateway complexity entirely.</li>
+                    </ol>
+
+                    <h2 id="repository">Source Code</h2>
+                    <p>Both repositories are public:</p>
+                    <ul>
+                        <li><a href="https://github.com/jtlab-studio/terraform-crc" target="_blank" rel="noopener">Terraform Infrastructure →</a></li>
+                        <li><a href="https://github.com/jtlab-studio/aws-elastic-purple-website" target="_blank" rel="noopener">Website Source →</a></li>
+                    </ul>
+                </div>
+            </article>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div>
+                    <span>© 2026 Andrew J.</span>
+                </div>
+                <div class="footer-links">
+                    <a href="https://linkedin.com/in/elasticpurple" target="_blank" rel="noopener">LinkedIn</a>
+                    <a href="https://github.com/jtlab-studio" target="_blank" rel="noopener">GitHub</a>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>

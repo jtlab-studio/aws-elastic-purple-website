@@ -1,265 +1,397 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Andrew - Cloud Engineer Resume</title>
-    <link rel="stylesheet" href="resume.css">
-</head>
+    <title>Andrew J. — Cloud Engineer Resume</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        @page {
+            size: A4;
+            margin: 0.5in 0.6in;
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 9.5pt;
+            line-height: 1.4;
+            color: #1c1917;
+            background: #fff;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .page {
+            max-width: 8.27in;
+            margin: 0 auto;
+            padding: 0.4in 0.5in;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #7c3aed;
+            margin-bottom: 16px;
+        }
+
+        .name {
+            font-size: 22pt;
+            font-weight: 700;
+            color: #1c1917;
+            margin-bottom: 4px;
+        }
+
+        .title {
+            font-size: 11pt;
+            color: #7c3aed;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .contact {
+            font-size: 9pt;
+            color: #57534e;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .contact-sep {
+            color: #7c3aed;
+        }
+
+        /* Sections */
+        .section {
+            margin-bottom: 14px;
+        }
+
+        .section-title {
+            font-size: 10pt;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #1c1917;
+            padding-bottom: 4px;
+            border-bottom: 1.5px solid #7c3aed;
+            margin-bottom: 8px;
+        }
+
+        /* Summary */
+        .summary {
+            text-align: justify;
+            color: #292524;
+        }
+
+        /* Skills */
+        .skills-list {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .skill-row {
+            font-size: 9pt;
+            color: #292524;
+        }
+
+        .skill-row strong {
+            color: #7c3aed;
+        }
+
+        /* Certifications */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4px 16px;
+        }
+
+        .cert-item {
+            font-size: 8.5pt;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 8px;
+        }
+
+        .cert-name {
+            color: #7c3aed;
+            font-weight: 500;
+        }
+
+        .cert-status {
+            color: #78716c;
+            font-style: italic;
+            font-size: 8pt;
+        }
+
+        /* Experience */
+        .exp-item {
+            margin-bottom: 12px;
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 4px;
+        }
+
+        .exp-title {
+            font-size: 10pt;
+            font-weight: 700;
+            color: #1c1917;
+        }
+
+        .exp-dates {
+            font-size: 9pt;
+            color: #57534e;
+            font-weight: 500;
+        }
+
+        .exp-company {
+            font-size: 9pt;
+            color: #7c3aed;
+            font-weight: 500;
+            font-style: italic;
+            margin-bottom: 4px;
+        }
+
+        .exp-desc {
+            font-size: 9pt;
+            color: #292524;
+            text-align: justify;
+        }
+
+        /* Projects */
+        .project-item {
+            margin-bottom: 8px;
+        }
+
+        .project-title {
+            font-size: 9.5pt;
+            font-weight: 700;
+            color: #1c1917;
+            margin-bottom: 4px;
+        }
+
+        .project-list {
+            margin-left: 16px;
+            font-size: 9pt;
+            color: #292524;
+        }
+
+        .project-list li {
+            margin-bottom: 2px;
+        }
+
+        .project-list li::marker {
+            color: #7c3aed;
+        }
+
+        /* Education */
+        .edu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 4px;
+        }
+
+        .edu-name {
+            font-size: 9.5pt;
+            font-weight: 600;
+            color: #1c1917;
+        }
+
+        .edu-status {
+            font-size: 9pt;
+            color: #57534e;
+        }
+
+        .edu-detail {
+            font-size: 8.5pt;
+            color: #78716c;
+            font-style: italic;
+            margin-left: 16px;
+            margin-bottom: 6px;
+        }
+
+        /* Print */
+        @media print {
+            body { background: white; }
+            .page { padding: 0; margin: 0; max-width: 100%; }
+        }
+
+        @media screen {
+            body { background: #f5f5f4; padding: 20px; }
+            .page { box-shadow: 0 2px 8px rgba(0,0,0,0.1); background: white; }
+        }
+    </style>
+</head>
 <body>
     <div class="page">
-        <!-- Header Section -->
-        <header class="resume-header">
+        <header class="header">
             <h1 class="name">Andrew J.</h1>
             <div class="title">Cloud Engineer | AWS | Infrastructure as Code</div>
-            <div class="contact-info">
+            <div class="contact">
                 <span>Germany</span>
-                <span class="separator">•</span>
+                <span class="contact-sep">•</span>
                 <span>No Visa Required</span>
-                <span class="separator">•</span>
+                <span class="contact-sep">•</span>
                 <span>elasticpurple.com</span>
-                <span class="separator">•</span>
+                <span class="contact-sep">•</span>
                 <span>linkedin.com/in/elasticpurple</span>
-                <span class="separator">•</span>
+                <span class="contact-sep">•</span>
                 <span>github.com/jtlab-studio</span>
             </div>
         </header>
 
-        <!-- Professional Summary -->
         <section class="section">
             <h2 class="section-title">Professional Summary</h2>
-            <div class="section-content">
-                <p>Cloud Engineer with hands-on AWS experience including Terraform & GitHub
-                    Actions CI/CD. Seevral years in Customer Success Management for AI/ML model
-                    building and deployment, application security, and penetration testing engagements. Managed client
-                    relationships and coordinated cross-functional projects at Altair RapidMiner and Pentera Security.
-                    AWS Certified with additional hands-on traditional ML experience, plus cloud security training via
-                    Pwned Labs. Currently pursuing AWS SAA certification.</p>
-            </div>
+            <p class="summary">
+                Cloud Engineer with hands-on AWS experience including Terraform and GitHub Actions CI/CD. Customer Success background at cybersecurity and AI/ML platforms including Altair RapidMiner and Pentera Security, managing client relationships and coordinating cross-functional projects. AWS Certified with additional hands-on ML experience and cloud security training via Pwned Labs. Currently pursuing AWS SAA certification.
+            </p>
         </section>
 
-        <!-- Skills Section -->
         <section class="section">
             <h2 class="section-title">Technical Skills</h2>
-            <div class="section-content">
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <strong>Cloud & Infrastructure:</strong> AWS (EC2, S3, Lambda, CloudFront, DynamoDB, Route53,
-                        CloudFormation), Infrastructure as Code, Terraform, CI/CD with GitHub Actions, Serverless
-                        Architecture
-                    </div>
-                    <div class="skill-category">
-                        <strong>Security & Compliance:</strong> Network & Web Penetration Testing, AWS Cloud Penetration
-                        testing
-
-                        <div class="skill-category">
-                            <strong>Development & Scripting:</strong> HTML & CSS, Python, JavaScript, Full-Stack
-                            Development
-                        </div>
-                        <div class="skill-category">
-                            <strong>AI/ML & Data:</strong> Traditional ML & Generative AI, Data Analytics, Pandas &
-                            Numpy
-                        </div>
-                        <div class="skill-category">
-                            <strong>Soft Skills:</strong> Customer Success Management, Technical Advisory, Stakeholder
-                            Communication, Project Management, Cross-Functional Collaboration
-                        </div>
-                    </div>
+            <div class="skills-list">
+                <div class="skill-row">
+                    <strong>Cloud & Infrastructure:</strong> AWS (EC2, S3, Lambda, CloudFront, DynamoDB, Route53, CloudFormation), Terraform, GitHub Actions, Serverless Architecture
                 </div>
+                <div class="skill-row">
+                    <strong>Security:</strong> Network & Web Penetration Testing, AWS Cloud Penetration Testing, IAM, WAF
+                </div>
+                <div class="skill-row">
+                    <strong>Development:</strong> Python, JavaScript, HTML/CSS, Full-Stack Development
+                </div>
+                <div class="skill-row">
+                    <strong>AI/ML:</strong> Traditional ML, Generative AI, Data Analytics, Pandas, NumPy
+                </div>
+                <div class="skill-row">
+                    <strong>Soft Skills:</strong> Customer Success, Technical Advisory, Stakeholder Communication, Project Management
+                </div>
+            </div>
         </section>
 
-        <!-- Certifications -->
         <section class="section">
             <h2 class="section-title">Certifications</h2>
-            <div class="section-content">
-                <div class="cert-grid">
-                    <!-- Cloud & IaC Column -->
-                    <div class="cert-column">
-                        <div class="cert-item">
-                            <a href="https://aws.amazon.com/certification/certified-solutions-architect-associate/"
-                                target="_blank" rel="noopener noreferrer" class="cert-name">AWS Solutions Architect
-                                Associate</a>
-                            <span class="cert-status">(In Progress)</span>
-                        </div>
-                        <div class="cert-item">
-                            <a href="https://www.hashicorp.com/certification/terraform-associate" target="_blank"
-                                rel="noopener noreferrer" class="cert-name">Hashicorp Certified Terraform Associate
-                                (003)</a>
-                        </div>
-                        <div class="cert-item">
-                            <a href="https://www.udemy.com/course/aws-certified-cloud-practitioner-new/?couponCode=CP250105G1"
-                                target="_blank" rel="noopener noreferrer" class="cert-name">AWS Cloud Practitioner
-                                Course</a>
-                        </div>
-                    </div>
-
-                    <!-- AI/ML Column -->
-                    <div class="cert-column">
-                        <div class="cert-item">
-                            <a href="https://aws.amazon.com/certification/certified-ai-practitioner/" target="_blank"
-                                rel="noopener noreferrer" class="cert-name">AWS Certified AI Practitioner</a>
-                        </div>
-                        <div class="cert-item">
-                            <a href="https://www.udacity.com/course/ai-product-manager-nanodegree--nd088"
-                                target="_blank" rel="noopener noreferrer" class="cert-name">AI Product Manager</a>
-                        </div>
-                        <div class="cert-item">
-                            <a href="https://www.udacity.com/course/predictive-analytics-for-business-nanodegree--nd008t"
-                                target="_blank" rel="noopener noreferrer" class="cert-name">Predictive Analytics for
-                                Business</a>
-                        </div>
-                    </div>
-
-                    <!-- Cybersecurity Column -->
-                    <div class="cert-column">
-                        <div class="cert-item">
-                            <a href="https://bootcamps.pwnedlabs.io/placrtp-bootcamp" target="_blank"
-                                rel="noopener noreferrer" class="cert-name">Amazon Cloud Red Team Pro
-                                Bootcamp</a>
-                        </div>
-                        <div class="cert-item">
-                            <a href="https://ine.com/security/certifications/ejpt-certification" target="_blank"
-                                rel="noopener noreferrer" class="cert-name">Junior Penetration Tester (eJPT)</a>
-                        </div>
-                        <div class="cert-item">
-                            <a href="https://www.bcs.org/qualifications-and-certifications/certifications-for-professionals/information-security-and-data-protection-certifications/bcs-foundation-certificate-in-information-security-management-principles/"
-                                target="_blank" rel="noopener noreferrer" class="cert-name">InfoSecurity Management
-                                Principles
-                                (CISMP)</a>
-                        </div>
-                    </div>
+            <div class="cert-grid">
+                <div class="cert-item">
+                    <span class="cert-name">AWS Solutions Architect Associate</span>
+                    <span class="cert-status">(In Progress)</span>
+                </div>
+                <div class="cert-item">
+                    <span class="cert-name">AWS AI Practitioner</span>
+                </div>
+                <div class="cert-item">
+                    <span class="cert-name">AWS Cloud Red Team Bootcamp</span>
+                </div>
+                <div class="cert-item">
+                    <span class="cert-name">Terraform Associate (003)</span>
+                </div>
+                <div class="cert-item">
+                    <span class="cert-name">AI Product Manager</span>
+                </div>
+                <div class="cert-item">
+                    <span class="cert-name">Junior Penetration Tester (eJPT)</span>
+                </div>
+                <div class="cert-item">
+                    <span class="cert-name">AWS Cloud Practitioner</span>
+                </div>
+                <div class="cert-item">
+                    <span class="cert-name">Predictive Analytics</span>
+                </div>
+                <div class="cert-item">
+                    <span class="cert-name">CISMP</span>
                 </div>
             </div>
         </section>
 
-        <!-- Professional Experience -->
         <section class="section">
             <h2 class="section-title">Professional Experience</h2>
-            <div class="section-content">
-
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <div class="experience-left">
-                            <h3 class="job-title">Cloud Solutions Architect & Technical Upskilling</h3>
-                            <div class="company">Elastic Purple</div>
-                        </div>
-                        <div class="experience-right">
-                            <div class="dates">Aug 2024 - Present</div>
-                        </div>
-                    </div>
-                    <p class="experience-description">Focused on cloud architecture upskilling, completing AWS
-                        certifications, security training including AWS cloud pentesting, refreshing AI/ML
-                        knowledge and extending it with GenAI plus prompt engineering, and building serverless
-                        applications using AWS services, Terraform, and CI/CD pipelines. Independent cloud engineering
-                        projects with production deployments on AWS & undertaking MSc Computer Science online.</p>
+            
+            <div class="exp-item">
+                <div class="exp-header">
+                    <span class="exp-title">Cloud Solutions Architect & Technical Upskilling</span>
+                    <span class="exp-dates">Aug 2024 – Present</span>
                 </div>
+                <div class="exp-company">Elastic Purple</div>
+                <p class="exp-desc">
+                    Cloud architecture upskilling: AWS certifications, security training including AWS cloud pentesting, refreshing AI/ML knowledge with GenAI and prompt engineering. Building serverless applications using AWS, Terraform, and CI/CD pipelines. Independent cloud engineering projects with production deployments. Pursuing MSc Computer Science.
+                </p>
+            </div>
 
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <div class="experience-left">
-                            <h3 class="job-title">Enterprise Customer Success Manager</h3>
-                            <div class="company">Pentera Security - Continuous Security Validation & Pentesting</div>
-                        </div>
-                        <div class="experience-right">
-                            <div class="dates">Apr 2023 - Jul 2024</div>
-                        </div>
-                    </div>
-                    <p class="experience-description">Collaborated with penetration testers to review security
-                        assessments, developed security strategies with enterprise stakeholders, and managed technical
-                        onboarding for clients deploying continuous security validation solutions.</p>
+            <div class="exp-item">
+                <div class="exp-header">
+                    <span class="exp-title">Enterprise Customer Success Manager</span>
+                    <span class="exp-dates">Apr 2023 – Jul 2024</span>
                 </div>
+                <div class="exp-company">Pentera Security — Continuous Security Validation & Pentesting</div>
+                <p class="exp-desc">
+                    Collaborated with penetration testers to review security assessments, developed security strategies with enterprise stakeholders, and managed technical onboarding for clients deploying continuous security validation solutions.
+                </p>
+            </div>
 
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <div class="experience-left">
-                            <h3 class="job-title">Customer Success Manager & Global CS Team Lead</h3>
-                            <div class="company">Altair RapidMiner - Data Analytics & AI Model Building</div>
-                        </div>
-                        <div class="experience-right">
-                            <div class="dates">Apr 2018 - Mar 2023</div>
-                        </div>
-                    </div>
-                    <p class="experience-description">Led global customer success initiatives for AI/ML platform serving
-                        Fortune 500 clients, conducting AI assessments, managing stakeholder relationships, and
-                        coordinating cross-functional teams for enterprise accounts.</p>
+            <div class="exp-item">
+                <div class="exp-header">
+                    <span class="exp-title">Customer Success Manager & Global CS Team Lead</span>
+                    <span class="exp-dates">Apr 2018 – Mar 2023</span>
                 </div>
+                <div class="exp-company">Altair RapidMiner — Data Analytics & AI Model Building</div>
+                <p class="exp-desc">
+                    Led global customer success initiatives for AI/ML platform serving Fortune 500 clients. Conducted AI assessments, managed stakeholder relationships, and coordinated cross-functional teams for enterprise accounts.
+                </p>
+            </div>
 
-                <div class="experience-item">
-                    <div class="experience-header">
-                        <div class="experience-left">
-                            <h3 class="job-title">Business Development Manager</h3>
-                            <div class="company">Veracode - Application Security (SAST/DAST)</div>
-                        </div>
-                        <div class="experience-right">
-                            <div class="dates">Nov 2016 - Apr 2018</div>
-                        </div>
-                    </div>
-                    <p class="experience-description">Qualified technical sales leads and advised enterprise clients on
-                        application security requirements, delivering SAST/DAST demonstrations and supporting security
-                        solution implementations.</p>
+            <div class="exp-item">
+                <div class="exp-header">
+                    <span class="exp-title">Business Development Manager</span>
+                    <span class="exp-dates">Nov 2016 – Apr 2018</span>
                 </div>
-
+                <div class="exp-company">Veracode — Application Security (SAST/DAST)</div>
+                <p class="exp-desc">
+                    Qualified technical sales leads and advised enterprise clients on application security requirements. Delivered SAST/DAST demonstrations and supported security solution implementations.
+                </p>
             </div>
         </section>
-        </br>
-        <!-- Projects -->
+
         <section class="section">
             <h2 class="section-title">Key Projects</h2>
-            <div class="section-content">
-                <div class="project-item">
-                    <div class="project-header">
-                        <strong>Cloud Resume Challenge - Serverless Portfolio Website</strong>
-                    </div>
-                    <ul class="project-details">
-                        <li>Implemented via AWS Console/CLI before migrating to Terraform: </br>S3 static hosting,
-                            CloudFront CDN, Lambda functions, DynamoDB database, Route53 DNS, and ACM certificates</li>
-                        <li>Automated infrastructure provisioning using Terraform with modular design for
-                            maintainability and scalability</li>
-                        <li>Built CI/CD pipeline with GitHub Actions for automated testing, deployment, and cache
-                            invalidation</li>
-                        <li>Implemented visitor counter with Lambda Functional URL instead of API Gateway and DynamoDB
-                            backend</li>
-                        <li>Applied security best practices including WAF rules, IAM least privilege, and HTTPS
-                            encryption</li>
-                    </ul>
-                </div>
+            <div class="project-item">
+                <div class="project-title">Cloud Resume Challenge — Serverless Portfolio Website</div>
+                <ul class="project-list">
+                    <li>Implemented via AWS Console/CLI before migrating to Terraform: S3 static hosting, CloudFront CDN, Lambda functions, DynamoDB, Route53 DNS, ACM certificates</li>
+                    <li>Automated infrastructure provisioning using Terraform with modular design</li>
+                    <li>Built CI/CD pipeline with GitHub Actions for automated testing, deployment, and cache invalidation</li>
+                    <li>Implemented visitor counter with Lambda Function URL and DynamoDB backend</li>
+                    <li>Applied security best practices: WAF rules, IAM least privilege, HTTPS encryption</li>
+                </ul>
             </div>
         </section>
 
-        <!-- Education -->
         <section class="section">
             <h2 class="section-title">Education</h2>
-            <div class="section-content">
-                <div class="education-item">
-                    <div class="education-header">
-                        <div class="education-left">
-                            <strong>MSc Computing</strong> - City St George's, University of London
-                        </div>
-                        <div class="education-right">
-                            In Progress
-                        </div>
-                    </div>
-                    <div class="education-details">
-                        Focus: Cloud Computing & Digital Trasnformations using Cloud Technologies, AI, Big Data
-                        Analytics, Cybersecurity
-                    </div>
-                </div>
-                <div class="education-item">
-                    <div class="education-header">
-                        <div class="education-left">
-                            <strong>BEng (Hons) Civil Engineering</strong> - Kingston University London
-                        </div>
-                        <div class="education-right">
-                            Completed
-                        </div>
-                    </div>
-                </div>
+            <div class="edu-item">
+                <span class="edu-name">MSc Computing — City St George's, University of London</span>
+                <span class="edu-status">In Progress</span>
+            </div>
+            <div class="edu-detail">Focus: Cloud Computing, Digital Transformation, AI, Big Data, Cybersecurity</div>
+            
+            <div class="edu-item">
+                <span class="edu-name">BEng (Hons) Civil Engineering — Kingston University London</span>
+                <span class="edu-status">Completed</span>
             </div>
         </section>
-
     </div>
 </body>
-
 </html>

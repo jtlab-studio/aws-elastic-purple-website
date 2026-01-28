@@ -1,419 +1,298 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ElasticPurple - Cloud • Security • AI/ML</title>
-    <link rel="icon" type="image/png" href="images/favicon.ico">
+    <title>Andrew J. — Cloud Engineer</title>
+    <meta name="description" content="Cloud Engineer building production infrastructure on AWS. Terraform, CI/CD, serverless architectures.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="images/favicon.ico">
 </head>
-
 <body>
-    <!-- Theme Toggle -->
-    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
-        ☀️
-    </button>
+    <!-- Controls -->
+    <div class="controls">
+        <button class="control-btn" id="themeToggle" onclick="toggleTheme()">☾ Dark</button>
+        <button class="control-btn" id="langToggle" onclick="toggleLanguage()">DE</button>
+    </div>
 
-    <!-- Language Toggle -->
-    <button class="language-toggle" onclick="toggleLanguage()" aria-label="Toggle language">
-        <span class="lang-en">EN</span> | <span class="lang-de">DE</span>
-    </button>
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+        <a href="index.html" class="sidebar-brand">
+            <span class="sidebar-brand-icon">EP</span>
+            <span class="sidebar-brand-text">ElasticPurple</span>
+        </a>
+        <button class="mobile-menu-btn" onclick="toggleSidebar()" aria-label="Menu">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 5h14M3 10h14M3 15h14"/>
+            </svg>
+        </button>
+    </header>
 
-    <!-- Sidebar Navigation -->
-    <button class="hamburger" onclick="toggleSidebar()" aria-label="Toggle menu">
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-    <aside class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <a href="index.html#home">
-                <img src="images/cloudlogo.png" alt="ElasticPurple Logo" class="sidebar-logo">
-            </a>
-        </div>
-        <nav class="sidebar-nav">
-            <a href="#home" class="nav-item active" data-i18n="navHome">Home</a>
-            <a href="#expertise" class="nav-item" data-i18n="navExpertise">Expertise</a>
-            <a href="#projects" class="nav-item" data-i18n="navProjects">Projects</a>
-            <a href="#about" class="nav-item" data-i18n="navAbout">About</a>
-            <div class="nav-separator"></div>
-            <a href="project-documentation/project-docs.html" class="nav-item nav-secondary"
-                data-i18n="navProjectDocs">📚 Project Documentation</a>
-            <a href="blog/blog.html" class="nav-item nav-secondary" data-i18n="navBlog">📝 Blog</a>
-            <a href="https://linkedin.com/in/elasticpurple" class="nav-item nav-secondary" target="_blank"
-                rel="noopener noreferrer" data-i18n="navContact">🔗 Contact</a>
-        </nav>
-    </aside>
+    <div class="layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="index.html" class="sidebar-brand">
+                    <span class="sidebar-brand-icon">EP</span>
+                    <span class="sidebar-brand-text">ElasticPurple</span>
+                </a>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="index.html" class="nav-link active" data-i18n="navHome">Home</a>
+                <a href="index.html#credentials" class="nav-link" data-i18n="navCredentials">Credentials</a>
+                <a href="index.html#projects" class="nav-link" data-i18n="navProjects">Projects</a>
+                
+                <div class="nav-divider"></div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title" data-i18n="navDocs">Documentation</div>
+                </div>
+                <a href="project-docs/cloud-portfolio.html" class="nav-link nav-sublink">Cloud Portfolio</a>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title" data-i18n="navBlog">Blog</div>
+                </div>
+                <a href="blog/aws-sso-terraform.html" class="nav-link nav-sublink">AWS SSO Setup</a>
+                
+                <div class="nav-divider"></div>
+                
+                <a href="https://linkedin.com/in/elasticpurple" class="nav-link" target="_blank" rel="noopener" data-i18n="navContact">Contact ↗</a>
+            </nav>
+        </aside>
 
-    <!-- Main Content -->
-    <main class="main-content">
-
-        <!-- Hero Section -->
-        <section id="home" class="section hero-banner-section">
-            <div class="hero-banner-card">
-                <h1 class="hero-banner-title" data-i18n="heroTitle">ElasticPurple</h1>
-                <p class="hero-banner-tagline" data-i18n="tagline">Engineering Resilient, Intelligent Systems</p>
-                <p class="hero-banner-welcome" id="cyclingText">
-                    Welcome to my Cloud Portfolio!
+        <!-- Main Content -->
+        <main class="main">
+            <!-- Hero -->
+            <section class="hero">
+                <p class="hero-intro" data-i18n="heroIntro">Cloud Engineer</p>
+                <h1 class="hero-title" data-i18n="heroTitle">Building production infrastructure on AWS</h1>
+                <p class="hero-description" data-i18n="heroDescription">
+                    After years in Customer Success at cybersecurity and AI/ML companies, I'm now focused on cloud engineering—building production infrastructure on AWS with Terraform and GitHub Actions.
                 </p>
-                <!-- Image repositioned before buttons for mobile - CSS handles desktop positioning -->
-                <div class="hero-banner-image-corner">
-                    <img src="images/juwelcome.png" alt="Welcome to ElasticPurple" class="hero-banner-image">
-                </div>
-                <div class="hero-banner-actions">
-                    <a href="#projects" class="hero-btn-primary" data-i18n="btnPrimary">View My Work</a>
-                    <a href="#expertise" class="hero-btn-secondary" data-i18n="btnSecondary">See Certifications</a>
-                </div>
-            </div>
-        </section>
-
-        <div class="section-divider"></div>
-
-        <!-- Expertise/Certifications Section -->
-        <section id="expertise" class="section">
-            <h4 class="section-title" data-i18n="expertiseTitle">Expertise validated through industry-leading
-                certifications</h4>
-
-            <div class="cert-pillars-container">
-
-                <!-- Cloud Pillar -->
-                <div class="cert-pillar">
-                    <div class="pillar-header">
-                        <img src="images/jucloud.png" alt="Cloud" class="pillar-hero-image">
-                        <span class="pillar-icon-large">☁️</span>
-                        <h3>Cloud & IaC</h3>
-                    </div>
-                    <div class="cert-column">
-                        <div class="cert-item">
-                            <h4>AWS Solutions Architect Associate</h4>
-                            <div class="cert-meta">
-                                <span class="cert-badge in-progress">⏳ In Progress</span>
-                                <div class="cert-provider-small"><a
-                                        href="https://aws.amazon.com/certification/certified-solutions-architect-associate/"
-                                        target="_blank" rel="noopener noreferrer">AWS (SAA-C03) ↗</a></div>
-                                <button class="cert-toggle-small" onclick="toggleDescription(this)">+ More</button>
-                            </div>
-                            <p class="cert-description" style="display: none;" data-i18n="certDescSAA">
-                                Designing secure, resilient, and cost-efficient cloud architectures. Covers
-                                distributed
-                                system design, identity and access management, networking, storage, and
-                                high-availability patterns. Focuses on architectural best practices, fault
-                                tolerance,
-                                and aligning technical solutions with business and security requirements.
-                            </p>
-                        </div>
-
-                        <div class="cert-item">
-                            <h4>Terraform Associate</h4>
-                            <div class="cert-meta">
-                                <span class="cert-badge completed">✓ Completed</span>
-
-                                <div class="cert-provider-small"><a
-                                        href="https://www.hashicorp.com/certification/terraform-associate"
-                                        target="_blank" rel="noopener noreferrer">HashiCorp (003) ↗</a></div>
-                                <button class="cert-toggle-small" onclick="toggleDescription(this)">+ More</button>
-                            </div>
-                            <p class="cert-description" style="display: none;" data-i18n="certDescTerraform">
-                                Automating the provisioning, management, and versioning of cloud infrastructure
-                                using
-                                Terraform. Covering infrastructure as code principles, state management, modules,
-                                and
-                                resource orchestration across multiple providers. Focusing on building scalable,
-                                reproducible, and maintainable infrastructure while following best practices for
-                                collaboration and lifecycle management.
-                            </p>
-                        </div>
-
-                        <div class="cert-item">
-                            <h4>AWS Cloud Practitioner Course</h4>
-                            <div class="cert-meta">
-                                <span class="cert-badge completed">✓ Completed</span>
-
-                                <div class="cert-provider-small"><a
-                                        href="https://www.udemy.com/course/aws-certified-cloud-practitioner-new/?couponCode=CP250105G1"
-                                        target="_blank" rel="noopener noreferrer">Udemy - Stephan Maarek ↗</a></div>
-                                <button class="cert-toggle-small" onclick="toggleDescription(this)">+ More</button>
-                            </div>
-                            <p class="cert-description" style="display: none;" data-i18n="certDescCCP">
-                                Foundational AWS cloud concepts, core services, security, architecture, pricing
-                                models,
-                                and basic understanding of cloud deployment and operations.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- AI/ML Pillar -->
-                <div class="cert-pillar">
-                    <div class="pillar-header">
-                        <img src="images/juai.png" alt="AI/ML" class="pillar-hero-image">
-                        <span class="pillar-icon-large">🤖</span>
-                        <h3>AI/ML</h3>
-                    </div>
-                    <div class="cert-column">
-                        <div class="cert-item">
-                            <h4>AWS AI Practitioner</h4>
-                            <div class="cert-meta">
-                                <span class="cert-badge completed">✓ Completed</span>
-
-                                <div class="cert-provider-small"><a
-                                        href="https://aws.amazon.com/certification/certified-ai-practitioner/"
-                                        target="_blank" rel="noopener noreferrer">AWS (AIF-C01) ↗</a></div>
-                                <button class="cert-toggle-small" onclick="toggleDescription(this)">+ More</button>
-                            </div>
-                            <p class="cert-description" style="display: none;" data-i18n="certDescAIP">
-                                Validates foundational understanding of AI and machine learning concepts on AWS,
-                                covering foundational models, generative AI patterns such as retrieval-augmented
-                                generation (RAG), and the application of Amazon Bedrock and Amazon SageMaker for
-                                building, deploying, and operationalizing AI solutions within the AWS Cloud.
-                            </p>
-                        </div>
-
-                        <div class="cert-item">
-                            <h4>AI Product Manager</h4>
-                            <div class="cert-meta">
-                                <span class="cert-badge completed">✓ Completed</span>
-
-                                <div class="cert-provider-small"><a
-                                        href="https://www.udacity.com/course/ai-product-manager-nanodegree--nd088"
-                                        target="_blank" rel="noopener noreferrer">Udacity ↗</a></div>
-                                <button class="cert-toggle-small" onclick="toggleDescription(this)">+ More</button>
-                            </div>
-                            <p class="cert-description" style="display: none;" data-i18n="certDescAIPM">
-                                Managing AI-enabled products, defining requirements, building roadmaps, designing
-                                datasets, and evaluating model performance with focus on business objectives and
-                                ethics.
-                            </p>
-                        </div>
-
-                        <div class="cert-item">
-                            <h4>Predictive Analytics for Business</h4>
-                            <div class="cert-meta">
-                                <span class="cert-badge completed">✓ Completed</span>
-
-                                <div class="cert-provider-small"><a
-                                        href="https://www.udacity.com/course/predictive-analytics-for-business-nanodegree--nd008t"
-                                        target="_blank" rel="noopener noreferrer">Udacity ↗</a></div>
-                                <button class="cert-toggle-small" onclick="toggleDescription(this)">+ More</button>
-                            </div>
-                            <p class="cert-description" style="display: none;">
-                                Predictive modeling and data analysis including regression, classification,
-                                clustering,
-                                time-series forecasting, A/B testing, and visualization for actionable insights.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Security Pillar -->
-                <div class="cert-pillar">
-                    <div class="pillar-header">
-                        <img src="images/jusec.png" alt="Security" class="pillar-hero-image">
-                        <span class="pillar-icon-large">🔒</span>
-                        <h3>Security</h3>
-                    </div>
-                    <div class="cert-column">
-                        <div class="cert-item">
-                            <h4>Amazon Cloud Red Team Professional Bootcamp</h4>
-                            <div class="cert-meta">
-                                <span class="cert-badge completed">✓ Completed</span>
-                                <div class="cert-provider-small">
-                                    <a href="https://bootcamps.pwnedlabs.io/placrtp-bootcamp" target="_blank"
-                                        rel="noopener noreferrer">
-                                        Pwned Labs (ACRTP) ↗
-                                    </a>
-                                </div>
-
-                                <button class="cert-toggle-small" onclick="toggleDescription(this)">+ More</button>
-                            </div>
-                            <p class="cert-description" style="display: none;" data-i18n="certDescACRTP">
-                                Over four weeks of hands-on experience attacking,
-                                defending and auditing AWS environments — including simulating breaches, abusing
-                                misconfigurations and credentials, lateral movement, IAM exploitations, EC2/Elastic
-                                Beanstalk attacks, and also detecting/responding to threats using tools like Splunk, AWS
-                                GuardDuty, AWS CloudTrail and AWS Athena.
-                            </p>
-                        </div>
-
-                        <div class="cert-item">
-                            <h4>Junior Penetration Tester</h4>
-                            <div class="cert-meta">
-                                <span class="cert-badge completed">✓ Completed</span>
-                                <div class="cert-provider-small"><a
-                                        href="https://ine.com/security/certifications/ejpt-certification"
-                                        target="_blank" rel="noopener noreferrer">INE (eJPT) ↗</a></div>
-                                <button class="cert-toggle-small" onclick="toggleDescription(this)">+ More</button>
-                            </div>
-                            <p class="cert-description" style="display: none;" data-i18n="certDescEJPT">
-                                Penetration testing skills covering network, web, and application security, including
-                                reconnaissance, vulnerability assessment, and exploitation techniques. The INE eJPT exam
-                                duration is 48 hours, during which candidates must complete a hands-on, practical
-                                penetration testing challenge in which candidates need to gain admin access in a live
-                                lab environment.
-                            </p>
-                        </div>
-
-                        <div class="cert-item">
-                            <h4>Certified Information Security Management Principles</h4>
-                            <div class="cert-meta">
-                                <span class="cert-badge completed">✓ Completed</span>
-
-                                <div class="cert-provider-small"><a
-                                        href="https://www.bcs.org/qualifications-and-certifications/certifications-for-professionals/information-security-and-data-protection-certifications/bcs-foundation-certificate-in-information-security-management-principles/"
-                                        target="_blank" rel="noopener noreferrer">BCS (CISMP) ↗</a></div>
-                                <button class="cert-toggle-small" onclick="toggleDescription(this)">+ More</button>
-                            </div>
-                            <p class="cert-description" style="display: none;" data-i18n="certDescCISMP">
-                                Comprehensive foundation in information security management covering core concepts,
-                                information-lifecycle and risk management, governance and compliance, and security
-                                frameworks.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </section>
-
-        <!-- Section Divider -->
-        <div class="section-divider"></div>
-
-        <!-- Projects Section -->
-        <section id="projects" class="section">
-            <h2 class="section-title" data-i18n="projectsTitle">Projects</h2>
-            <div class="projects-grid">
-                <!-- Project 1 -->
-                <div class="project-card">
-                    <h3 data-i18n="project1Title">Serverless 3-Tier Web Application using AWS, Github
-                        Actions & Terraform</h3>
-                    <p class="project-description" data-i18n="project1Desc">
-                        A serverless web application demonstrating cloud-native architecture, infrastructure as code,
-                        and CI/CD practices. Built with AWS services, featuring automated deployments, monitoring, and a
-                        visitor counter backed by DynamoDB.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">AWS</span>
-                        <span class="tag">Terraform</span>
-                        <span class="tag">JavaScript</span>
-                        <span class="tag">Python</span>
-                        <span class="tag">GitHub Actions</span>
-                    </div>
-                    <div class="project-links">
-                        <a href="project-documentation/project-1/crc-article.html" class="project-link"><span
-                                data-i18n="linkWriteup">📝 Write-up</span></a>
-                        <a href="project-documentation/project-1/crc-article.html#repository" class="project-link"><span
-                                data-i18n="linkRepository">💻 Repository</span></a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Section Divider -->
-        <div class="section-divider"></div>
-
-        <!-- About/Contact Section -->
-        <section id="about" class="section hero-section">
-            <div class="hero-container">
-                <div class="hero-avatar">
-                    <img src="images/cloudju.png" alt="Andrew - ElasticPurple" class="hero-avatar-image">
-                </div>
                 <div class="hero-actions">
-                    <a href="resume/Andrew_J_Cloud_Engineer_Resume.pdf" class="btn-primary" download
-                        data-i18n="btnResume">📄 Download Resume</a>
-                    <a href="https://linkedin.com/in/elasticpurple" class="btn-secondary" target="_blank"
-                        rel="noopener noreferrer" data-i18n="btnLinkedIn">🔗 Connect on LinkedIn</a>
+                    <a href="resume/resume.pdf" class="btn btn-primary" download data-i18n="btnResume">Resume</a>
+                    <a href="https://linkedin.com/in/elasticpurple" class="btn btn-secondary" target="_blank" rel="noopener" data-i18n="btnLinkedIn">LinkedIn</a>
+                    <a href="https://github.com/jtlab-studio" class="btn btn-secondary" target="_blank" rel="noopener" data-i18n="btnGitHub">GitHub</a>
                 </div>
-            </div>
-            <!-- Skills Grid -->
-            <div class="skills-section">
-                <div class="skills-grid">
-                    <div class="skill-icon">
-                        <img src="images/skills/aws.png" alt="AWS" class="skill-icon-img">
-                        <div class="skill-name">AWS</div>
-                    </div>
-                    <div class="skill-icon">
-                        <img src="images/skills/terraform1.png" alt="Terraform" class="skill-icon-img">
-                        <div class="skill-name">Terraform</div>
-                    </div>
-                    <div class="skill-icon">
-                        <img src="images/skills/python.png" alt="Python" class="skill-icon-img">
-                        <div class="skill-name">Python</div>
-                    </div>
-                    <div class="skill-icon">
-                        <img src="images/skills/kali.png" alt="Kali-Linux" class="skill-icon-img">
-                        <div class="skill-name">Kali Linux</div>
-                    </div>
-                    <div class="skill-icon">
-                        <img src="images/skills/ubuntu.png" alt="Ubuntu-Linux" class="skill-icon-img">
-                        <div class="skill-name">Ubuntu</div>
-                    </div>
-                    <div class="skill-icon">
-                        <img src="images/skills/parrot.png" alt="Parrot OS" class="skill-icon-img">
-                        <div class="skill-name">Parrot OS</div>
-                    </div>
-                    <div class="skill-icon">
-                        <img src="images/skills/pwncloudos.png" alt="PwnCloudOS" class="skill-icon-img">
-                        <div class="skill-name">PwnCloudOS</div>
-                    </div>
-                    <div class="skill-icon">
-                        <img src="images/skills/Github.webp" alt="Github" class="skill-icon-img">
-                        <div class="skill-name">Github</div>
-                    </div>
-                    <div class="skill-icon">
-                        <img src="images/skills/Github-Actions.webp" alt="Github Actions" class="skill-icon-img">
-                        <div class="skill-name">Github Actions</div>
-                    </div>
-                    <div class="skill-icon">
-                        <img src="images/skills/js.png" alt="JavaScript" class="skill-icon-img">
-                        <div class="skill-name">JavaScript</div>
-                    </div>
-                    <div class="skill-icon">
-                        <img src="images/skills/css.png" alt="CSS" class="skill-icon-img">
-                        <div class="skill-name">CSS</div>
-                    </div>
-                    <div class="skill-icon">
-                        <img src="images/skills/html.png" alt="HTML" class="skill-icon-img">
-                        <div class="skill-name">HTML</div>
-                    </div>
-                    <div class="skill-icon">
-                        <img src="images/skills/british.png" alt="English" class="skill-icon-img">
-                        <div class="skill-name" data-i18n="skillEnglish">Fluent<br>English</div>
-                    </div>
-                    <div class="skill-icon">
-                        <img src="images/skills/german.png" alt="German" class="skill-icon-img">
-                        <div class="skill-name" data-i18n="skillGerman">Fluent<br>German</div>
-                    </div>
-                    <div class="skill-icon">
-                        <img src="images/skills/portuguese.png" alt="Portuguese" class="skill-icon-img">
-                        <div class="skill-name" data-i18n="skillPortuguese">Conversational<br>Portuguese</div>
-                    </div>
-                    <div class="skill-icon">
-                        <img src="images/skills/spanish.png" alt="Spanish" class="skill-icon-img">
-                        <div class="skill-name" data-i18n="skillSpanish">Conversational<br>Spanish</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+            </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-left">
-                <span data-i18n="footerVisitors">Visitors</span>: <span id="visitorCount">Loading...</span>
-            </div>
-            <div class="footer-center">
-                <span data-i18n="footerMadeWith">Made with</span> ☁️ <span data-i18n="footerBy">by</span> ElasticPurple
-            </div>
-            <div class="footer-right">
-                © 2026 ElasticPurple. <span data-i18n="footerRights">All rights reserved.</span>
-            </div>
-        </div>
-    </footer>
+            <!-- Credentials -->
+            <section class="section" id="credentials">
+                <div class="section-header">
+                    <h2 class="section-title" data-i18n="sectionCredentials">Credentials</h2>
+                </div>
+                
+                <div class="credentials-grid">
+                    <!-- AWS & Cloud -->
+                    <div class="credential-group">
+                        <h3 class="credential-group-title">
+                            <span class="credential-group-icon">☁️</span>
+                            <span>AWS & Cloud</span>
+                        </h3>
+                        <ul class="credential-list">
+                            <li class="credential-item">
+                                <div class="credential-name"><a href="https://aws.amazon.com/certification/certified-solutions-architect-associate/" target="_blank" rel="noopener">AWS Solutions Architect Associate</a></div>
+                                <div class="credential-meta">
+                                    <span class="credential-provider">AWS SAA-C03</span>
+                                    <span class="credential-status in-progress" data-i18n="statusInProgress">In Progress</span>
+                                </div>
+                            </li>
+                            <li class="credential-item">
+                                <div class="credential-name"><a href="https://aws.amazon.com/certification/certified-ai-practitioner/" target="_blank" rel="noopener">AWS AI Practitioner</a></div>
+                                <div class="credential-meta">
+                                    <span class="credential-provider">AWS AIF-C01</span>
+                                    <span class="credential-status completed" data-i18n="statusCompleted">Completed</span>
+                                </div>
+                            </li>
+                            <li class="credential-item">
+                                <div class="credential-name"><a href="https://www.udemy.com/course/aws-certified-cloud-practitioner-new/" target="_blank" rel="noopener">AWS Cloud Practitioner</a></div>
+                                <div class="credential-meta">
+                                    <span class="credential-provider">Udemy / Maarek</span>
+                                    <span class="credential-status completed" data-i18n="statusCompleted">Completed</span>
+                                </div>
+                            </li>
+                            <li class="credential-item">
+                                <div class="credential-name"><a href="https://bootcamps.pwnedlabs.io/placrtp-bootcamp" target="_blank" rel="noopener">AWS Cloud Red Team Bootcamp</a></div>
+                                <div class="credential-meta">
+                                    <span class="credential-provider">Pwned Labs ACRTP</span>
+                                    <span class="credential-status completed" data-i18n="statusCompleted">Completed</span>
+                                </div>
+                            </li>
+                            <li class="credential-item">
+                                <div class="credential-name"><a href="https://www.hashicorp.com/certification/terraform-associate" target="_blank" rel="noopener">Terraform Associate</a></div>
+                                <div class="credential-meta">
+                                    <span class="credential-provider">HashiCorp 003</span>
+                                    <span class="credential-status completed" data-i18n="statusCompleted">Completed</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Supporting Certifications -->
+                    <div class="credential-group">
+                        <h3 class="credential-group-title">
+                            <span class="credential-group-icon">📜</span>
+                            <span>Supporting Certifications</span>
+                        </h3>
+                        <ul class="credential-list">
+                            <li class="credential-item">
+                                <div class="credential-name"><a href="https://ine.com/security/certifications/ejpt-certification" target="_blank" rel="noopener">Junior Penetration Tester</a></div>
+                                <div class="credential-meta">
+                                    <span class="credential-provider">INE eJPT</span>
+                                    <span class="credential-status completed" data-i18n="statusCompleted">Completed</span>
+                                </div>
+                            </li>
+                            <li class="credential-item">
+                                <div class="credential-name"><a href="https://www.bcs.org/qualifications-and-certifications/certifications-for-professionals/information-security-and-data-protection-certifications/bcs-foundation-certificate-in-information-security-management-principles/" target="_blank" rel="noopener">Info Security Management</a></div>
+                                <div class="credential-meta">
+                                    <span class="credential-provider">BCS CISMP</span>
+                                    <span class="credential-status completed" data-i18n="statusCompleted">Completed</span>
+                                </div>
+                            </li>
+                            <li class="credential-item">
+                                <div class="credential-name"><a href="https://www.udacity.com/course/ai-product-manager-nanodegree--nd088" target="_blank" rel="noopener">AI Product Manager</a></div>
+                                <div class="credential-meta">
+                                    <span class="credential-provider">Udacity</span>
+                                    <span class="credential-status completed" data-i18n="statusCompleted">Completed</span>
+                                </div>
+                            </li>
+                            <li class="credential-item">
+                                <div class="credential-name"><a href="https://www.udacity.com/course/predictive-analytics-for-business-nanodegree--nd008t" target="_blank" rel="noopener">Predictive Analytics</a></div>
+                                <div class="credential-meta">
+                                    <span class="credential-provider">Udacity</span>
+                                    <span class="credential-status completed" data-i18n="statusCompleted">Completed</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects -->
+            <section class="section" id="projects">
+                <div class="section-header">
+                    <h2 class="section-title" data-i18n="sectionProjects">Projects</h2>
+                </div>
+                
+                <div class="projects-list">
+                    <article class="project-card">
+                        <h3 class="project-title">
+                            <a href="project-docs/cloud-portfolio.html" data-i18n="project1Title">Cloud Portfolio Infrastructure</a>
+                        </h3>
+                        <p class="project-description" data-i18n="project1Desc">
+                            Serverless 3-tier application on AWS. S3 static hosting, CloudFront CDN, Lambda + DynamoDB visitor counter. Fully managed with Terraform and deployed via GitHub Actions.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">AWS</span>
+                            <span class="tag">Terraform</span>
+                            <span class="tag">Lambda</span>
+                            <span class="tag">DynamoDB</span>
+                            <span class="tag">GitHub Actions</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="project-docs/cloud-portfolio.html" data-i18n="linkDocs">Documentation</a>
+                            <a href="https://github.com/jtlab-studio" target="_blank" rel="noopener" data-i18n="linkCode">Source Code</a>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- Skills -->
+            <section class="section" id="skills">
+                <div class="section-header">
+                    <h2 class="section-title" data-i18n="sectionSkills">Technical Skills</h2>
+                </div>
+                
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <img src="images/skills/aws.png" alt="" class="skill-icon">
+                        <span>AWS</span>
+                    </div>
+                    <div class="skill-item">
+                        <img src="images/skills/terraform1.png" alt="" class="skill-icon">
+                        <span>Terraform</span>
+                    </div>
+                    <div class="skill-item">
+                        <img src="images/skills/python.png" alt="" class="skill-icon">
+                        <span>Python</span>
+                    </div>
+                    <div class="skill-item">
+                        <img src="images/skills/Github.webp" alt="" class="skill-icon">
+                        <span>GitHub</span>
+                    </div>
+                    <div class="skill-item">
+                        <img src="images/skills/Github-Actions.webp" alt="" class="skill-icon">
+                        <span>GitHub Actions</span>
+                    </div>
+                    <div class="skill-item">
+                        <img src="images/skills/kali.png" alt="" class="skill-icon">
+                        <span>Kali Linux</span>
+                    </div>
+                    <div class="skill-item">
+                        <img src="images/skills/ubuntu.png" alt="" class="skill-icon">
+                        <span>Ubuntu</span>
+                    </div>
+                    <div class="skill-item">
+                        <img src="images/skills/parrot.png" alt="" class="skill-icon">
+                        <span>Parrot OS</span>
+                    </div>
+                    <div class="skill-item">
+                        <img src="images/skills/js.png" alt="" class="skill-icon">
+                        <span>JavaScript</span>
+                    </div>
+                    <div class="skill-item">
+                        <img src="images/skills/css.png" alt="" class="skill-icon">
+                        <span>CSS</span>
+                    </div>
+                    <div class="skill-item">
+                        <img src="images/skills/html.png" alt="" class="skill-icon">
+                        <span>HTML</span>
+                    </div>
+                    <div class="skill-item">
+                        <img src="images/skills/british.png" alt="" class="skill-icon">
+                        <span>English (Fluent)</span>
+                    </div>
+                    <div class="skill-item">
+                        <img src="images/skills/german.png" alt="" class="skill-icon">
+                        <span>German (Fluent)</span>
+                    </div>
+                    <div class="skill-item">
+                        <img src="images/skills/portuguese.png" alt="" class="skill-icon">
+                        <span>Portuguese</span>
+                    </div>
+                    <div class="skill-item">
+                        <img src="images/skills/spanish.png" alt="" class="skill-icon">
+                        <span>Spanish</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div>
+                    <span data-i18n="footerCopy">© 2026 Andrew J.</span>
+                    <span style="margin-left: 0.5rem; color: var(--text-muted);">
+                        Visitors: <span id="visitorCount">—</span>
+                    </span>
+                </div>
+                <div class="footer-links">
+                    <a href="https://linkedin.com/in/elasticpurple" target="_blank" rel="noopener">LinkedIn</a>
+                    <a href="https://github.com/jtlab-studio" target="_blank" rel="noopener">GitHub</a>
+                </div>
+            </footer>
+        </main>
+    </div>
 
     <script src="script.js"></script>
 </body>
-
 </html>

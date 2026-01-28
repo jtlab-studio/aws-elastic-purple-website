@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS SSO for Terraform — ElasticPurple</title>
+    <meta name="description" content="Setting up AWS IAM Identity Center (SSO) for secure Terraform operations without hardcoded credentials.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" type="image/png" href="../images/favicon.ico">
+</head>
+<body>
+    <!-- Controls -->
+    <div class="controls">
+        <button class="control-btn" id="themeToggle" onclick="toggleTheme()">☾ Dark</button>
+        <button class="control-btn" id="langToggle" onclick="toggleLanguage()">DE</button>
+    </div>
+
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+        <a href="../index.html" class="sidebar-brand">
+            <span class="sidebar-brand-icon">EP</span>
+            <span class="sidebar-brand-text">ElasticPurple</span>
+        </a>
+        <button class="mobile-menu-btn" onclick="toggleSidebar()" aria-label="Menu">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 5h14M3 10h14M3 15h14"/>
+            </svg>
+        </button>
+    </header>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="../index.html" class="sidebar-brand">
+                    <span class="sidebar-brand-icon">EP</span>
+                    <span class="sidebar-brand-text">ElasticPurple</span>
+                </a>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="../index.html" class="nav-link">Home</a>
+                <a href="../index.html#credentials" class="nav-link">Credentials</a>
+                <a href="../index.html#projects" class="nav-link">Projects</a>
+                
+                <div class="nav-divider"></div>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Documentation</div>
+                </div>
+                <a href="../project-docs/cloud-portfolio.html" class="nav-link nav-sublink">Cloud Portfolio</a>
+                
+                <div class="nav-section">
+                    <div class="nav-section-title">Blog</div>
+                </div>
+                <a href="aws-sso-terraform.html" class="nav-link nav-sublink active">AWS SSO Setup</a>
+                
+                <div class="nav-divider"></div>
+                
+                <a href="https://linkedin.com/in/elasticpurple" class="nav-link" target="_blank" rel="noopener">Contact ↗</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main">
+            <a href="../index.html" class="back-link">← Back to Home</a>
+
+            <article class="article">
+                <header class="article-header">
+                    <div class="article-meta">
+                        <span>January 26, 2026</span>
+                        <span>•</span>
+                        <span>12 min read</span>
+                    </div>
+                    <h1 class="article-title">Setting up AWS SSO for Terraform</h1>
+                    <p class="page-subtitle">Enterprise-grade authentication without hardcoded credentials.</p>
+                    <div class="article-tags">
+                        <span class="tag">AWS</span>
+                        <span class="tag">IAM Identity Center</span>
+                        <span class="tag">Terraform</span>
+                        <span class="tag">Security</span>
+                    </div>
+                </header>
+
+                <div class="article-content">
+                    <h2>The Problem</h2>
+                    <p>
+                        When working with Terraform and AWS, the default approach is storing access keys as environment variables. This works for personal projects but falls short of enterprise security standards.
+                    </p>
+                    <p>
+                        I used Claude to automate creating an S3 remote backend for Terraform state, but realized that relying on locally stored credentials wouldn't meet the security bar I wanted to demonstrate. The solution: <strong>IAM Identity Center (SSO)</strong>.
+                    </p>
+
+                    <div class="note">
+                        <p><strong>Key insight:</strong> SSO only needs to be set up once by the platform team—which in my case happens to be my alter ego, "Platform Dave."</p>
+                    </div>
+
+                    <h2>Two Scenarios</h2>
+
+                    <h3>Scenario 1: Organization Already Has SSO</h3>
+                    <p>If your company has IAM Identity Center enabled, skip the console setup. Just request from your admin:</p>
+                    <ul>
+                        <li>SSO Start URL: <code>https://d-xxxxxxxxxx.awsapps.com/start</code></li>
+                        <li>SSO Region: e.g., <code>us-east-1</code></li>
+                        <li>Your credentials</li>
+                    </ul>
+
+                    <h3>Scenario 2: Starting Fresh</h3>
+                    <p>
+                        You <strong>cannot</strong> create IAM Identity Center via CLI—it must be enabled in the console first. Once enabled, everything else can be done via CLI.
+                    </p>
+
+                    <h2>Setup Process</h2>
+
+                    <h3>1. Enable IAM Identity Center</h3>
+                    <p>In the AWS Console, navigate to IAM Identity Center and enable it. Note your SSO start URL from the dashboard.</p>
+
+                    <h3>2. Create a User</h3>
+                    <p>Add a user in IAM Identity Center. They'll receive an email invitation to set their password. Also send the email verification from the user's profile in the console.</p>
+
+                    <h3>3. Configure Permission Sets</h3>
+                    <p>I organized permission sets by AWS service domain, mirroring my Terraform module structure:</p>
+
+<pre><code>Permission Sets:
+├── terraform-core          # S3 state, tagging, read-only
+├── terraform-storage       # S3, EBS, EFS
+├── terraform-compute       # EC2, Lambda, ECS
+├── terraform-iam           # IAM roles/policies (scoped)
+├── terraform-networking    # VPC, subnets, security groups
+├── terraform-database      # RDS, DynamoDB, ElastiCache
+├── terraform-serverless    # Lambda, API Gateway, EventBridge
+└── terraform-monitoring    # CloudWatch, X-Ray, CloudTrail</code></pre>
+
+                    <h3>4. Assign to AWS Accounts</h3>
+                    <p>Go to <strong>AWS Accounts</strong> in IAM Identity Center and assign your user/group to your account with the appropriate permission sets.</p>
+
+                    <h3>5. Configure AWS CLI</h3>
+
+<pre><code>aws configure sso</code></pre>
+
+                    <p>You'll be prompted for:</p>
+                    <ul>
+                        <li>SSO start URL</li>
+                        <li>SSO region</li>
+                        <li>A browser will open for authentication</li>
+                        <li>MFA setup (required)</li>
+                        <li>Profile name (e.g., <code>terraform-dev</code>)</li>
+                    </ul>
+
+                    <h2>The Complete Flow</h2>
+
+<pre><code>1. aws sso login --profile terraform-dev
+   ↓
+2. Browser opens → You authenticate
+   ↓
+3. Select AWS account
+   ↓
+4. Select role (your permission set)
+   ↓
+5. CLI asks for region → eu-central-1
+   ↓
+6. CLI asks for output format → json
+   ↓
+7. CLI asks for profile name → terraform-dev
+   ↓
+8. ✅ Configuration saved to ~/.aws/config</code></pre>
+
+                    <h2>Using with Terraform</h2>
+                    <p>Reference your SSO profile in the provider configuration:</p>
+
+<pre><code>provider "aws" {
+  region  = "eu-central-1"
+  profile = "terraform-dev"
+}</code></pre>
+
+                    <p>Before running Terraform:</p>
+
+<pre><code>aws sso login --profile terraform-dev
+terraform init
+terraform plan
+terraform apply</code></pre>
+
+                    <h2>Benefits</h2>
+                    <ul>
+                        <li><strong>No hardcoded credentials</strong> — No access keys in environment variables or config files</li>
+                        <li><strong>Temporary credentials</strong> — SSO tokens expire automatically</li>
+                        <li><strong>Centralized management</strong> — All access controlled from IAM Identity Center</li>
+                        <li><strong>MFA built-in</strong> — Multi-factor authentication required</li>
+                        <li><strong>Audit trail</strong> — All SSO logins logged in CloudTrail</li>
+                        <li><strong>Role-based access</strong> — Easy to manage via permission sets</li>
+                    </ul>
+
+                    <h2>Conclusion</h2>
+                    <p>
+                        Setting up AWS SSO adds initial complexity but provides significant security benefits. It aligns with enterprise practices and demonstrates operational maturity—exactly what you want to show when targeting platform engineering roles.
+                    </p>
+                    <p>
+                        The approach scales from individual projects to team environments, making it a solid foundation for any Terraform-based infrastructure.
+                    </p>
+                </div>
+            </article>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div>
+                    <span>© 2026 Andrew J.</span>
+                </div>
+                <div class="footer-links">
+                    <a href="https://linkedin.com/in/elasticpurple" target="_blank" rel="noopener">LinkedIn</a>
+                    <a href="https://github.com/jtlab-studio" target="_blank" rel="noopener">GitHub</a>
+                </div>
+            </footer>
+        </main>
+    </div>
+
+    <script src="../script.js"></script>
+</body>
+</html>
