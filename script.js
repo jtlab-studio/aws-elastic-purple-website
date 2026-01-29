@@ -37,36 +37,36 @@ const translations = {
         navDocs: "Documentation",
         navBlog: "Blog",
         navContact: "Contact",
-        
+
         // Hero
         heroIntro: "Cloud Engineer",
         heroTitle: "Building production infrastructure on AWS",
-        heroDescription: "After years in Customer Success at cybersecurity and AI/ML companies, I'm now focused on cloud engineering—building production infrastructure on AWS with Terraform and GitHub Actions.",
+        heroDescription: "Cloud Engineer experienced in AWS, Terraform, and GitHub Actions CI/CD, with a background in Customer Success for cybersecurity and AI/ML platforms.",
         btnResume: "Resume",
         btnLinkedIn: "LinkedIn",
         btnGitHub: "GitHub",
-        
+
         // Sections
         sectionCredentials: "Credentials",
         sectionProjects: "Projects",
         sectionSkills: "Technical Skills",
         viewAll: "View all →",
-        
+
         // Credential groups
         groupCloud: "Cloud & Infrastructure",
         groupSecurity: "Security",
         groupAI: "AI / ML",
-        
+
         // Statuses
         statusCompleted: "Completed",
         statusInProgress: "In Progress",
-        
+
         // Project
         project1Title: "Cloud Portfolio Infrastructure",
         project1Desc: "Serverless 3-tier application on AWS. S3 static hosting, CloudFront CDN, Lambda + DynamoDB visitor counter. Fully managed with Terraform and deployed via GitHub Actions.",
         linkDocs: "Documentation",
         linkCode: "Source Code",
-        
+
         // Footer
         footerCopy: "© 2026 Andrew J.",
         footerBuilt: "Built with AWS, Terraform, and too much coffee."
@@ -79,36 +79,36 @@ const translations = {
         navDocs: "Dokumentation",
         navBlog: "Blog",
         navContact: "Kontakt",
-        
+
         // Hero
         heroIntro: "Cloud Engineer",
         heroTitle: "Production Infrastructure auf AWS",
-        heroDescription: "Nach Jahren im Customer Success bei Cybersecurity- und AI/ML-Unternehmen liegt mein Fokus jetzt auf Cloud Engineering—Aufbau von Produktionsinfrastruktur auf AWS mit Terraform und GitHub Actions.",
+        heroDescription: "Cloud Engineer mit Erfahrung in AWS, Terraform und GitHub Actions CI/CD, mit Hintergrund im Customer Success für Cybersecurity- und AI/ML-Plattformen.",
         btnResume: "Lebenslauf",
         btnLinkedIn: "LinkedIn",
         btnGitHub: "GitHub",
-        
+
         // Sections
         sectionCredentials: "Qualifikationen",
         sectionProjects: "Projekte",
         sectionSkills: "Technische Skills",
         viewAll: "Alle anzeigen →",
-        
+
         // Credential groups
         groupCloud: "Cloud & Infrastructure",
         groupSecurity: "Security",
         groupAI: "AI / ML",
-        
+
         // Statuses
         statusCompleted: "Abgeschlossen",
         statusInProgress: "In Bearbeitung",
-        
+
         // Project
         project1Title: "Cloud Portfolio Infrastructure",
         project1Desc: "Serverless 3-Tier Application auf AWS. S3 Static Hosting, CloudFront CDN, Lambda + DynamoDB Visitor Counter. Vollständig managed mit Terraform und deployed via GitHub Actions.",
         linkDocs: "Dokumentation",
         linkCode: "Source Code",
-        
+
         // Footer
         footerCopy: "© 2026 Andrew J.",
         footerBuilt: "Gebaut mit AWS, Terraform, und zu viel Kaffee."
@@ -141,7 +141,7 @@ function updateLanguageButton(lang) {
 function updateContent(lang) {
     const t = translations[lang];
     if (!t) return;
-    
+
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (t[key]) {
@@ -169,18 +169,18 @@ function closeSidebar() {
 async function loadVisitorCount() {
     const el = document.getElementById('visitorCount');
     if (!el) return;
-    
+
     try {
         const response = await fetch(
             'https://sv7nz6uz6uc4z65ayjqa2v7vgi0tpmcv.lambda-url.eu-central-1.on.aws/',
             { method: 'GET' }
         );
-        
+
         if (!response.ok) throw new Error('Failed to fetch');
-        
+
         const data = await response.json();
         const count = data.visits ?? data.count;
-        
+
         if (typeof count === 'number') {
             el.textContent = count.toLocaleString();
         }
@@ -194,11 +194,11 @@ async function loadVisitorCount() {
 function updateActiveNav() {
     const path = window.location.pathname;
     const filename = path.split('/').pop() || 'index.html';
-    
+
     document.querySelectorAll('.nav-link').forEach(link => {
         const href = link.getAttribute('href');
         if (!href) return;
-        
+
         const linkFile = href.split('/').pop();
         link.classList.toggle('active', linkFile === filename);
     });
@@ -210,10 +210,10 @@ document.addEventListener('DOMContentLoaded', () => {
     initLanguage();
     updateActiveNav();
     loadVisitorCount();
-    
+
     // Close sidebar on overlay click
     document.getElementById('sidebarOverlay')?.addEventListener('click', closeSidebar);
-    
+
     // Close sidebar on nav link click (mobile)
     document.querySelectorAll('.sidebar .nav-link').forEach(link => {
         link.addEventListener('click', () => {
